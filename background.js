@@ -33,7 +33,8 @@ function sendTextToChatGPT(text) {
                 inputField.dispatchEvent(new Event('input', { bubbles: true })); // Bắt sự kiện input để cập nhật
 
                 // Tìm nút gửi và nhấn
-                const sendButton = document.querySelector('button[data-testid="send-button"]'); // Tìm nút gửi
+                const sendButtonXPath = '//*[@data-testid="send-button"]'; // Sử dụng XPath để tìm nút gửi
+                const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; // Cập nhật tìm kiếm nút gửi
                 console.log('Send button found:', sendButton); // Ghi log để kiểm tra
 
                 if (sendButton) {
