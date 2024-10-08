@@ -18,11 +18,30 @@ function sendTextToChatGPT(text) {
           target: { tabId: newTab.id },
           func: (text) => {
             const checkTextarea = setInterval(() => {
-              const inputField = document.querySelector('textarea');
+              // Sử dụng XPath để tìm ô nhập
+              const inputFieldXPath = '//*[@id="prompt-textarea"]';
+              const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+              console.log('Input field found:', inputField); // Ghi log để kiểm tra
+
               if (inputField) {
-                inputField.value = text; // Dán văn bản vào ô nhập
-                clearInterval(checkTextarea); // Dừng kiểm tra khi textarea xuất hiện
+                // Ghi log nội dung để xác minh
+                console.log('Text to input:', text);
+                
+                // Dán văn bản vào ô nhập
+                inputField.innerText = text; 
                 inputField.dispatchEvent(new Event('input', { bubbles: true })); // Bắt sự kiện input để cập nhật
+
+                // Tìm nút gửi và nhấn
+                const sendButton = document.querySelector('button[data-testid="send-button"]'); // Tìm nút gửi
+                console.log('Send button found:', sendButton); // Ghi log để kiểm tra
+
+                if (sendButton) {
+                  sendButton.click(); // Nhấn nút gửi
+                  clearInterval(checkTextarea); // Dừng kiểm tra khi đã nhấn nút gửi
+                }
+              } else {
+                console.log('Input field not found, retrying...'); // Nếu không tìm thấy, ghi log và tiếp tục
               }
             }, 100); // Kiểm tra textarea sau mỗi 100ms
           },
@@ -53,10 +72,10 @@ chrome.action.onClicked.addListener((tab) => {
       if (selectedText) {
         sendTextToChatGPT(selectedText);
       } else {
-        alert("Please select some text before clicking the extension icon.");
+        console.error("No text selected. Please select some text before using this feature.");
       }
     } else {
-      alert("No text selected. Please select some text before using this feature.");
+      console.error("No text selected. Please select some text before using this feature.");
     }
   });
 });
