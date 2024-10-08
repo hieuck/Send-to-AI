@@ -40,6 +40,7 @@ function sendTextToChatGPT(text) {
                 if (sendButton) {
                   setTimeout(() => {
                     sendButton.click(); // Nhấn nút gửi
+                    console.log("Button clicked");
                     clearInterval(checkTextarea); // Dừng kiểm tra khi đã nhấn nút gửi
                   }, 500); // Thêm delay 500ms trước khi nhấn nút gửi
                 }
@@ -65,13 +66,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 // Xử lý khi nhấn vào biểu tượng tiện ích
 chrome.action.onClicked.addListener((tab) => {
-  console.log("Icon clicked"); // Thêm dòng ghi log này
+  console.log("Icon clicked"); // Ghi log khi biểu tượng được nhấn
+
   // Lấy đoạn văn bản đã chọn trên tab hiện tại
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => window.getSelection().toString() // Lấy văn bản được chọn
   }, (selectionResult) => {
-    console.log("Selection result:", selectionResult); // Thêm dòng ghi log này
+    console.log("Selection result:", selectionResult); // Ghi log kết quả lựa chọn
     if (selectionResult && selectionResult[0]) { // Kiểm tra xem selectionResult có tồn tại và có giá trị
       const selectedText = selectionResult[0].result.trim();
       if (selectedText) {
