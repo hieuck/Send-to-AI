@@ -38,8 +38,10 @@ function sendTextToChatGPT(text) {
                 console.log('Send button found:', sendButton); // Ghi log để kiểm tra
 
                 if (sendButton) {
-                  sendButton.click(); // Nhấn nút gửi
-                  clearInterval(checkTextarea); // Dừng kiểm tra khi đã nhấn nút gửi
+                  setTimeout(() => {
+                    sendButton.click(); // Nhấn nút gửi
+                    clearInterval(checkTextarea); // Dừng kiểm tra khi đã nhấn nút gửi
+                  }, 500); // Thêm delay 500ms trước khi nhấn nút gửi
                 }
               } else {
                 console.log('Input field not found, retrying...'); // Nếu không tìm thấy, ghi log và tiếp tục
@@ -63,11 +65,13 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 // Xử lý khi nhấn vào biểu tượng tiện ích
 chrome.action.onClicked.addListener((tab) => {
+  console.log("Icon clicked"); // Thêm dòng ghi log này
   // Lấy đoạn văn bản đã chọn trên tab hiện tại
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => window.getSelection().toString() // Lấy văn bản được chọn
   }, (selectionResult) => {
+    console.log("Selection result:", selectionResult); // Thêm dòng ghi log này
     if (selectionResult && selectionResult[0]) { // Kiểm tra xem selectionResult có tồn tại và có giá trị
       const selectedText = selectionResult[0].result.trim();
       if (selectedText) {
