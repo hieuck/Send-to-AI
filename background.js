@@ -77,6 +77,7 @@ chrome.action.onClicked.addListener((tab) => {
     if (selectionResult && selectionResult[0]) { // Kiểm tra xem selectionResult có tồn tại và có giá trị
       const selectedText = selectionResult[0].result.trim();
       if (selectedText) {
+        console.log("Selected text:", selectedText); // Ghi log văn bản đã chọn
         sendTextToChatGPT(selectedText);
       } else {
         console.error("No text selected. Please select some text before using this feature.");
