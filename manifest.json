@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Send to ChatGPT",
+  "version": "1.2",
+  "description": "Send selected text to ChatGPT via context menu and icon click",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
