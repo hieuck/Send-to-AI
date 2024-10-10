@@ -1,30 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  chrome.storage.local.get("selectedText", (data) => {
-    const selectedText = data.selectedText || "";
-    document.getElementById("response").innerText = `You sent: ${selectedText}`;
-    
-    // Call your ChatGPT API here using the selectedText
-    // Example: sendChatGPTRequest(selectedText);
+  const languageDropdown = document.getElementById("languageDropdown");
+  const customLanguageInput = document.getElementById("customLanguage");
+  const saveButton = document.getElementById("saveButton");
+  const statusMessage = document.createElement("div");
+  document.body.appendChild(statusMessage);
+
+  chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
+      if (data.selectedLanguage) {
+          languageDropdown.value = data.selectedLanguage;
+          statusMessage.innerText += `Ngôn ngữ đã chọn: ${data.selectedLanguage}\n`;
+      }
+      if (data.customLanguage) {
+          customLanguageInput.value = data.customLanguage;
+          statusMessage.innerText += `Ngôn ngữ tùy chỉnh: ${data.customLanguage}\n`;
+      }
+  });
+
+  // Xử lý sự kiện lưu
+  saveButton.addEventListener("click", () => {
+      const selectedLanguage = languageDropdown.value;
+      const customLanguage = customLanguageInput.value;
+
+      // Lưu ngôn ngữ đã chọn và ngôn ngữ tùy chỉnh vào chrome.storage
+      chrome.storage.local.set({ selectedLanguage, customLanguage }, () => {
+          alert("Cài đặt ngôn ngữ đã được lưu!");
+          // Cập nhật menu chuột phải
+          createContextMenus(); // Gọi hàm để cập nhật menu
+          statusMessage.innerText = `Ngôn ngữ đã lưu: ${selectedLanguage}`;
+      });
   });
 });
-
-// Example function to send request to ChatGPT
-function sendChatGPTRequest(text) {
-  fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer YOUR_API_KEY`
-    },
-    body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: text }]
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Display the response from ChatGPT
-    console.log(data);
-  })
-  .catch(error => console.error("Error:", error));
-}
