@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
 // Tạo hoặc cập nhật menu chuột phải với ngôn ngữ đã chọn
 function createContextMenus() {
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
-      const language = data.customLanguage || data.selectedLanguage || "VI";
+      const language = data.customLanguage || data.selectedLanguage || "VI-VN";
       
       // Lấy tên ngôn ngữ từ mã ngôn ngữ
       const languageNames = {
