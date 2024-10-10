@@ -31,7 +31,7 @@ function sendTextToChatGPT(text) {
 
               if (inputField) {
                 // Thêm đoạn văn bản "trả lời bằng VI-VN." trước nội dung gốc
-                const fullText = `trả lời bằng VI-VN. \n\n${text}`;
+                const fullText = `Answer in VI-VN. \n\n${text}`;
                 inputField.innerText = fullText; 
                 inputField.dispatchEvent(new Event('input', { bubbles: true })); // Bắt sự kiện input để cập nhật
 
