@@ -2,20 +2,13 @@
 chrome.runtime.onInstalled.addListener(() => {
   // Tạo menu chuột phải cho đoạn văn bản được chọn
   chrome.contextMenus.create({
-    id: "sendToChatGPTText",
-    title: "Send selected text to ChatGPT",
+    id: "sendToChatGPT",
+    title: "Send to ChatGPT",
     contexts: ["selection"] // Chỉ hiện menu khi có đoạn văn bản được chọn
-  });
-
-  // Tạo menu chuột phải cho việc gửi liên kết trang hiện tại
-  chrome.contextMenus.create({
-    id: "sendToChatGPTLink",
-    title: "Send page link to ChatGPT",
-    contexts: ["page", "link"] // Hiện menu cho toàn trang hoặc khi nhấp chuột phải vào liên kết
   });
 });
 
-// Hàm mở tab mới với ChatGPT và dán văn bản hoặc liên kết
+// Hàm mở tab mới với ChatGPT và dán đoạn văn bản
 function sendTextToChatGPT(text) {
   chrome.tabs.create({ url: "https://chatgpt.com/?model=auto" }, (newTab) => {
     chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
@@ -29,22 +22,30 @@ function sendTextToChatGPT(text) {
               const inputFieldXPath = '//*[@id="prompt-textarea"]';
               const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
+              console.log('Input field found:', inputField); // Ghi log để kiểm tra
+
               if (inputField) {
-                // Thêm đoạn văn bản "trả lời bằng VI-VN." trước nội dung gốc
-                const fullText = `trả lời bằng VI-VN. \n\n${text}`;
-                inputField.innerText = fullText; 
+                // Ghi log nội dung để xác minh
+                console.log('Text to input:', text);
+                
+                // Dán văn bản vào ô nhập
+                inputField.innerText = text; 
                 inputField.dispatchEvent(new Event('input', { bubbles: true })); // Bắt sự kiện input để cập nhật
 
                 // Tìm nút gửi và nhấn
-                const sendButtonXPath = '//*[@data-testid="send-button"]';
-                const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                
+                const sendButtonXPath = '//*[@data-testid="send-button"]'; // Sử dụng XPath để tìm nút gửi
+                const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; // Cập nhật tìm kiếm nút gửi
+                console.log('Send button found:', sendButton); // Ghi log để kiểm tra
+
                 if (sendButton) {
                   setTimeout(() => {
                     sendButton.click(); // Nhấn nút gửi
+                    console.log("Button clicked");
                     clearInterval(checkTextarea); // Dừng kiểm tra khi đã nhấn nút gửi
-                  }, 500); 
+                  }, 500); // Thêm delay 500ms trước khi nhấn nút gửi
                 }
+              } else {
+                console.log('Input field not found, retrying...'); // Nếu không tìm thấy, ghi log và tiếp tục
               }
             }, 100); // Kiểm tra textarea sau mỗi 100ms
           },
@@ -58,31 +59,31 @@ function sendTextToChatGPT(text) {
 
 // Xử lý khi nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
-    sendTextToChatGPT(info.selectionText); // Gửi văn bản đã chọn
-  } else if (info.menuItemId === "sendToChatGPTLink") {
-    const pageUrl = info.linkUrl || tab.url; // Nếu có liên kết được chọn, gửi liên kết đó. Nếu không, gửi URL trang
-    sendTextToChatGPT(pageUrl);
+  if (info.menuItemId === "sendToChatGPT" && info.selectionText) {
+    sendTextToChatGPT(info.selectionText);
   }
 });
 
 // Xử lý khi nhấn vào biểu tượng tiện ích
 chrome.action.onClicked.addListener((tab) => {
-  console.log("Icon clicked");
+  console.log("Icon clicked"); // Ghi log khi biểu tượng được nhấn
 
+  // Lấy đoạn văn bản đã chọn trên tab hiện tại
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: () => window.getSelection().toString() // Lấy văn bản được chọn
   }, (selectionResult) => {
-    if (selectionResult && selectionResult[0]) {
+    console.log("Selection result:", selectionResult); // Ghi log kết quả lựa chọn
+    if (selectionResult && selectionResult[0]) { // Kiểm tra xem selectionResult có tồn tại và có giá trị
       const selectedText = selectionResult[0].result.trim();
       if (selectedText) {
-        sendTextToChatGPT(selectedText); // Gửi văn bản nếu có
+        console.log("Selected text:", selectedText); // Ghi log văn bản đã chọn
+        sendTextToChatGPT(selectedText);
       } else {
-        sendTextToChatGPT(tab.url); // Nếu không có văn bản, gửi URL của trang
+        console.error("No text selected. Please select some text before using this feature.");
       }
     } else {
-      sendTextToChatGPT(tab.url); // Nếu không lấy được văn bản, gửi URL của trang
+      console.error("No text selected. Please select some text before using this feature.");
     }
   });
 });
