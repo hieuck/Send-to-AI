@@ -1,0 +1,18 @@
+{
+    "extensionName": {
+      "message": "Language Settings"
+    },
+    "extensionDescription": {
+      "message": "Choose a language for ChatGPT responses."
+    },
+    "languageLabel": {
+      "message": "Select response language:"
+    },
+    "customLanguageLabel": {
+      "message": "Or enter a custom language:"
+    },
+    "saveButton": {
+      "message": "Save"
+    }
+  }
+  

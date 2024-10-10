@@ -1,0 +1,18 @@
+{
+    "extensionName": {
+      "message": "Gửi tới ChatGPT"
+    },
+    "extensionDescription": {
+      "message": "Gửi đoạn văn bản được chọn tới ChatGPT qua menu chuột phải và nhấp vào biểu tượng."
+    },
+    "languageLabel": {
+      "message": "Chọn ngôn ngữ trả lời:"
+    },
+    "customLanguageLabel": {
+      "message": "Hoặc nhập ngôn ngữ tùy chỉnh:"
+    },
+    "saveButton": {
+      "message": "Lưu"
+    }
+  }
+  
