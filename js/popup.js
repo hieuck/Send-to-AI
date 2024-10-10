@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusMessage = document.createElement("div");
   document.body.appendChild(statusMessage);
 
+  // Tải ngôn ngữ đã lưu và cập nhật dropdown
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
       if (data.selectedLanguage) {
           languageDropdown.value = data.selectedLanguage;
@@ -24,9 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Lưu ngôn ngữ đã chọn và ngôn ngữ tùy chỉnh vào chrome.storage
       chrome.storage.local.set({ selectedLanguage, customLanguage }, () => {
           alert("Cài đặt ngôn ngữ đã được lưu!");
-          // Cập nhật menu chuột phải
-          createContextMenus(); // Gọi hàm để cập nhật menu
           statusMessage.innerText = `Ngôn ngữ đã lưu: ${selectedLanguage}`;
+
+          // Gửi thông báo đến background để cập nhật menu
+          chrome.runtime.sendMessage({ action: "updateContextMenus" });
       });
   });
 });

@@ -6,29 +6,37 @@ chrome.runtime.onInstalled.addListener(() => {
 // Tạo hoặc cập nhật menu chuột phải với ngôn ngữ đã chọn
 function createContextMenus() {
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
-      const language = data.customLanguage || data.selectedLanguage || "VI"; // Ưu tiên ngôn ngữ tùy chỉnh, nếu không có thì lấy từ dropdown
-      updateContextMenu(language);
+      const language = data.customLanguage || data.selectedLanguage || "VI";
+
+      // Cập nhật tiêu đề menu theo ngôn ngữ đã chọn
+      const textMenuTitle = chrome.i18n.getMessage("contextMenuText").replace("{language}", language);
+      const linkMenuTitle = chrome.i18n.getMessage("contextMenuLink").replace("{language}", language);
+      
+      // Xóa các menu cũ trước khi tạo mới
+      chrome.contextMenus.removeAll(() => {
+          chrome.contextMenus.create({
+              id: "sendToChatGPTText",
+              title: textMenuTitle,
+              contexts: ["selection"]
+          });
+
+          chrome.contextMenus.create({
+              id: "sendToChatGPTLink",
+              title: linkMenuTitle,
+              contexts: ["page", "link"]
+          });
+      });
   });
 }
 
-// Hàm cập nhật tiêu đề của menu chuột phải
-function updateContextMenu(language) {
-  const textMenuTitle = `Gửi văn bản đã chọn tới ChatGPT bằng ngôn ngữ "${language}"`;
-  const linkMenuTitle = `Gửi liên kết tới ChatGPT bằng ngôn ngữ "${language}`;
-
-  // Tạo/cập nhật menu chuột phải
-  chrome.contextMenus.create({
-      id: "sendToChatGPTText",
-      title: textMenuTitle,
-      contexts: ["selection"]
-  });
-
-  chrome.contextMenus.create({
-      id: "sendToChatGPTLink",
-      title: linkMenuTitle,
-      contexts: ["page", "link"]
-  });
-}
+// Theo dõi sự thay đổi trong chrome.storage
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local") {
+      if (changes.selectedLanguage || changes.customLanguage) {
+          createContextMenus(); // Cập nhật menu khi ngôn ngữ thay đổi
+      }
+  }
+});
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
