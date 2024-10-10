@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
           statusMessage.innerText = `Ngôn ngữ đã lưu: ${selectedLanguage}`;
 
           // Gửi thông báo đến background để cập nhật menu
-          chrome.runtime.sendMessage({ action: "updateContextMenus" });
+          chrome.runtime.sendMessage({ action: "createContextMenus" });
       });
   });
 });

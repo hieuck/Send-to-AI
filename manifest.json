@@ -13,12 +13,6 @@
     "service_worker": "js/background.js"
   },
   "default_locale": "vi",
-  "locales": {
-    "en": "locales/en/messages.json",
-    "es": "locales/es/messages.json",
-    "fr": "locales/fr/messages.json",
-    "vi": "locales/vi/messages.json"
-  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
