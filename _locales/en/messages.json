@@ -13,6 +13,12 @@
     },
     "saveButton": {
       "message": "Save"
+    },
+    "contextMenuText": {
+      "message": "Send selected text to ChatGPT in language \"{language}\""
+    },
+    "contextMenuLink": {
+      "message": "Send link to ChatGPT in language \"{language}\""
     }
   }
   

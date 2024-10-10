@@ -13,6 +13,12 @@
     },
     "saveButton": {
       "message": "Lưu"
+    },
+    "contextMenuText": {
+      "message": "Gửi văn bản đã chọn tới ChatGPT bằng ngôn ngữ \"{language}\""
+    },
+    "contextMenuLink": {
+      "message": "Gửi liên kết tới ChatGPT bằng ngôn ngữ \"{language}\""
     }
   }
   
