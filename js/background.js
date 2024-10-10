@@ -7,10 +7,40 @@ chrome.runtime.onInstalled.addListener(() => {
 function createContextMenus() {
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
       const language = data.customLanguage || data.selectedLanguage || "VI";
+      
+      // Lấy tên ngôn ngữ từ mã ngôn ngữ
+      const languageNames = {
+          "VI-VN": "Tiếng Việt",
+          "EN-US": "Tiếng Anh (Mỹ)",
+          "EN-GB": "Tiếng Anh (Vương quốc Anh)",
+          "FR-FR": "Tiếng Pháp (Pháp)",
+          "FR-CA": "Tiếng Pháp (Canada)",
+          "ES-ES": "Tiếng Tây Ban Nha (Tây Ban Nha)",
+          "ES-MX": "Tiếng Tây Ban Nha (Mexico)",
+          "DE-DE": "Tiếng Đức",
+          "IT-IT": "Tiếng Ý",
+          "PT-PT": "Tiếng Bồ Đào Nha (Bồ Đào Nha)",
+          "PT-BR": "Tiếng Bồ Đào Nha (Brazil)",
+          "JA-JP": "Tiếng Nhật",
+          "ZH-CN": "Tiếng Trung (Giản thể)",
+          "ZH-TW": "Tiếng Trung (Phồn thể)",
+          "RU-RU": "Tiếng Nga",
+          "AR-SA": "Tiếng Ả Rập (Saudi Arabia)",
+          "KO-KR": "Tiếng Hàn",
+          "TR-TR": "Tiếng Thổ Nhĩ Kỳ",
+          "NL-NL": "Tiếng Hà Lan",
+          "SV-SE": "Tiếng Thụy Điển",
+          "DA-DK": "Tiếng Đan Mạch",
+          "NO-NO": "Tiếng Na Uy",
+          "FI-FI": "Tiếng Phần Lan"
+      };
+
+      // Lấy tên ngôn ngữ tương ứng
+      const languageName = languageNames[language] || "Ngôn ngữ không xác định. đang sử dụng VI-VN";
 
       // Cập nhật tiêu đề menu theo ngôn ngữ đã chọn
-      const textMenuTitle = chrome.i18n.getMessage("contextMenuText").replace("{language}", language);
-      const linkMenuTitle = chrome.i18n.getMessage("contextMenuLink").replace("{language}", language);
+      const textMenuTitle = chrome.i18n.getMessage("contextMenuText").replace("{language}", languageName + " \"" + language + "\"");
+      const linkMenuTitle = chrome.i18n.getMessage("contextMenuLink").replace("{language}", languageName + " \"" + language + "\"");
       
       // Xóa các menu cũ trước khi tạo mới
       chrome.contextMenus.removeAll(() => {

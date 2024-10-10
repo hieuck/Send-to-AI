@@ -1,24 +1,23 @@
 {
-    "extensionName": {
-      "message": "Language Settings"
-    },
-    "extensionDescription": {
-      "message": "Choose a language for ChatGPT responses."
-    },
-    "languageLabel": {
+  "extensionName": {
+      "message": "Send to ChatGPT"
+  },
+  "extensionDescription": {
+      "message": "Send selected text to ChatGPT via right-click menu."
+  },
+  "languageLabel": {
       "message": "Select response language:"
-    },
-    "customLanguageLabel": {
-      "message": "Or enter a custom language:"
-    },
-    "saveButton": {
+  },
+  "customLanguageLabel": {
+      "message": "Or enter a custom language in language-country format:"
+  },
+  "saveButton": {
       "message": "Save"
-    },
-    "contextMenuText": {
+  },
+  "contextMenuText": {
       "message": "Send selected text to ChatGPT in language \"{language}\""
-    },
-    "contextMenuLink": {
+  },
+  "contextMenuLink": {
       "message": "Send link to ChatGPT in language \"{language}\""
-    }
   }
-  
+}
