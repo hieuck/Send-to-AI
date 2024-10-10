@@ -3,6 +3,13 @@ chrome.runtime.onInstalled.addListener(() => {
   createContextMenus();
 });
 
+// Xử lý thông điệp từ popup
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "createContextMenus") {
+      createContextMenus();
+  }
+});
+
 // Tạo hoặc cập nhật menu chuột phải với ngôn ngữ đã chọn
 function createContextMenus() {
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
