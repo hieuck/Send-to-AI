@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT Popup</title>
+    <title>__MSG_extensionName__</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>ChatGPT</h1>
-    <div id="response"></div>
+    <h1>__MSG_extensionName__</h1>
+
+    <!-- Dropdown cho việc chọn ngôn ngữ -->
+    <label for="languageDropdown">__MSG_languageLabel__</label>
+    <select id="languageDropdown">
+        <option value="EN">Tiếng Anh</option>
+        <option value="VI-VN">Tiếng Việt</option>
+        <option value="FR">Tiếng Pháp</option>
+        <option value="ES">Tiếng Tây Ban Nha</option>
+    </select>
+
+    <!-- Ô nhập cho ngôn ngữ tùy chỉnh -->
+    <label for="customLanguage">__MSG_customLanguageLabel__</label>
+    <input type="text" id="customLanguage" placeholder="Ví dụ: DE cho Tiếng Đức" />
+
+    <!-- Nút lưu -->
+    <button id="saveButton">__MSG_saveButton__</button>
+
     <script src="popup.js"></script>
 </body>
 </html>
