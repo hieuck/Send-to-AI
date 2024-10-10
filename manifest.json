@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Send to ChatGPT",
+  "name": "__MSG_extensionName__",
   "version": "1.3",
-  "description": "Send selected text to ChatGPT via context menu and icon click",
+  "description": "__MSG_extensionDescription__",
   "permissions": [
     "contextMenus",
     "activeTab",
