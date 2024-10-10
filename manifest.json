@@ -12,6 +12,7 @@
   "background": {
     "service_worker": "js/background.js"
   },
+  "default_locale": "vi",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
