@@ -15,9 +15,9 @@
       "message": "Guardar"
   },
   "contextMenuText": {
-      "message": "Enviar texto seleccionado a ChatGPT en el idioma \"{language}\""
+      "message": "Enviar texto seleccionado a ChatGPT en el idioma {language}"
   },
   "contextMenuLink": {
-      "message": "Enviar enlace a ChatGPT en el idioma \"{language}\""
+      "message": "Enviar enlace a ChatGPT en el idioma {language}"
   }
 }
