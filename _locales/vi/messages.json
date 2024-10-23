@@ -11,6 +11,9 @@
     "customLanguageLabel": {
       "message": "Hoặc nhập ngôn ngữ tùy chỉnh theo định dạng ngôn ngữ-quốc gia:"
     },
+    "customPromptLabel": {
+      "message": "Hoặc nhập nội dung tùy chỉnh"
+    },
     "saveButton": {
       "message": "Lưu"
     },

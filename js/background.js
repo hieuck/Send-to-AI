@@ -91,37 +91,44 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 // Hàm gửi văn bản hoặc liên kết tới ChatGPT với ngôn ngữ đã chọn
 function sendTextToChatGPT(text, language) {
-  chrome.tabs.create({ url: "https://chatgpt.com/?model=auto" }, (newTab) => {
-      chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
-          if (tabId === newTab.id && info.status === 'complete') {
-              chrome.scripting.executeScript({
-                  target: { tabId: newTab.id },
-                  func: (text, language) => {
-                      const checkTextarea = setInterval(() => {
-                          const inputFieldXPath = '//*[@id="prompt-textarea"]';
-                          const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-
-                          if (inputField) {
-                              const fullText = `Answer in ${language}. \n\n${text}`;
-                              inputField.innerText = fullText;
-                              inputField.dispatchEvent(new Event('input', { bubbles: true }));
-
-                              const sendButtonXPath = '//*[@data-testid="send-button"]';
-                              const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-
-                              if (sendButton) {
-                                  setTimeout(() => {
-                                      sendButton.click();
-                                      clearInterval(checkTextarea);
-                                  }, 500);
-                              }
-                          }
-                      }, 100);
-                  },
-                  args: [text, language]
-              });
-              chrome.tabs.onUpdated.removeListener(listener);
-          }
-      });
-  });
-}
+    chrome.storage.local.get(["customPrompt"], (data) => {
+        const customPrompt = data.customPrompt || "Answer relevant content in"; // Giá trị mặc định nếu không có nội dung tùy chỉnh
+  
+        const fullText = `${customPrompt} ${language}. \n\n${text}`; // Sử dụng customPrompt thay cho đoạn văn bản cứng
+  
+        chrome.tabs.create({ url: "https://chatgpt.com/?model=auto" }, (newTab) => {
+            chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                if (tabId === newTab.id && info.status === 'complete') {
+                    chrome.scripting.executeScript({
+                        target: { tabId: newTab.id },
+                        func: (text, language, customPrompt) => {
+                            const checkTextarea = setInterval(() => {
+                                const inputFieldXPath = '//*[@id="prompt-textarea"]';
+                                const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  
+                                if (inputField) {
+                                    const fullText = `${customPrompt} ${language}. \n\n${text}`; // Sử dụng fullText đã cập nhật
+                                    inputField.innerText = fullText;
+                                    inputField.dispatchEvent(new Event('input', { bubbles: true }));
+  
+                                    const sendButtonXPath = '//*[@data-testid="send-button"]';
+                                    const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  
+                                    if (sendButton) {
+                                        setTimeout(() => {
+                                            sendButton.click();
+                                            clearInterval(checkTextarea);
+                                        }, 500);
+                                    }
+                                }
+                            }, 100);
+                        },
+                        args: [text, language, customPrompt] // Cần cập nhật args để chứa customPrompt nếu cần
+                    });
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            });
+        });
+    });
+  }
+  
