@@ -14,6 +14,9 @@
     "customPromptLabel": {
       "message": "Hoặc nhập nội dung tùy chỉnh"
     },
+    "customLinkLabel": {
+      "message": "Nhập Liên kết trả lời (URL):"
+    },
     "saveButton": {
       "message": "Lưu"
     },

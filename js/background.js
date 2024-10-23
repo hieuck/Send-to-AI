@@ -69,34 +69,34 @@ function createContextMenus() {
 // Theo dõi sự thay đổi trong chrome.storage
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "local") {
-      if (changes.selectedLanguage || changes.customLanguage) {
-          createContextMenus(); // Cập nhật menu khi ngôn ngữ thay đổi
+      if (changes.selectedLanguage || changes.customLanguage || changes.customLink) {
+          createContextMenus(); // Cập nhật menu khi ngôn ngữ hoặc customLink thay đổi
       }
   }
 });
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
+  chrome.storage.local.get(["selectedLanguage", "customLanguage", "customLink"], (data) => {
       const language = data.customLanguage || data.selectedLanguage || "VI"; // Dùng ngôn ngữ tùy chỉnh nếu có, nếu không thì dùng từ dropdown
+      const customLink = data.customLink || "https://chatgpt.com/?model=auto"; // Link tùy chỉnh hoặc mặc định
 
       if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
-          sendTextToChatGPT(info.selectionText, language);
+          sendTextToChatGPT(info.selectionText, language, customLink);
       } else if (info.menuItemId === "sendToChatGPTLink") {
           const pageUrl = info.linkUrl || tab.url;
-          sendTextToChatGPT(pageUrl, language);
+          sendTextToChatGPT(pageUrl, language, customLink);
       }
   });
 });
 
 // Hàm gửi văn bản hoặc liên kết tới ChatGPT với ngôn ngữ đã chọn
-function sendTextToChatGPT(text, language) {
+function sendTextToChatGPT(text, language, customLink) {
     chrome.storage.local.get(["customPrompt"], (data) => {
         const customPrompt = data.customPrompt || "Answer relevant content in"; // Giá trị mặc định nếu không có nội dung tùy chỉnh
-  
         const fullText = `${customPrompt} ${language}. \n\n${text}`; // Sử dụng customPrompt thay cho đoạn văn bản cứng
   
-        chrome.tabs.create({ url: "https://chatgpt.com/?model=auto" }, (newTab) => {
+        chrome.tabs.create({ url: customLink }, (newTab) => { // Sử dụng customLink thay vì link cố định
             chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
                 if (tabId === newTab.id && info.status === 'complete') {
                     chrome.scripting.executeScript({
@@ -130,5 +130,4 @@ function sendTextToChatGPT(text, language) {
             });
         });
     });
-  }
-  
+}
