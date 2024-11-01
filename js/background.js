@@ -62,6 +62,20 @@ function createContextMenus() {
               title: linkMenuTitle,
               contexts: ["page", "link"]
           });
+
+          // Menu mới "Mở với Google Gemini"
+          chrome.contextMenus.create({
+              id: "openWithGoogleGemini",
+              title: "Mở với Google Gemini",
+              contexts: ["selection", "link"]
+          });
+
+          // Menu mới "Dịch với ChatGPT"
+          chrome.contextMenus.create({
+              id: "translateWithChatGPT",
+              title: "Dịch với ChatGPT",
+              contexts: ["selection"]
+          });
       });
   });
 }
@@ -77,43 +91,48 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  chrome.storage.local.get(["selectedLanguage", "customLanguage", "customLink"], (data) => {
-      const language = data.customLanguage || data.selectedLanguage || "VI"; // Dùng ngôn ngữ tùy chỉnh nếu có, nếu không thì dùng từ dropdown
-      const customLink = data.customLink || "https://chatgpt.com/?model=auto"; // Link tùy chỉnh hoặc mặc định
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customLink"], (data) => {
+        const language = data.customLanguage || data.selectedLanguage || "VI";
+        const customLink = data.customLink || "https://chatgpt.com/?model=auto";
 
-      if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
-          sendTextToChatGPT(info.selectionText, language, customLink);
-      } else if (info.menuItemId === "sendToChatGPTLink") {
-          const pageUrl = info.linkUrl || tab.url;
-          sendTextToChatGPT(pageUrl, language, customLink);
-      }
-  });
+        if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
+            sendTextToChatGPT(info.selectionText, language, customLink);
+        } else if (info.menuItemId === "sendToChatGPTLink") {
+            const pageUrl = info.linkUrl || tab.url;
+            sendTextToChatGPT(pageUrl, language, customLink);
+        } else if (info.menuItemId === "openWithGoogleGemini") {
+            // Sử dụng hàm mới để mở và điền dữ liệu vào Google Gemini
+            sendTextToGemini(info.selectionText || info.linkUrl || tab.url);
+        } else if (info.menuItemId === "translateWithChatGPT") {
+            const translationPrompt = "Translate the following text to Vietnamese:";
+            sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, "VI", customLink, true);
+        }
+    });
 });
 
 // Hàm gửi văn bản hoặc liên kết tới ChatGPT với ngôn ngữ đã chọn
-function sendTextToChatGPT(text, language, customLink) {
+function sendTextToChatGPT(text, language, customLink, isTranslation = false) {
     chrome.storage.local.get(["customPrompt"], (data) => {
-        const customPrompt = data.customPrompt || "Answer relevant content in"; // Giá trị mặc định nếu không có nội dung tùy chỉnh
-        const fullText = `${customPrompt} ${language}. \n\n${text}`; // Sử dụng customPrompt thay cho đoạn văn bản cứng
-  
-        chrome.tabs.create({ url: customLink }, (newTab) => { // Sử dụng customLink thay vì link cố định
+        const customPrompt = data.customPrompt || "Answer relevant content in";
+        const fullText = isTranslation ? text : `${customPrompt} ${language}. \n\n${text}`;
+
+        chrome.tabs.create({ url: customLink }, (newTab) => {
             chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
                 if (tabId === newTab.id && info.status === 'complete') {
                     chrome.scripting.executeScript({
                         target: { tabId: newTab.id },
-                        func: (text, language, customPrompt) => {
+                        func: (text) => {
                             const checkTextarea = setInterval(() => {
                                 const inputFieldXPath = '//*[@id="prompt-textarea"]';
                                 const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-  
+
                                 if (inputField) {
-                                    const fullText = `${customPrompt} ${language}. \n\n${text}`; // Sử dụng fullText đã cập nhật
-                                    inputField.innerText = fullText;
+                                    inputField.innerText = text;
                                     inputField.dispatchEvent(new Event('input', { bubbles: true }));
-  
+
                                     const sendButtonXPath = '//*[@data-testid="send-button"]';
                                     const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-  
+
                                     if (sendButton) {
                                         setTimeout(() => {
                                             sendButton.click();
@@ -123,11 +142,46 @@ function sendTextToChatGPT(text, language, customLink) {
                                 }
                             }, 100);
                         },
-                        args: [text, language, customPrompt] // Cần cập nhật args để chứa customPrompt nếu cần
+                        args: [fullText]
                     });
                     chrome.tabs.onUpdated.removeListener(listener);
                 }
             });
+        });
+    });
+}
+
+// Hàm gửi văn bản hoặc liên kết tới Google Gemini
+function sendTextToGemini(text) {
+    const geminiLink = "https://gemini.google.com/app";
+    
+    chrome.tabs.create({ url: geminiLink }, (newTab) => {
+        chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+            if (tabId === newTab.id && info.status === 'complete') {
+                chrome.scripting.executeScript({
+                    target: { tabId: newTab.id },
+                    func: (text) => {
+                        const checkTextarea = setInterval(() => {
+                            const inputField = document.querySelector(".ql-editor.ql-blank.textarea");
+                            const sendButton = document.querySelector(".send-button");
+
+                            if (inputField) {
+                                inputField.innerText = text;
+                                inputField.dispatchEvent(new Event('input', { bubbles: true }));
+
+                                if (sendButton) {
+                                    setTimeout(() => {
+                                        sendButton.click();
+                                        clearInterval(checkTextarea);
+                                    }, 500);
+                                }
+                            }
+                        }, 100);
+                    },
+                    args: [text]
+                });
+                chrome.tabs.onUpdated.removeListener(listener);
+            }
         });
     });
 }
