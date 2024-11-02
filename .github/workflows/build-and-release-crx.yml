@@ -26,7 +26,7 @@ jobs:
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
-        working-directory: ./Send-to-AI
+        working-directory: ./
 
       # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
@@ -35,7 +35,7 @@ jobs:
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
-        working-directory: ./Send-to-AI
+        working-directory: ./
 
       # Tạo bản phát hành trên GitHub
       - name: Create Release
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/extension.zip
+          asset_path: ./Send-to-AI.zip
           asset_name: extension.zip
           asset_content_type: application/zip
 
@@ -63,6 +63,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/extension.crx
+          asset_path: ./Send-to-AI.crx
           asset_name: extension.crx
           asset_content_type: application/octet-stream
