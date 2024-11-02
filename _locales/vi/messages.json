@@ -20,6 +20,9 @@
     "customGeminiLinkLabel": {
         "message": "Nhập Liên kết Google Gemini trả lời (URL):"
     },
+    "customClaudeLinkLabel": {
+        "message": "Nhập Liên kết Claude trả lời (URL):"
+    },
     "saveButton": {
         "message": "Lưu"
     },
