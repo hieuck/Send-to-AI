@@ -52,6 +52,12 @@
     },
     "contextMenuLinkPOE": {
         "message": "Gửi liên kết tới POE bằng ngôn ngữ {language}"
+    },
+    "contextMenuTextTranslationChatGPT": {
+        "message": "Dịch văn bản đã chọn sang {language} bằng ChatGPT"
+    },
+    "contextMenuTextTranslationGemini": {
+        "message": "Dịch văn bản đã chọn sang {language} bằng Gemini"
     }
     // Add more translations as needed...
 }

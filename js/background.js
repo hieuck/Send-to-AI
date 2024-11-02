@@ -58,6 +58,9 @@ function createContextMenus() {
         const textMenuTitlePOE = chrome.i18n.getMessage("contextMenuTextPOE").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitlePOE = chrome.i18n.getMessage("contextMenuLinkPOE").replace("{language}", languageName + " \"" + language + "\"");
 
+        const translateWithTitleChatGPT = chrome.i18n.getMessage("contextMenuTextTranslationChatGPT").replace("{language}", languageName + " \"" + language + "\"");
+        const translateWithTitleGemini = chrome.i18n.getMessage("contextMenuTextTranslationGemini").replace("{language}", languageName + " \"" + language + "\"");
+
         // Xóa các menu cũ trước khi tạo mới
         chrome.contextMenus.removeAll(() => {
             chrome.contextMenus.create({
@@ -110,7 +113,13 @@ function createContextMenus() {
 
             chrome.contextMenus.create({
                 id: "translateWithChatGPT",
-                title: "Dịch với ChatGPT",
+                title: translateWithTitleChatGPT,
+                contexts: ["selection"]
+            });
+
+            chrome.contextMenus.create({
+                id: "translateWithGemini",
+                title: translateWithTitleGemini,
                 contexts: ["selection"]
             });
         });
@@ -158,6 +167,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         } else if (info.menuItemId === "translateWithChatGPT") {
             const translationPrompt = "Translate the following text to Vietnamese:";
             sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, "VI", customChatGPTLink, true);
+        } else if (info.menuItemId === "translateWithGemini") {
+            const translationPrompt = "Translate the following text to Vietnamese:";
+            sendTextToGemini(`${translationPrompt} ${info.selectionText}`, "VI", customGeminiLink, true);
         }
     });
 });
