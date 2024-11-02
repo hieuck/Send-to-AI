@@ -3,7 +3,7 @@ name: Build and Release Chrome Extension
 on:
   push:
     tags:
-      - 'v*'  # Chạy khi có tag version như "v1.0", "v2.1",...
+      - 'v*'
 
 jobs:
   build:
@@ -13,31 +13,36 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      # Bước kiểm tra danh sách tệp trong thư mục Send-to-AI
       - name: List files in Send-to-AI
-        run: ls -la Send-to-AI  # In danh sách các tệp trong thư mục
+        run: ls -la Send-to-AI
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
+      # Chỉ định đúng đường dẫn đến package.json
       - name: Install dependencies
         run: npm install
-        working-directory: ./Send-to-AI
+        working-directory: ./
 
+      # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
-        working-directory: ./Send-to-AI
+        working-directory: ./
 
+      # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
         run: |
           openssl genrsa -out key.pem 2048
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
-        working-directory: ./Send-to-AI
+        working-directory: ./
 
+      # Tạo bản phát hành trên GitHub
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -49,6 +54,7 @@ jobs:
           draft: false
           prerelease: false
 
+      # Upload file .zip lên bản phát hành
       - name: Upload .zip file to Release
         uses: actions/upload-release-asset@v1
         with:
@@ -57,6 +63,7 @@ jobs:
           asset_name: extension.zip
           asset_content_type: application/zip
 
+      # Upload file .crx lên bản phát hành
       - name: Upload .crx file to Release
         uses: actions/upload-release-asset@v1
         with:
