@@ -105,7 +105,7 @@ function createContextMenus() {
 // Theo dõi sự thay đổi trong chrome.storage
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local") {
-        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink) {
+        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink || changes.customClaudeLink) {
             createContextMenus();
         }
     }
@@ -113,7 +113,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink"], (data) => {
         const language = data.customLanguage || data.selectedLanguage || "VI";
         const customChatGPTLink = data.customChatGPTLink || "https://chatgpt.com/?model=auto";
         const customGeminiLink = data.customGeminiLink || "https://gemini.google.com/app";
@@ -230,24 +230,24 @@ function sendTextToClaude(text, language, customClaudeLink, isTranslation = fals
                         target: { tabId: newTab.id },
                         func: (text) => {
                             const checkTextarea = setInterval(() => {
-                                const inputFieldXPath = '//div[contains(@class, "ProseMirror") and @contenteditable="true" and contains(@class, "is-empty")]';
-                                const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                                // Chọn phần tử input
+                                const inputField = document.querySelector('p.is-empty.is-editor-empty.before\\:!text-text-500.before\\:whitespace-nowrap');
 
                                 if (inputField) {
                                     inputField.textContent = text;
                                     inputField.dispatchEvent(new Event('input', { bubbles: true }));
 
-                                    const sendButtonXPath = '//button[@aria-label="Send Message"]';
-                                    const sendButton = document.evaluate(sendButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                                    // Chọn nút gửi dựa trên aria-label
+                                    const sendButton = document.querySelector('button[aria-label="Send Message"].inline-flex');
 
                                     if (sendButton) {
                                         setTimeout(() => {
                                             sendButton.click();
                                             clearInterval(checkTextarea);
-                                        }, 500);
+                                        }, 1000); // Chờ 1000ms để đảm bảo nút đã sẵn sàng
                                     }
                                 }
-                            }, 100); // Check mỗi 100ms
+                            }, 100); // Kiểm tra mỗi 100ms
                         },
                         args: [fullText]
                     });
