@@ -1,23 +1,57 @@
 {
-  "extensionName": {
-      "message": "Enviar a ChatGPT"
-  },
-  "extensionDescription": {
-      "message": "Enviar el texto seleccionado a ChatGPT a través del menú contextual."
-  },
-  "languageLabel": {
-      "message": "Seleccionar idioma de respuesta:"
-  },
-  "customLanguageLabel": {
-      "message": "O ingrese un idioma personalizado en formato idioma-país:"
-  },
-  "saveButton": {
-      "message": "Guardar"
-  },
-  "contextMenuText": {
-      "message": "Enviar texto seleccionado a ChatGPT en el idioma {language}"
-  },
-  "contextMenuLink": {
-      "message": "Enviar enlace a ChatGPT en el idioma {language}"
-  }
+    "extensionName": {
+        "message": "Enviar a IA"
+    },
+    "extensionDescription": {
+        "message": "Envía el texto seleccionado a la IA a través del menú contextual."
+    },
+    "languageLabel": {
+        "message": "Selecciona el idioma de respuesta:"
+    },
+    "customLanguageLabel": {
+        "message": "O introduce un idioma personalizado en el formato idioma-país:"
+    },
+    "customPromptLabel": {
+        "message": "O introduce contenido personalizado"
+    },
+    "customChatGPTLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de ChatGPT (URL):"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de Google Gemini (URL):"
+    },
+    "customClaudeLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de Claude (URL):"
+    },
+    "customPOELinkLabel": {
+        "message": "Ingresa el enlace de respuesta de POE (URL):"
+    },
+    "saveButton": {
+        "message": "Guardar"
+    },
+    "contextMenuTextChatGPT": {
+        "message": "Enviar texto seleccionado a ChatGPT en {language}"
+    },
+    "contextMenuLinkChatGPT": {
+        "message": "Enviar enlace a ChatGPT en {language}"
+    },
+    "contextMenuTextGemini": {
+        "message": "Enviar texto seleccionado a Gemini en {language}"
+    },
+    "contextMenuLinkGemini": {
+        "message": "Enviar enlace a Gemini en {language}"
+    },
+    "contextMenuTextClaude": {
+        "message": "Enviar texto seleccionado a Claude en {language}"
+    },
+    "contextMenuLinkClaude": {
+        "message": "Enviar enlace a Claude en {language}"
+    },
+    "contextMenuTextPOE": {
+        "message": "Enviar texto seleccionado a POE en {language}"
+    },
+    "contextMenuLinkPOE": {
+        "message": "Enviar enlace a POE en {language}"
+    }
+    // Agrega más traducciones según sea necesario...
 }
