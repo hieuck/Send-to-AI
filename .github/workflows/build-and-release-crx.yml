@@ -13,32 +13,31 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
+      - name: List files in Send-to-AI
+        run: ls -la Send-to-AI  # In danh sách các tệp trong thư mục
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-          
-      # Chỉ định thư mục làm việc cho các bước cần thiết
+
       - name: Install dependencies
         run: npm install
-        working-directory: ./Send-to-AI  # Chỉ định đúng thư mục chứa package.json
+        working-directory: ./Send-to-AI
 
-      # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
-        working-directory: ./Send-to-AI  # Chỉ định đúng thư mục chứa tệp để nén
+        working-directory: ./Send-to-AI
 
-      # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
         run: |
           openssl genrsa -out key.pem 2048
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
-        working-directory: ./Send-to-AI  # Chỉ định đúng thư mục chứa tệp để tạo crx
+        working-directory: ./Send-to-AI
 
-      # Tạo bản phát hành trên GitHub
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -50,20 +49,18 @@ jobs:
           draft: false
           prerelease: false
 
-      # Upload file .zip lên bản phát hành
       - name: Upload .zip file to Release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/extension.zip  # Đảm bảo đường dẫn chính xác
+          asset_path: ./Send-to-AI/extension.zip
           asset_name: extension.zip
           asset_content_type: application/zip
 
-      # Upload file .crx lên bản phát hành
       - name: Upload .crx file to Release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/extension.crx  # Đảm bảo đường dẫn chính xác
+          asset_path: ./Send-to-AI/extension.crx
           asset_name: extension.crx
           asset_content_type: application/octet-stream
