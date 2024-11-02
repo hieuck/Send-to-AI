@@ -234,12 +234,24 @@ function sendTextToClaude(text, language, customClaudeLink, isTranslation = fals
                                 inputField.textContent = text;
                                 inputField.dispatchEvent(new Event('input', { bubbles: true }));
 
-                                const sendButton = document.querySelector('button[aria-label="Send Message"]');
-                                if (sendButton) {
-                                    setTimeout(() => {
+                                // Hàm kiểm tra nút gửi
+                                function checkSendButton() {
+                                    const sendButton = document.querySelector('button[aria-label="Send Message"]');
+                                    if (sendButton) {
+                                        console.log("Nút gửi đã tìm thấy!");
                                         sendButton.click();
-                                    }, 1000);
+                                        console.log("Đã nhấn nút gửi!");
+                                        console.log("Trạng thái nút gửi:", sendButton.getAttribute('data-state'));
+                                        console.log("Nút gửi có bị vô hiệu hóa không:", sendButton.disabled);
+                                        console.log("HTML của nút gửi:", sendButton.outerHTML);
+                                    } else {
+                                        console.error("Nút gửi không tìm thấy!");
+                                        setTimeout(checkSendButton, 500); // Kiểm tra lại sau 500ms
+                                    }
                                 }
+
+                                // Gọi hàm kiểm tra nút gửi
+                                checkSendButton();
                             }
                         },
                         args: [fullText]
