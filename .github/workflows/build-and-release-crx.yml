@@ -21,6 +21,7 @@ jobs:
       # Chỉ định đúng đường dẫn đến package.json
       - name: Install dependencies
         run: npm install
+        working-directory: ./Send-to-AI
 
       # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
