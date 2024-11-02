@@ -21,13 +21,13 @@ jobs:
       # Chỉ định đúng đường dẫn đến package.json
       - name: Install dependencies
         run: npm install
-          working-directory: ./
-          
+          working-directory: ./Send-to-AI
+
       # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
-        working-directory: ./
+        working-directory: ./Send-to-AI
 
       # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI.zip
+          asset_path: ./Send-to-AI/Send-to-AI.zip
           asset_name: extension.zip
           asset_content_type: application/zip
 
@@ -64,6 +64,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI.crx
+          asset_path: ./Send-to-AI/Send-to-AI.crx
           asset_name: extension.crx
           asset_content_type: application/octet-stream
