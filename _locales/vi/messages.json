@@ -1,9 +1,9 @@
 {
     "extensionName": {
-        "message": "Gửi tới ChatGPT"
+        "message": "Gửi tới AI"
     },
     "extensionDescription": {
-        "message": "Gửi đoạn văn bản được chọn tới ChatGPT qua menu chuột phải."
+        "message": "Gửi đoạn văn bản được chọn tới AI qua menu chuột phải."
     },
     "languageLabel": {
         "message": "Chọn ngôn ngữ trả lời:"
@@ -34,5 +34,12 @@
     },
     "contextMenuLinkGemini": {
         "message": "Gửi liên kết tới Gemini bằng ngôn ngữ {language}"
+    },
+    "contextMenuTextClaude": {
+        "message": "Gửi văn bản đã chọn tới Claude bằng ngôn ngữ {language}"
+    },
+    "contextMenuLinkClaude": {
+        "message": "Gửi liên kết tới Claude bằng ngôn ngữ {language}"
     }
+    // Add more translations as needed...
 }
