@@ -28,12 +28,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://chatgpt.com/*"],
+      "matches": ["https://chatgpt.com/*", "https://gemini.google.com/*", "https://claude.ai/*", "https://poe.com/*"],
       "js": ["js/content.js"]
     }
   ],
   "host_permissions": [
     "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://claude.ai/*",
+    "https://poe.com/*",
     "<all_urls>"
   ]
 }
