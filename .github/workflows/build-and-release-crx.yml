@@ -25,13 +25,13 @@ jobs:
       # Chỉ định đúng đường dẫn đến package.json
       - name: Install dependencies
         run: npm install
-        working-directory: ./
+        working-directory: ./Send-to-AI
 
       # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
-        working-directory: ./
+        working-directory: ./Send-to-AI
 
       # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
@@ -40,7 +40,7 @@ jobs:
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
-        working-directory: ./
+        working-directory: ./Send-to-AI
 
       # Tạo bản phát hành trên GitHub
       - name: Create Release
