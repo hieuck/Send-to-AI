@@ -1,30 +1,38 @@
 {
     "extensionName": {
-      "message": "Gửi tới ChatGPT"
+        "message": "Gửi tới ChatGPT"
     },
     "extensionDescription": {
-      "message": "Gửi đoạn văn bản được chọn tới ChatGPT qua menu chuột phải."
+        "message": "Gửi đoạn văn bản được chọn tới ChatGPT qua menu chuột phải."
     },
     "languageLabel": {
-      "message": "Chọn ngôn ngữ trả lời:"
+        "message": "Chọn ngôn ngữ trả lời:"
     },
     "customLanguageLabel": {
-      "message": "Hoặc nhập ngôn ngữ tùy chỉnh theo định dạng ngôn ngữ-quốc gia:"
+        "message": "Hoặc nhập ngôn ngữ tùy chỉnh theo định dạng ngôn ngữ-quốc gia:"
     },
     "customPromptLabel": {
-      "message": "Hoặc nhập nội dung tùy chỉnh"
+        "message": "Hoặc nhập nội dung tùy chỉnh"
     },
-    "customLinkLabel": {
-      "message": "Nhập Liên kết trả lời (URL):"
+    "customChatGPTLinkLabel": {
+        "message": "Nhập Liên kết ChatGPT trả lời (URL):"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Nhập Liên kết Google Gemini trả lời (URL):"
     },
     "saveButton": {
-      "message": "Lưu"
+        "message": "Lưu"
     },
-    "contextMenuText": {
-      "message": "Gửi văn bản đã chọn tới ChatGPT bằng ngôn ngữ {language}"
+    "contextMenuTextChatGPT": {
+        "message": "Gửi văn bản đã chọn tới ChatGPT bằng ngôn ngữ {language}"
     },
-    "contextMenuLink": {
-      "message": "Gửi liên kết tới ChatGPT bằng ngôn ngữ {language}"
+    "contextMenuLinkChatGPT": {
+        "message": "Gửi liên kết tới ChatGPT bằng ngôn ngữ {language}"
+    },
+    "contextMenuTextGemini": {
+        "message": "Gửi văn bản đã chọn tới Gemini bằng ngôn ngữ {language}"
+    },
+    "contextMenuLinkGemini": {
+        "message": "Gửi liên kết tới Gemini bằng ngôn ngữ {language}"
     }
-  }
-  
+}

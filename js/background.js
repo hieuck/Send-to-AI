@@ -46,31 +46,38 @@ function createContextMenus() {
       const languageName = languageNames[language] || "Ngôn ngữ không xác định. đang sử dụng VI-VN";
 
       // Cập nhật tiêu đề menu theo ngôn ngữ đã chọn
-      const textMenuTitle = chrome.i18n.getMessage("contextMenuText").replace("{language}", languageName + " \"" + language + "\"");
-      const linkMenuTitle = chrome.i18n.getMessage("contextMenuLink").replace("{language}", languageName + " \"" + language + "\"");
-      
+      const textMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuTextChatGPT").replace("{language}", languageName + " \"" + language + "\"");
+      const linkMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuLinkChatGPT").replace("{language}", languageName + " \"" + language + "\"");
+
+      const textMenuTitleGemini = chrome.i18n.getMessage("contextMenuTextGemini").replace("{language}", languageName + " \"" + language + "\"");
+      const linkMenuTitleGemini = chrome.i18n.getMessage("contextMenuLinkGemini").replace("{language}", languageName + " \"" + language + "\"");
+
       // Xóa các menu cũ trước khi tạo mới
       chrome.contextMenus.removeAll(() => {
           chrome.contextMenus.create({
               id: "sendToChatGPTText",
-              title: textMenuTitle,
+              title: textMenuTitleChatGPT,
               contexts: ["selection"]
           });
 
           chrome.contextMenus.create({
               id: "sendToChatGPTLink",
-              title: linkMenuTitle,
+              title: linkMenuTitleChatGPT,
               contexts: ["page", "link"]
           });
 
-          // Menu mới "Mở với Google Gemini"
           chrome.contextMenus.create({
-              id: "openWithGoogleGemini",
-              title: "Mở với Google Gemini",
-              contexts: ["selection", "link"]
+            id: "sendToGeminiText",
+            title: textMenuTitleGemini,
+            contexts: ["selection"]
           });
 
-          // Menu mới "Dịch với ChatGPT"
+          chrome.contextMenus.create({
+            id: "sendToGeminiLink",
+            title: linkMenuTitleGemini,
+            contexts: ["page", "link"]
+          });
+
           chrome.contextMenus.create({
               id: "translateWithChatGPT",
               title: "Dịch với ChatGPT",
@@ -83,40 +90,43 @@ function createContextMenus() {
 // Theo dõi sự thay đổi trong chrome.storage
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "local") {
-      if (changes.selectedLanguage || changes.customLanguage || changes.customLink) {
-          createContextMenus(); // Cập nhật menu khi ngôn ngữ hoặc customLink thay đổi
+      if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink) {
+          createContextMenus();
       }
   }
 });
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink"], (data) => {
         const language = data.customLanguage || data.selectedLanguage || "VI";
-        const customLink = data.customLink || "https://chatgpt.com/?model=auto";
+        const customChatGPTLink = data.customChatGPTLink || "https://chatgpt.com/?model=auto";
+        const customGeminiLink = data.customGeminiLink || "https://gemini.google.com/app";
 
         if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
-            sendTextToChatGPT(info.selectionText, language, customLink);
+            sendTextToChatGPT(info.selectionText, language, customChatGPTLink);
         } else if (info.menuItemId === "sendToChatGPTLink") {
             const pageUrl = info.linkUrl || tab.url;
-            sendTextToChatGPT(pageUrl, language, customLink);
-        } else if (info.menuItemId === "openWithGoogleGemini") {
-            // Sử dụng hàm mới để mở và điền dữ liệu vào Google Gemini
-            sendTextToGemini(info.selectionText || info.linkUrl || tab.url);
+            sendTextToChatGPT(pageUrl, language, customChatGPTLink);
+        } else if (info.menuItemId === "sendToGeminiText" && info.selectionText) {
+            sendTextToGemini(info.selectionText, language, customGeminiLink);
+        } else if (info.menuItemId === "sendToGeminiLink") {
+            const pageUrl = info.linkUrl || tab.url;
+            sendTextToGemini(pageUrl, language, customGeminiLink);
         } else if (info.menuItemId === "translateWithChatGPT") {
             const translationPrompt = "Translate the following text to Vietnamese:";
-            sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, "VI", customLink, true);
+            sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, "VI", customChatGPTLink, true);
         }
     });
 });
 
 // Hàm gửi văn bản hoặc liên kết tới ChatGPT với ngôn ngữ đã chọn
-function sendTextToChatGPT(text, language, customLink, isTranslation = false) {
+function sendTextToChatGPT(text, language, customChatGPTLink, isTranslation = false) {
     chrome.storage.local.get(["customPrompt"], (data) => {
         const customPrompt = data.customPrompt || "Answer relevant content in";
         const fullText = isTranslation ? text : `${customPrompt} ${language}. \n\n${text}`;
 
-        chrome.tabs.create({ url: customLink }, (newTab) => {
+        chrome.tabs.create({ url: customChatGPTLink }, (newTab) => {
             chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
                 if (tabId === newTab.id && info.status === 'complete') {
                     chrome.scripting.executeScript({
@@ -152,16 +162,17 @@ function sendTextToChatGPT(text, language, customLink, isTranslation = false) {
 }
 
 // Hàm gửi văn bản hoặc liên kết tới Google Gemini
-function sendTextToGemini(text) {
-    const geminiLink = "https://gemini.google.com/app";
-    
-    chrome.tabs.create({ url: geminiLink }, (newTab) => {
-        chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
-            if (tabId === newTab.id && info.status === 'complete') {
-                chrome.scripting.executeScript({
-                    target: { tabId: newTab.id },
-                    func: (text) => {
-                        const checkTextarea = setInterval(() => {
+function sendTextToGemini(text, language, customGeminiLink, isTranslation = false) {
+    chrome.storage.local.get(["customPrompt"], (data) => {
+        const customPrompt = data.customPrompt || "Answer relevant content in";
+        const fullText = isTranslation ? text : `${customPrompt} ${language}. \n\n${text}`;
+
+        chrome.tabs.create({ url: customGeminiLink }, (newTab) => {
+            chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                if (tabId === newTab.id && info.status === 'complete') {
+                    chrome.scripting.executeScript({
+                        target: { tabId: newTab.id },
+                        func: (text) => {
                             const inputField = document.querySelector(".ql-editor.ql-blank.textarea");
                             const sendButton = document.querySelector(".send-button");
 
@@ -172,16 +183,16 @@ function sendTextToGemini(text) {
                                 if (sendButton) {
                                     setTimeout(() => {
                                         sendButton.click();
-                                        clearInterval(checkTextarea);
                                     }, 500);
                                 }
                             }
-                        }, 100);
-                    },
-                    args: [text]
-                });
-                chrome.tabs.onUpdated.removeListener(listener);
-            }
+                        },
+                        args: [fullText]
+                    });
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            });
         });
     });
 }
+
