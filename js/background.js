@@ -229,25 +229,18 @@ function sendTextToClaude(text, language, customClaudeLink, isTranslation = fals
                     chrome.scripting.executeScript({
                         target: { tabId: newTab.id },
                         func: (text) => {
-                            const checkTextarea = setInterval(() => {
-                                // Chọn phần tử input
-                                const inputField = document.querySelector('p.is-empty.is-editor-empty.before\\:!text-text-500.before\\:whitespace-nowrap');
+                            const inputField = document.querySelector('p.is-empty.is-editor-empty');
+                            if (inputField) {
+                                inputField.textContent = text;
+                                inputField.dispatchEvent(new Event('input', { bubbles: true }));
 
-                                if (inputField) {
-                                    inputField.textContent = text;
-                                    inputField.dispatchEvent(new Event('input', { bubbles: true }));
-
-                                    // Chọn nút gửi dựa trên aria-label
-                                    const sendButton = document.querySelector('button[aria-label="Send Message"].inline-flex');
-
-                                    if (sendButton) {
-                                        setTimeout(() => {
-                                            sendButton.click();
-                                            clearInterval(checkTextarea);
-                                        }, 1000); // Chờ 1000ms để đảm bảo nút đã sẵn sàng
-                                    }
+                                const sendButton = document.querySelector('button[aria-label="Send Message"]');
+                                if (sendButton) {
+                                    setTimeout(() => {
+                                        sendButton.click();
+                                    }, 1000);
                                 }
-                            }, 100); // Kiểm tra mỗi 100ms
+                            }
                         },
                         args: [fullText]
                     });
@@ -257,3 +250,4 @@ function sendTextToClaude(text, language, customClaudeLink, isTranslation = fals
         });
     });
 }
+
