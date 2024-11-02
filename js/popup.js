@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { for: "customChatGPTLink", message: "customChatGPTLinkLabel" },
         { for: "customGeminiLink", message: "customGeminiLinkLabel" },
         { for: "customClaudeLink", message: "customClaudeLinkLabel" },
+        { for: "customPOELink", message: "customPOELinkLabel" },
     ];
 
     // Cập nhật nội dung cho thẻ h1
@@ -33,11 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const customChatGPTLinkInput = document.getElementById("customChatGPTLink");
     const customGeminiLinkInput = document.getElementById("customGeminiLink");
     const customClaudeLinkInput = document.getElementById("customClaudeLink");
+    const customPOELinkInput = document.getElementById("customPOELink");
     const statusMessage = document.createElement("div");
     document.body.appendChild(statusMessage);
 
     // Tải ngôn ngữ, nội dung tùy chỉnh và custom link đã lưu
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink"], (data) => {
         if (data.selectedLanguage) {
             languageDropdown.value = data.selectedLanguage;
             statusMessage.innerText += `\nNgôn ngữ đã chọn: ${data.selectedLanguage}\n`;
@@ -62,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             customClaudeLinkInput.value = data.customClaudeLink;
             statusMessage.innerText += `\nLiên kết Claude trả lời (URL): ${data.customClaudeLink}\n`;
         }
+        if (data.customPOELink) {
+            customPOELinkInput.value = data.customPOELink;
+            statusMessage.innerText += `\nLiên kết POE trả lời (URL): ${data.customPOELink}\n`;
+        }
     });
 
     // Xử lý sự kiện lưu
@@ -72,17 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
         const customChatGPTLink = customChatGPTLinkInput.value;
         const customGeminiLink = customGeminiLinkInput.value;
         const customClaudeLink = customClaudeLinkInput.value;
+        const customPOELink = customPOELinkInput.value;
 
         // Lưu ngôn ngữ, nội dung tùy chỉnh và custom link vào chrome.storage
-        chrome.storage.local.set({ selectedLanguage, customLanguage, customPrompt, customChatGPTLink, customGeminiLink, customClaudeLink }, () => {
+        chrome.storage.local.set({
+            selectedLanguage,
+            customLanguage,
+            customPrompt,
+            customChatGPTLink,
+            customGeminiLink,
+            customClaudeLink,
+            customPOELink
+        }, () => {
             alert("Cài đặt đã được lưu!");
-            
+
             statusMessage.innerText = `
                 \nNgôn ngữ đã lưu: ${selectedLanguage}\n
                 \nNội dung tùy chỉnh: ${customPrompt}\n
                 \nLiên kết ChatGPT trả lời (URL): ${customChatGPTLink}\n
                 \nLiên kết Gemini trả lời (URL): ${customGeminiLink}\n
                 \nLiên kết Claude trả lời (URL): ${customClaudeLink}\n
+                \nLiên kết POE trả lời (URL): ${customPOELink}\n
             `;
 
             // Gửi thông báo đến background để cập nhật menu

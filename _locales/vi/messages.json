@@ -23,6 +23,9 @@
     "customClaudeLinkLabel": {
         "message": "Nhập Liên kết Claude trả lời (URL):"
     },
+    "customPOELinkLabel": {
+        "message": "Nhập Liên kết POE trả lời (URL):"
+    },
     "saveButton": {
         "message": "Lưu"
     },
@@ -43,6 +46,12 @@
     },
     "contextMenuLinkClaude": {
         "message": "Gửi liên kết tới Claude bằng ngôn ngữ {language}"
+    },
+    "contextMenuTextPOE": {
+        "message": "Gửi văn bản đã chọn tới POE bằng ngôn ngữ {language}"
+    },
+    "contextMenuLinkPOE": {
+        "message": "Gửi liên kết tới POE bằng ngôn ngữ {language}"
     }
     // Add more translations as needed...
 }

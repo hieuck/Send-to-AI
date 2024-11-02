@@ -48,13 +48,16 @@ function createContextMenus() {
         // Cập nhật tiêu đề menu theo ngôn ngữ đã chọn
         const textMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuTextChatGPT").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuLinkChatGPT").replace("{language}", languageName + " \"" + language + "\"");
-  
+
         const textMenuTitleGemini = chrome.i18n.getMessage("contextMenuTextGemini").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleGemini = chrome.i18n.getMessage("contextMenuLinkGemini").replace("{language}", languageName + " \"" + language + "\"");
-  
+
         const textMenuTitleClaude = chrome.i18n.getMessage("contextMenuTextClaude").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleClaude = chrome.i18n.getMessage("contextMenuLinkClaude").replace("{language}", languageName + " \"" + language + "\"");
-  
+
+        const textMenuTitlePOE = chrome.i18n.getMessage("contextMenuTextPOE").replace("{language}", languageName + " \"" + language + "\"");
+        const linkMenuTitlePOE = chrome.i18n.getMessage("contextMenuLinkPOE").replace("{language}", languageName + " \"" + language + "\"");
+
         // Xóa các menu cũ trước khi tạo mới
         chrome.contextMenus.removeAll(() => {
             chrome.contextMenus.create({
@@ -86,13 +89,25 @@ function createContextMenus() {
                 title: textMenuTitleClaude,
                 contexts: ["selection"]
             });
-  
+
             chrome.contextMenus.create({
                 id: "sendToClaudeLink",
                 title: linkMenuTitleClaude,
                 contexts: ["page", "link"]
             });
+
+            chrome.contextMenus.create({
+                id: "sendToPOEText",
+                title: textMenuTitlePOE,
+                contexts: ["selection"]
+            });
   
+            chrome.contextMenus.create({
+                id: "sendToPOELink",
+                title: linkMenuTitlePOE,
+                contexts: ["page", "link"]
+            });
+
             chrome.contextMenus.create({
                 id: "translateWithChatGPT",
                 title: "Dịch với ChatGPT",
@@ -105,7 +120,7 @@ function createContextMenus() {
 // Theo dõi sự thay đổi trong chrome.storage
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local") {
-        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink || changes.customClaudeLink) {
+        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink || changes.customClaudeLink || changes.customPOELink) {
             createContextMenus();
         }
     }
@@ -113,11 +128,12 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink, customPOELink"], (data) => {
         const language = data.customLanguage || data.selectedLanguage || "VI";
         const customChatGPTLink = data.customChatGPTLink || "https://chatgpt.com/?model=auto";
         const customGeminiLink = data.customGeminiLink || "https://gemini.google.com/app";
         const customClaudeLink = data.customClaudeLink || "https://claude.ai/new";
+        const customPOELink = data.customPOELink || "https://poe.com/";
 
         if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
             sendTextToChatGPT(info.selectionText, language, customChatGPTLink);
@@ -134,6 +150,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         } else if (info.menuItemId === "sendToClaudeLink") {
             const pageUrl = info.linkUrl || tab.url;
             sendTextToClaude(pageUrl, language, customClaudeLink);
+        } else if (info.menuItemId === "sendToPOEText" && info.selectionText) {
+            sendTextToPOE(info.selectionText, language, customPOELink);
+        } else if (info.menuItemId === "sendToPOELink") {
+            const pageUrl = info.linkUrl || tab.url;
+            sendTextToPOE(pageUrl, language, customPOELink);
         } else if (info.menuItemId === "translateWithChatGPT") {
             const translationPrompt = "Translate the following text to Vietnamese:";
             sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, "VI", customChatGPTLink, true);
@@ -246,6 +267,49 @@ function sendTextToClaude(text, language, customClaudeLink, isTranslation = fals
                                         console.log("HTML của nút gửi:", sendButton.outerHTML);
                                     } else {
                                         console.error("Nút gửi không tìm thấy!");
+                                        setTimeout(checkSendButton, 500); // Kiểm tra lại sau 500ms
+                                    }
+                                }
+
+                                // Gọi hàm kiểm tra nút gửi
+                                checkSendButton();
+                            }
+                        },
+                        args: [fullText]
+                    });
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            });
+        });
+    });
+}
+
+// Hàm gửi văn bản hoặc liên kết tới POE
+function sendTextToPOE(text, language, customPOELink, isTranslation = false) {
+    chrome.storage.local.get(["customPrompt"], (data) => {
+        const customPrompt = data.customPrompt || "Answer relevant content in";
+        const fullText = isTranslation ? text : `${customPrompt} ${language}. \n\n${text}`;
+
+        chrome.tabs.create({ url: customPOELink }, (newTab) => {
+            chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                if (tabId === newTab.id && info.status === 'complete') {
+                    chrome.scripting.executeScript({
+                        target: { tabId: newTab.id },
+                        func: (text) => {
+                            const inputField = document.querySelector('textarea.GrowingTextArea_textArea__ZWQbP');
+                            if (inputField) {
+                                inputField.value = text; // Thiết lập giá trị cho textarea
+                                inputField.dispatchEvent(new Event('input', { bubbles: true })); // Kích hoạt sự kiện input
+
+                                // Hàm kiểm tra nút gửi
+                                function checkSendButton() {
+                                    const sendButton = document.querySelector('button.ChatMessageSendButton_sendButton__4ZyI4');
+                                    if (sendButton && !sendButton.disabled) { // Kiểm tra xem nút có bị vô hiệu hóa không
+                                        console.log("Nút gửi đã tìm thấy!");
+                                        sendButton.click();
+                                        console.log("Đã nhấn nút gửi!");
+                                    } else {
+                                        console.error("Nút gửi không tìm thấy hoặc bị vô hiệu hóa!");
                                         setTimeout(checkSendButton, 500); // Kiểm tra lại sau 500ms
                                     }
                                 }
