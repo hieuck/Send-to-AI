@@ -1,0 +1,26 @@
+{
+    "name": "send-to-ai",
+    "version": "1.0.0",
+    "description": "A Chrome extension to send selected text to AI services.",
+    "main": "js/background.js",
+    "scripts": {
+      "build": "echo 'Building the extension...'",
+      "test": "echo 'Running tests...'",
+      "pack": "zip -r send-to-ai.zip *"
+    },
+    "keywords": [
+      "chrome",
+      "extension",
+      "AI",
+      "automation"
+    ],
+    "author": "hieuck",
+    "license": "MIT",
+    "dependencies": {
+      // Nếu bạn có bất kỳ thư viện nào, hãy thêm ở đây
+    },
+    "devDependencies": {
+      // Nếu bạn có thư viện cho phát triển như eslint, hãy thêm ở đây
+    }
+  }
+  
