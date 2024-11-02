@@ -17,17 +17,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-          
-      - name: Set working directory
-        run: cd extension
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./extension
 
       # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
+        working-directory: ./extension
 
       # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
@@ -36,6 +35,7 @@ jobs:
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
+        working-directory: ./extension
 
       # Tạo bản phát hành trên GitHub
       - name: Create Release
