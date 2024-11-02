@@ -6,9 +6,10 @@
     <title>__MSG_extensionName__</title>
     <style>
         body {
-            width: 640px; height: 480px;
-            margin: 0 auto;
             font-family: Arial, sans-serif;
+            margin: 0 auto;
+            width: 480px;
+            max-width: 600px;
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 5px;
@@ -23,13 +24,21 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #555;
         }
-        select, input[type="text"] {
-            width: 100%;
+        input[type="text"], select {
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
         }
         button {
             padding: 10px 15px;
