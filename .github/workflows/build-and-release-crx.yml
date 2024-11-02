@@ -13,11 +13,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      # Bước kiểm tra danh sách tệp trong thư mục Send-to-AI
-      - name: List files in Send-to-AI
-        run: ls -la Send-to-AI
-
-      - name: Set up Node.js
+        - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16'
