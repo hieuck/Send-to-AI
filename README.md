@@ -1,1 +1,1 @@
-# Send-to-ChatGPT
+# Send-to-AI Service
