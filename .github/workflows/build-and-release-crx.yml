@@ -14,6 +14,7 @@ jobs:
       NODE_VERSION: '16'
 
     steps:
+      # Bước kiểm tra và tải mã nguồn từ repo
       - name: Check out repository
         uses: actions/checkout@v3
 
@@ -52,25 +53,28 @@ jobs:
 
       # Cài đặt dependencies trong thư mục gốc nếu package.json tồn tại ở đó
       - name: Install dependencies from root if package.json exists
-      if: ${{ !env.EXTENSION_DIR || (env.EXTENSION_DIR && ! steps.check_for_package_json_in_send_to_ai.outputs.package_json_found) }}
-      run: |
-        npm install
-        if [ $? -ne 0 ]; then
-          echo "Error: npm install failed in root directory"
-        fi
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            echo "Skipping npm install in root: package.json not found"
+          fi
 
       # Cài đặt dependencies trong thư mục Send-to-AI nếu package.json tồn tại ở đó
       - name: Install dependencies from Send-to-AI if package.json exists
-        if: ${{ env.EXTENSION_DIR && steps.check_for_package_json_in_send_to_ai.outputs.package_json_found }}
-        run: npm install
+        run: |
+          if [ -f ${{ env.EXTENSION_DIR }}/package.json ]; then
+            npm install
+          else
+            echo "Skipping npm install in Send-to-AI: package.json not found"
+          fi
         working-directory: ${{ env.EXTENSION_DIR }}
 
       # Đóng gói extension thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip ${{ env.EXTENSION_DIR }} -x ".git/*" -x "node_modules/*" || echo "Error: zip creation failed"
-        working-directory: ./${{ env.EXTENSION_DIR }}
-
+      
       # Tạo file .crx
       - name: Generate .crx file
         run: |
@@ -78,7 +82,6 @@ jobs:
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx || echo "Error: .crx creation failed"
-        working-directory: ./${{ env.EXTENSION_DIR }}
 
       # Tạo bản phát hành mới trên GitHub
       - name: Create Release
