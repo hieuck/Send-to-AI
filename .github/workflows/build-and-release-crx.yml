@@ -1,9 +1,9 @@
-name: Build and Release Chrome Extension
+name: Debug Build and Release Chrome Extension
 
 on:
   push:
     tags:
-      - 'v*'  # Chỉ chạy khi đẩy tag dạng v* (vd: v1.0.0)
+      - 'v*'
 
 jobs:
   build:
@@ -11,10 +11,10 @@ jobs:
 
     env:
       EXTENSION_DIR: Send-to-AI  # Thư mục chứa mã nguồn extension
-      NODE_VERSION: '16'  # Phiên bản Node.js để sử dụng
+      NODE_VERSION: '16'         # Phiên bản Node.js để sử dụng
 
     steps:
-      # Kiểm tra và tải mã nguồn từ repo
+      # Bước kiểm tra và tải mã nguồn từ repo
       - name: Check out repository
         uses: actions/checkout@v3
 
@@ -24,23 +24,48 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      # Kiểm tra sự tồn tại của package.json
-      - name: Check for package.json
+      # Kiểm tra cấu trúc thư mục tại thư mục gốc
+      - name: List files in root directory
+        run: ls -alh
+
+      # Kiểm tra cấu trúc thư mục trong Send-to-AI (nếu có)
+      - name: List files in Send-to-AI directory
+        if: ${{ env.EXTENSION_DIR }}
+        run: ls -alh ${{ env.EXTENSION_DIR }}
+
+      # Kiểm tra sự tồn tại của package.json ở thư mục gốc
+      - name: Check for package.json in root
         run: |
-          if [ ! -f ${{ env.EXTENSION_DIR }}/package.json ]; then
-            echo "Error: package.json not found in ${{ env.EXTENSION_DIR }}"
-            exit 1
+          if [ -f package.json ]; then
+            echo "Found package.json in root directory"
+          else
+            echo "Error: package.json not found in root directory"
           fi
 
-      # Cài đặt các dependencies
-      - name: Install dependencies
+      # Kiểm tra sự tồn tại của package.json trong thư mục Send-to-AI
+      - name: Check for package.json in Send-to-AI directory
+        run: |
+          if [ -f ${{ env.EXTENSION_DIR }}/package.json ]; then
+            echo "Found package.json in ${{ env.EXTENSION_DIR }} directory"
+          else
+            echo "Error: package.json not found in ${{ env.EXTENSION_DIR }} directory"
+          fi
+
+      # Cài đặt dependencies trong thư mục gốc nếu package.json tồn tại ở đó
+      - name: Install dependencies from root if package.json exists
+        if: ${{ !env.EXTENSION_DIR || (env.EXTENSION_DIR && ! steps.check_for_package_json_in_send_to_ai.outputs.package_json_found) }}
+        run: npm install || echo "Error: npm install failed in root directory"
+
+      # Cài đặt dependencies trong thư mục Send-to-AI nếu package.json tồn tại ở đó
+      - name: Install dependencies from Send-to-AI if package.json exists
+        if: ${{ env.EXTENSION_DIR && steps.check_for_package_json_in_send_to_ai.outputs.package_json_found }}
         run: npm install
-        working-directory: ./${{ env.EXTENSION_DIR }}
+        working-directory: ${{ env.EXTENSION_DIR }}
 
       # Đóng gói extension thành file .zip
       - name: Generate .zip file
         run: |
-          zip -r ../extension.zip * -x ".git/*" -x "node_modules/*"
+          zip -r extension.zip ${{ env.EXTENSION_DIR }} -x ".git/*" -x "node_modules/*" || echo "Error: zip creation failed"
         working-directory: ./${{ env.EXTENSION_DIR }}
 
       # Tạo file .crx
@@ -49,7 +74,7 @@ jobs:
           openssl genrsa -out key.pem 2048
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
-          cat cert.pem key.pem > ../extension.crx
+          cat cert.pem key.pem > extension.crx || echo "Error: .crx creation failed"
         working-directory: ./${{ env.EXTENSION_DIR }}
 
       # Tạo bản phát hành mới trên GitHub
@@ -82,7 +107,6 @@ jobs:
           asset_name: extension.crx
           asset_content_type: application/octet-stream
 
-      # Xóa các file nhạy cảm sau khi hoàn thành
+      # Cleanup các file nhạy cảm sau khi hoàn thành
       - name: Cleanup
-        run: |
-          rm -f extension.zip extension.crx ${{ env.EXTENSION_DIR }}/key.pem ${{ env.EXTENSION_DIR }}/cert.pem
+        run: rm -f extension.zip extension.crx key.pem cert.pem
