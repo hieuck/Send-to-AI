@@ -1,10 +1,3 @@
-name: Build and Release Chrome Extension
-
-on:
-  push:
-    tags:
-      - 'v*'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,17 +11,14 @@ jobs:
         with:
           node-version: '16'
 
-      # Chỉ định đúng đường dẫn đến package.json
+      # Không chỉ định `working-directory` nếu `package.json` ở thư mục gốc
       - name: Install dependencies
         run: npm install
-        working-directory: ./Send-to-AI
 
-      # Bước đóng gói tiện ích thành file .zip
       - name: Generate .zip file
         run: |
           zip -r extension.zip * -x ".git/*"
 
-      # Bước tạo khóa và chứng chỉ, đóng gói file .crx
       - name: Generate .crx file
         run: |
           openssl genrsa -out key.pem 2048
@@ -36,7 +26,6 @@ jobs:
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
           cat cert.pem key.pem > extension.crx
 
-      # Tạo bản phát hành trên GitHub
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -48,20 +37,18 @@ jobs:
           draft: false
           prerelease: false
 
-      # Upload file .zip lên bản phát hành
       - name: Upload .zip file to Release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/Send-to-AI.zip
+          asset_path: ./extension.zip
           asset_name: extension.zip
           asset_content_type: application/zip
 
-      # Upload file .crx lên bản phát hành
       - name: Upload .crx file to Release
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Send-to-AI/Send-to-AI.crx
+          asset_path: ./extension.crx
           asset_name: extension.crx
           asset_content_type: application/octet-stream
