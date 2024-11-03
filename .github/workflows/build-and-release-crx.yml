@@ -1,31 +1,58 @@
+name: Build and Release Chrome Extension
+
+on:
+  push:
+    tags:
+      - 'v*'  # Chỉ chạy khi đẩy tag dạng v* (vd: v1.0.0)
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      EXTENSION_DIR: Send-to-AI  # Thư mục chứa mã nguồn extension
+      NODE_VERSION: '16'  # Phiên bản Node.js để sử dụng
+
     steps:
+      # Kiểm tra và tải mã nguồn từ repo
       - name: Check out repository
         uses: actions/checkout@v3
 
+      # Thiết lập Node.js với phiên bản đã khai báo ở biến env
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: ${{ env.NODE_VERSION }}
 
-      # Không chỉ định `working-directory` nếu `package.json` ở thư mục gốc
+      # Kiểm tra sự tồn tại của package.json
+      - name: Check for package.json
+        run: |
+          if [ ! -f ${{ env.EXTENSION_DIR }}/package.json ]; then
+            echo "Error: package.json not found in ${{ env.EXTENSION_DIR }}"
+            exit 1
+          fi
+
+      # Cài đặt các dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: ./${{ env.EXTENSION_DIR }}
 
+      # Đóng gói extension thành file .zip
       - name: Generate .zip file
         run: |
-          zip -r extension.zip * -x ".git/*"
+          zip -r ../extension.zip * -x ".git/*" -x "node_modules/*"
+        working-directory: ./${{ env.EXTENSION_DIR }}
 
+      # Tạo file .crx
       - name: Generate .crx file
         run: |
           openssl genrsa -out key.pem 2048
           openssl req -new -key key.pem -out csr.pem -subj "/CN=Chrome Extension"
           openssl x509 -req -days 365 -in csr.pem -signkey key.pem -out cert.pem
-          cat cert.pem key.pem > extension.crx
+          cat cert.pem key.pem > ../extension.crx
+        working-directory: ./${{ env.EXTENSION_DIR }}
 
+      # Tạo bản phát hành mới trên GitHub
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -37,6 +64,7 @@ jobs:
           draft: false
           prerelease: false
 
+      # Upload file .zip lên bản phát hành
       - name: Upload .zip file to Release
         uses: actions/upload-release-asset@v1
         with:
@@ -45,6 +73,7 @@ jobs:
           asset_name: extension.zip
           asset_content_type: application/zip
 
+      # Upload file .crx lên bản phát hành
       - name: Upload .crx file to Release
         uses: actions/upload-release-asset@v1
         with:
@@ -52,3 +81,8 @@ jobs:
           asset_path: ./extension.crx
           asset_name: extension.crx
           asset_content_type: application/octet-stream
+
+      # Xóa các file nhạy cảm sau khi hoàn thành
+      - name: Cleanup
+        run: |
+          rm -f extension.zip extension.crx ${{ env.EXTENSION_DIR }}/key.pem ${{ env.EXTENSION_DIR }}/cert.pem
