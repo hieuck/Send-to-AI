@@ -17,10 +17,10 @@
     "author": "hieuck",
     "license": "MIT",
     "dependencies": {
-      // Nếu bạn có bất kỳ thư viện nào, hãy thêm ở đây
+      
     },
     "devDependencies": {
-      // Nếu bạn có thư viện cho phát triển như eslint, hãy thêm ở đây
+      
     }
   }
   
