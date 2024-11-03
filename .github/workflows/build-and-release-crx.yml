@@ -10,11 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      EXTENSION_DIR: Send-to-AI  # Thư mục chứa mã nguồn extension
-      NODE_VERSION: '16'         # Phiên bản Node.js để sử dụng
+      EXTENSION_DIR: Send-to-AI
+      NODE_VERSION: '16'
 
     steps:
-      # Bước kiểm tra và tải mã nguồn từ repo
       - name: Check out repository
         uses: actions/checkout@v3
 
