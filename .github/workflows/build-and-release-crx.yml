@@ -53,8 +53,12 @@ jobs:
 
       # Cài đặt dependencies trong thư mục gốc nếu package.json tồn tại ở đó
       - name: Install dependencies from root if package.json exists
-        if: ${{ !env.EXTENSION_DIR || (env.EXTENSION_DIR && ! steps.check_for_package_json_in_send_to_ai.outputs.package_json_found) }}
-        run: npm install || echo "Error: npm install failed in root directory"
+      if: ${{ !env.EXTENSION_DIR || (env.EXTENSION_DIR && ! steps.check_for_package_json_in_send_to_ai.outputs.package_json_found) }}
+      run: |
+        npm install
+        if [ $? -ne 0 ]; then
+          echo "Error: npm install failed in root directory"
+        fi
 
       # Cài đặt dependencies trong thư mục Send-to-AI nếu package.json tồn tại ở đó
       - name: Install dependencies from Send-to-AI if package.json exists
