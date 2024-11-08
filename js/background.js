@@ -204,7 +204,7 @@ function sendTextToChatGPT(text, language, customChatGPTLink, isTranslation = fa
                                         }, 500);
                                     }
                                 }
-                            }, 100);
+                            }, 500);
                         },
                         args: [fullText]
                     });
