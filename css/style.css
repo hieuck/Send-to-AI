@@ -86,10 +86,17 @@ body {
     color: var(--text-color);
 }
 
-input[type="text"], select {
-    background-color: var(--input-background);
+input[type="text"], select, textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: var(--input-background);
     color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 button {
