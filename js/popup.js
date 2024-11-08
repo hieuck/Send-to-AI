@@ -146,28 +146,45 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => toast.remove(), 3000);
     }
 
-    // Hàm để áp dụng theme
-    function applyTheme(theme) {
-        document.body.setAttribute("data-theme", theme);
+    // Hàm để tự động nhận diện và áp dụng chế độ sáng/tối của hệ thống, chỉ khi người dùng chọn "tự động"
+    function checkAndSetTheme() {
+        // Kiểm tra xem người dùng có chọn chế độ tự động không
+        const themeMode = document.getElementById("themeDropdown").value;
+
+        if (themeMode === "auto") {
+            // Nếu chọn chế độ tự động, kiểm tra chế độ sáng/tối của hệ thống
+            const currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', currentTheme); // Gán data-theme cho body
+        }
     }
 
-    // Kiểm tra và áp dụng giao diện đã lưu
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.getElementById("themeDropdown").value = savedTheme;
-    applyTheme(savedTheme);
+    // Kiểm tra chế độ hiện tại của hệ thống khi tải trang
+    checkAndSetTheme();
+
+    // Theo dõi thay đổi chế độ của hệ thống và chỉ cập nhật khi người dùng chọn "auto"
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', checkAndSetTheme);
 
     // Lắng nghe thay đổi giao diện từ dropdown
     document.getElementById("themeDropdown").addEventListener("change", (event) => {
         const selectedTheme = event.target.value;
         localStorage.setItem("theme", selectedTheme);
-        applyTheme(selectedTheme);
+
+        // Nếu người dùng chọn chế độ sáng/tối thủ công, áp dụng theme đã chọn
+        if (selectedTheme !== "auto") {
+            document.body.setAttribute("data-theme", selectedTheme);
+        } else {
+            // Nếu chọn "auto", tự động áp dụng theo chế độ hệ thống
+            checkAndSetTheme();
+        }
     });
 
-    // Đặt mặc định chế độ sáng nếu chưa có cài đặt hoặc trong trường hợp hệ thống không hỗ trợ
-    if (!localStorage.getItem("theme")) {
-        const currentHour = new Date().getHours();
-        const autoTheme = (currentHour >= 6 && currentHour < 18) ? "light" : "dark";
-        localStorage.setItem("theme", autoTheme);
-        applyTheme(autoTheme);
+    // Lấy giá trị theme đã lưu và áp dụng
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.getElementById("themeDropdown").value = savedTheme;
+
+    if (savedTheme !== "auto") {
+        document.body.setAttribute("data-theme", savedTheme);
+    } else {
+        checkAndSetTheme();
     }
 });
