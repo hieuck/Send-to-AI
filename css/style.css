@@ -1,5 +1,4 @@
-/* style.css */
-
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0 auto;
@@ -10,17 +9,20 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 h1 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
+
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
 }
+
 input[type="text"], select {
     width: calc(100% - 20px);
     padding: 10px;
@@ -31,10 +33,12 @@ input[type="text"], select {
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
+
 input[type="text"]:focus, select:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
+
 button {
     padding: 10px 15px;
     background-color: #007bff;
@@ -44,6 +48,80 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
+
 button:hover {
     background-color: #0056b3;
+}
+
+/* Các biến mặc định (Chế độ sáng) */
+:root {
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --input-background: #fff;
+    --input-border-color: #ddd;
+    --button-background: #007bff;
+    --button-hover: #0056b3;
+}
+
+/* Chế độ tối */
+[data-theme="dark"] {
+    --background-color: #333;
+    --text-color: #f9f9f9;
+    --input-background: #555;
+    --input-border-color: #777;
+    --button-background: #0056b3;
+    --button-hover: #003d7a;
+}
+
+/* Áp dụng các biến này vào các phần tử */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+input[type="text"], select {
+    background-color: var(--input-background);
+    border: 1px solid var(--input-border-color);
+}
+
+button {
+    background-color: var(--button-background);
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Thông báo toast */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    25% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    75% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
 }

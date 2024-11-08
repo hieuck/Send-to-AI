@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Không tìm thấy nút lưu.");
     }
+
+    // Lấy các phần tử từ HTML
     const languageDropdown = document.getElementById("languageDropdown");
     const customLanguageInput = document.getElementById("customLanguage");
     const customPromptInput = document.getElementById("customPrompt");
@@ -35,43 +37,54 @@ document.addEventListener("DOMContentLoaded", () => {
     const customGeminiLinkInput = document.getElementById("customGeminiLink");
     const customClaudeLinkInput = document.getElementById("customClaudeLink");
     const customPOELinkInput = document.getElementById("customPOELink");
-    const statusMessage = document.createElement("div");
-    document.body.appendChild(statusMessage);
+    const statusMessage = document.getElementById("statusMessage");
 
     // Tải ngôn ngữ, nội dung tùy chỉnh và custom link đã lưu
     chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink"], (data) => {
         if (data.selectedLanguage) {
             languageDropdown.value = data.selectedLanguage;
-            statusMessage.innerText += `\nNgôn ngữ đã chọn: ${data.selectedLanguage}\n`;
+            updateStatusMessage(`Ngôn ngữ đã chọn: ${data.selectedLanguage}`);
         }
         if (data.customLanguage) {
             customLanguageInput.value = data.customLanguage;
-            statusMessage.innerText += `\nNgôn ngữ tùy chỉnh: ${data.customLanguage}\n`;
+            updateStatusMessage(`Ngôn ngữ tùy chỉnh: ${data.customLanguage}`);
         }
         if (data.customPrompt) {
             customPromptInput.value = data.customPrompt;
-            statusMessage.innerText += `\nNội dung tùy chỉnh: ${data.customPrompt}\n`;
+            updateStatusMessage(`Nội dung tùy chỉnh: ${data.customPrompt}`);
         }
         if (data.customChatGPTLink) {
             customChatGPTLinkInput.value = data.customChatGPTLink;
-            statusMessage.innerText += `\nLiên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}\n`;
+            updateStatusMessage(`Liên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}`);
         }
         if (data.customGeminiLink) {
             customGeminiLinkInput.value = data.customGeminiLink;
-            statusMessage.innerText += `\nLiên kết Gemini trả lời (URL): ${data.customGeminiLink}\n`;
+            updateStatusMessage(`Liên kết Gemini trả lời (URL): ${data.customGeminiLink}`);
         }
         if (data.customClaudeLink) {
             customClaudeLinkInput.value = data.customClaudeLink;
-            statusMessage.innerText += `\nLiên kết Claude trả lời (URL): ${data.customClaudeLink}\n`;
+            updateStatusMessage(`Liên kết Claude trả lời (URL): ${data.customClaudeLink}`);
         }
         if (data.customPOELink) {
             customPOELinkInput.value = data.customPOELink;
-            statusMessage.innerText += `\nLiên kết POE trả lời (URL): ${data.customPOELink}\n`;
+            updateStatusMessage(`Liên kết POE trả lời (URL): ${data.customPOELink}`);
         }
     });
 
+    // Cập nhật thông báo trạng thái (gộp các thông báo thành một thông báo duy nhất)
+    function updateStatusMessage(message) {
+        const newMessage = document.createElement("div");
+        newMessage.innerHTML = message;
+        statusMessage.appendChild(newMessage); // Thêm thông báo vào container
+    }
+
+    let isSaving = false; // Biến để kiểm tra nếu đã nhấn lưu trước đó
+
     // Xử lý sự kiện lưu
     saveButton.addEventListener("click", () => {
+        if (isSaving) return; // Nếu đã nhấn lưu, không thực hiện lại
+        isSaving = true; // Đánh dấu là đã nhấn lưu
+
         const selectedLanguage = languageDropdown.value;
         const customLanguage = customLanguageInput.value;
         const customPrompt = customPromptInput.value;
@@ -90,19 +103,71 @@ document.addEventListener("DOMContentLoaded", () => {
             customClaudeLink,
             customPOELink
         }, () => {
-            alert("Cài đặt đã được lưu!");
+            // Xóa các thông báo cũ trước khi thêm mới
+            statusMessage.innerHTML = '';
 
-            statusMessage.innerText = `
-                \nNgôn ngữ đã lưu: ${selectedLanguage}\n
-                \nNội dung tùy chỉnh: ${customPrompt}\n
-                \nLiên kết ChatGPT trả lời (URL): ${customChatGPTLink}\n
-                \nLiên kết Gemini trả lời (URL): ${customGeminiLink}\n
-                \nLiên kết Claude trả lời (URL): ${customClaudeLink}\n
-                \nLiên kết POE trả lời (URL): ${customPOELink}\n
+            // Gộp các thông báo lại với nhau thành một thông báo duy nhất
+            const allMessages = `
+                Ngôn ngữ đã chọn: ${selectedLanguage}<br>
+                Ngôn ngữ đã lưu: ${selectedLanguage}<br>
+                Nội dung tùy chỉnh đã lưu: ${customPrompt}<br>
+                Liên kết ChatGPT đã lưu: ${customChatGPTLink}<br>
+                Liên kết Gemini đã lưu: ${customGeminiLink}<br>
+                Liên kết Claude đã lưu: ${customClaudeLink}<br>
+                Liên kết POE đã lưu: ${customPOELink}<br>
             `;
+
+            // Hiển thị thông báo gộp
+            showToast("Cài đặt đã được lưu!");
+            updateStatusMessage(allMessages);
 
             // Gửi thông báo đến background để cập nhật menu
             chrome.runtime.sendMessage({ action: "createContextMenus" });
+
+            isSaving = false; // Reset lại trạng thái sau khi lưu xong
         });
     });
+
+    // Hàm để hiển thị thông báo toast
+    function showToast(message) {
+        // Kiểm tra xem có thông báo nào hiện tại hay không
+        const existingToast = document.querySelector(".toast");
+        if (existingToast) {
+            existingToast.remove(); // Nếu có, loại bỏ thông báo cũ
+        }
+
+        // Tạo thông báo mới
+        const toast = document.createElement("div");
+        toast.classList.add("toast");
+        toast.innerText = message;
+        document.body.appendChild(toast);
+
+        // Loại bỏ toast sau 3 giây
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Hàm để áp dụng theme
+    function applyTheme(theme) {
+        document.body.setAttribute("data-theme", theme);
+    }
+
+    // Kiểm tra và áp dụng giao diện đã lưu
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.getElementById("themeDropdown").value = savedTheme;
+    applyTheme(savedTheme);
+
+    // Lắng nghe thay đổi giao diện từ dropdown
+    document.getElementById("themeDropdown").addEventListener("change", (event) => {
+        const selectedTheme = event.target.value;
+        localStorage.setItem("theme", selectedTheme);
+        applyTheme(selectedTheme);
+    });
+
+    // Đặt mặc định chế độ sáng nếu chưa có cài đặt hoặc trong trường hợp hệ thống không hỗ trợ
+    if (!localStorage.getItem("theme")) {
+        const currentHour = new Date().getHours();
+        const autoTheme = (currentHour >= 6 && currentHour < 18) ? "light" : "dark";
+        localStorage.setItem("theme", autoTheme);
+        applyTheme(autoTheme);
+    }
 });
