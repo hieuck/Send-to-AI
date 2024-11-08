@@ -4,55 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>__MSG_extensionName__</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0 auto;
-            width: 480px;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-        input[type="text"], select {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        input[type="text"]:focus, select:focus {
-            border-color: #007bff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>__MSG_extensionName__</h1>
@@ -108,6 +60,14 @@
     <!-- Ô nhập cho custom link cho POE -->
     <label for="customPOELink">__MSG_customPOELinkLabel__ (POE)</label>
     <input type="text" id="customPOELink" placeholder="https://poe.com" />
+    
+    <!-- Dropdown chọn chế độ giao diện -->
+    <label for="themeDropdown">Chọn giao diện</label>
+    <select id="themeDropdown">
+        <option value="light">Sáng</option>
+        <option value="dark">Tối</option>
+        <option value="auto">Tự động</option>
+    </select>
 
     <!-- Nút lưu -->
     <button id="saveButton">__MSG_saveButton__</button>
