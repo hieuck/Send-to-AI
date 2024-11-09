@@ -108,13 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Gộp các thông báo lại với nhau thành một thông báo duy nhất
             const allMessages = `
-                Ngôn ngữ đã chọn: ${selectedLanguage}<br>
-                Ngôn ngữ đã lưu: ${selectedLanguage}<br>
-                Nội dung tùy chỉnh đã lưu: ${customPrompt}<br>
-                Liên kết ChatGPT đã lưu: ${customChatGPTLink}<br>
-                Liên kết Gemini đã lưu: ${customGeminiLink}<br>
-                Liên kết Claude đã lưu: ${customClaudeLink}<br>
-                Liên kết POE đã lưu: ${customPOELink}<br>
+                Ngôn ngữ đã chọn: ${selectedLanguage}<br><br>
+                Ngôn ngữ đã lưu: ${selectedLanguage}<br><br>
+                Nội dung tùy chỉnh đã lưu: ${customPrompt}<br><br>
+                Liên kết ChatGPT đã lưu: ${customChatGPTLink}<br><br>
+                Liên kết Gemini đã lưu: ${customGeminiLink}<br><br>
+                Liên kết Claude đã lưu: ${customClaudeLink}<br><br>
+                Liên kết POE đã lưu: ${customPOELink}<br><br>
             `;
 
             // Hiển thị thông báo gộp
