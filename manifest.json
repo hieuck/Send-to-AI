@@ -30,7 +30,8 @@
   "content_scripts": [
     {
       "matches": ["https://chatgpt.com/*", "https://gemini.google.com/*", "https://claude.ai/*", "https://poe.com/*"],
-      "js": ["js/content.js"]
+      "js": ["js/content.js"],
+      "css": ["css/style.css"]
     }
   ],
   "host_permissions": [
