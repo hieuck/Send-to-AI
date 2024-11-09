@@ -43,31 +43,31 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink"], (data) => {
         if (data.selectedLanguage) {
             languageDropdown.value = data.selectedLanguage;
-            updateStatusMessage(`Ngôn ngữ đã chọn: ${data.selectedLanguage}`);
+            updateStatusMessage(`Ngôn ngữ đã chọn: ${data.selectedLanguage}<br>`);
         }
         if (data.customLanguage) {
             customLanguageInput.value = data.customLanguage;
-            updateStatusMessage(`Ngôn ngữ tùy chỉnh: ${data.customLanguage}`);
+            updateStatusMessage(`Ngôn ngữ tùy chỉnh: ${data.customLanguage}<br>`);
         }
         if (data.customPrompt) {
             customPromptInput.value = data.customPrompt;
-            updateStatusMessage(`Nội dung tùy chỉnh: ${data.customPrompt}`);
+            updateStatusMessage(`Nội dung tùy chỉnh: ${data.customPrompt}<br>`);
         }
         if (data.customChatGPTLink) {
             customChatGPTLinkInput.value = data.customChatGPTLink;
-            updateStatusMessage(`Liên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}`);
+            updateStatusMessage(`Liên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}<br>`);
         }
         if (data.customGeminiLink) {
             customGeminiLinkInput.value = data.customGeminiLink;
-            updateStatusMessage(`Liên kết Gemini trả lời (URL): ${data.customGeminiLink}`);
+            updateStatusMessage(`Liên kết Gemini trả lời (URL): ${data.customGeminiLink}<br>`);
         }
         if (data.customClaudeLink) {
             customClaudeLinkInput.value = data.customClaudeLink;
-            updateStatusMessage(`Liên kết Claude trả lời (URL): ${data.customClaudeLink}`);
+            updateStatusMessage(`Liên kết Claude trả lời (URL): ${data.customClaudeLink}<br>`);
         }
         if (data.customPOELink) {
             customPOELinkInput.value = data.customPOELink;
-            updateStatusMessage(`Liên kết POE trả lời (URL): ${data.customPOELink}`);
+            updateStatusMessage(`Liên kết POE trả lời (URL): ${data.customPOELink}<br>`);
         }
     });
 
