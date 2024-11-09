@@ -43,31 +43,31 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink"], (data) => {
         if (data.selectedLanguage) {
             languageDropdown.value = data.selectedLanguage;
-            updateStatusMessage(`Ngôn ngữ đã chọn: ${data.selectedLanguage}<br>`);
+            updateStatusMessage(`<br>Ngôn ngữ đã chọn: ${data.selectedLanguage}<br>`);
         }
         if (data.customLanguage) {
             customLanguageInput.value = data.customLanguage;
-            updateStatusMessage(`Ngôn ngữ tùy chỉnh: ${data.customLanguage}<br>`);
+            updateStatusMessage(`<br>Ngôn ngữ tùy chỉnh: ${data.customLanguage}<br>`);
         }
         if (data.customPrompt) {
             customPromptInput.value = data.customPrompt;
-            updateStatusMessage(`Nội dung tùy chỉnh: ${data.customPrompt}<br>`);
+            updateStatusMessage(`<br>Nội dung tùy chỉnh: ${data.customPrompt}<br>`);
         }
         if (data.customChatGPTLink) {
             customChatGPTLinkInput.value = data.customChatGPTLink;
-            updateStatusMessage(`Liên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}<br>`);
+            updateStatusMessage(`<br>Liên kết ChatGPT trả lời (URL): ${data.customChatGPTLink}<br>`);
         }
         if (data.customGeminiLink) {
             customGeminiLinkInput.value = data.customGeminiLink;
-            updateStatusMessage(`Liên kết Gemini trả lời (URL): ${data.customGeminiLink}<br>`);
+            updateStatusMessage(`<br>Liên kết Gemini trả lời (URL): ${data.customGeminiLink}<br>`);
         }
         if (data.customClaudeLink) {
             customClaudeLinkInput.value = data.customClaudeLink;
-            updateStatusMessage(`Liên kết Claude trả lời (URL): ${data.customClaudeLink}<br>`);
+            updateStatusMessage(`<br>Liên kết Claude trả lời (URL): ${data.customClaudeLink}<br>`);
         }
         if (data.customPOELink) {
             customPOELinkInput.value = data.customPOELink;
-            updateStatusMessage(`Liên kết POE trả lời (URL): ${data.customPOELink}<br>`);
+            updateStatusMessage(`<br>Liên kết POE trả lời (URL): ${data.customPOELink}<br>`);
         }
     });
 
@@ -108,13 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Gộp các thông báo lại với nhau thành một thông báo duy nhất
             const allMessages = `
-                Ngôn ngữ đã chọn: ${selectedLanguage}<br><br>
-                Ngôn ngữ đã lưu: ${selectedLanguage}<br><br>
-                Nội dung tùy chỉnh đã lưu: ${customPrompt}<br><br>
-                Liên kết ChatGPT đã lưu: ${customChatGPTLink}<br><br>
-                Liên kết Gemini đã lưu: ${customGeminiLink}<br><br>
-                Liên kết Claude đã lưu: ${customClaudeLink}<br><br>
-                Liên kết POE đã lưu: ${customPOELink}<br><br>
+                <br>Ngôn ngữ đã chọn: ${selectedLanguage}<br>
+                <br>Ngôn ngữ đã lưu: ${selectedLanguage}<br>
+                <br>Nội dung tùy chỉnh đã lưu: ${customPrompt}<br>
+                <br>Liên kết ChatGPT đã lưu: ${customChatGPTLink}<br>
+                <br>Liên kết Gemini đã lưu: ${customGeminiLink}<br>
+                <br>Liên kết Claude đã lưu: ${customClaudeLink}<br>
+                <br>Liên kết POE đã lưu: ${customPOELink}<br>
             `;
 
             // Hiển thị thông báo gộp
