@@ -35,10 +35,6 @@
     }
   ],
   "host_permissions": [
-    "https://chatgpt.com/*",
-    "https://gemini.google.com/*",
-    "https://claude.ai/*",
-    "https://poe.com/*",
     "<all_urls>"
   ]
 }
