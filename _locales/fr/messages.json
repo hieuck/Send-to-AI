@@ -30,28 +30,28 @@
         "message": "Sauvegarder"
     },
     "contextMenuTextChatGPT": {
-        "message": "Envoyer le texte sélectionné à ChatGPT en {language}"
+        "message": "Envoyer le texte sélectionné à ChatGPT et obtenir une réponse en {language}"
     },
     "contextMenuLinkChatGPT": {
-        "message": "Envoyer le lien à ChatGPT en {language}"
+        "message": "Envoyer le lien à ChatGPT et obtenir une réponse en {language}"
     },
     "contextMenuTextGemini": {
-        "message": "Envoyer le texte sélectionné à Gemini en {language}"
+        "message": "Envoyer le texte sélectionné à Gemini et obtenir une réponse en {language}"
     },
     "contextMenuLinkGemini": {
-        "message": "Envoyer le lien à Gemini en {language}"
+        "message": "Envoyer le lien à Gemini et obtenir une réponse en {language}"
     },
     "contextMenuTextClaude": {
-        "message": "Envoyer le texte sélectionné à Claude en {language}"
+        "message": "Envoyer le texte sélectionné à Claude et obtenir une réponse en {language}"
     },
     "contextMenuLinkClaude": {
-        "message": "Envoyer le lien à Claude en {language}"
+        "message": "Envoyer le lien à Claude et obtenir une réponse en {language}"
     },
     "contextMenuTextPOE": {
-        "message": "Envoyer le texte sélectionné à POE en {language}"
+        "message": "Envoyer le texte sélectionné à POE et obtenir une réponse en {language}"
     },
     "contextMenuLinkPOE": {
-        "message": "Envoyer le lien à POE en {language}"
+        "message": "Envoyer le lien à POE et obtenir une réponse en {language}"
     },
     "contextMenuRewriteWithChatGPT": {
         "message": "Réécrire le texte en {language} avec ChatGPT"

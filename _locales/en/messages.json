@@ -30,28 +30,28 @@
         "message": "Save"
     },
     "contextMenuTextChatGPT": {
-        "message": "Send selected text to ChatGPT in {language}"
+        "message": "Send selected text to ChatGPT and get a response in {language}"
     },
     "contextMenuLinkChatGPT": {
-        "message": "Send link to ChatGPT in {language}"
+        "message": "Send link to ChatGPT and get a response in {language}"
     },
     "contextMenuTextGemini": {
-        "message": "Send selected text to Gemini in {language}"
+        "message": "Send selected text to Gemini and get a response in {language}"
     },
     "contextMenuLinkGemini": {
-        "message": "Send link to Gemini in {language}"
+        "message": "Send link to Gemini and get a response in {language}"
     },
     "contextMenuTextClaude": {
-        "message": "Send selected text to Claude in {language}"
+        "message": "Send selected text to Claude and get a response in {language}"
     },
     "contextMenuLinkClaude": {
-        "message": "Send link to Claude in {language}"
+        "message": "Send link to Claude and get a response in {language}"
     },
     "contextMenuTextPOE": {
-        "message": "Send selected text to POE in {language}"
+        "message": "Send selected text to POE and get a response in {language}"
     },
     "contextMenuLinkPOE": {
-        "message": "Send link to POE in {language}"
+        "message": "Send link to POE and get a response in {language}"
     },
     "contextMenuRewriteWithChatGPT": {
         "message": "Rewrite the text in {language} using ChatGPT"

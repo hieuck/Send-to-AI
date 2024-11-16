@@ -30,28 +30,28 @@
         "message": "Lưu"
     },
     "contextMenuTextChatGPT": {
-        "message": "Gửi văn bản đã chọn tới ChatGPT bằng ngôn ngữ {language}"
+        "message": "Gửi văn bản đã chọn tới ChatGPT và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkChatGPT": {
-        "message": "Gửi liên kết tới ChatGPT bằng ngôn ngữ {language}"
+        "message": "Gửi liên kết tới ChatGPT và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuTextGemini": {
-        "message": "Gửi văn bản đã chọn tới Gemini bằng ngôn ngữ {language}"
+        "message": "Gửi văn bản đã chọn tới Gemini và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkGemini": {
-        "message": "Gửi liên kết tới Gemini bằng ngôn ngữ {language}"
+        "message": "Gửi liên kết tới Gemini và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuTextClaude": {
-        "message": "Gửi văn bản đã chọn tới Claude bằng ngôn ngữ {language}"
+        "message": "Gửi văn bản đã chọn tới Claude và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkClaude": {
-        "message": "Gửi liên kết tới Claude bằng ngôn ngữ {language}"
+        "message": "Gửi liên kết tới Claude và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuTextPOE": {
-        "message": "Gửi văn bản đã chọn tới POE bằng ngôn ngữ {language}"
+        "message": "Gửi văn bản đã chọn tới POE và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkPOE": {
-        "message": "Gửi liên kết tới POE bằng ngôn ngữ {language}"
+        "message": "Gửi liên kết tới POE và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuRewriteWithChatGPT": {
         "message": "Viết lại văn bản sang ngôn ngữ {language} bằng ChatGPT"

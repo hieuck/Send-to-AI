@@ -30,28 +30,28 @@
         "message": "Guardar"
     },
     "contextMenuTextChatGPT": {
-        "message": "Enviar texto seleccionado a ChatGPT en {language}"
+        "message": "Enviar texto seleccionado a ChatGPT y recibe una respuesta en {language}"
     },
     "contextMenuLinkChatGPT": {
-        "message": "Enviar enlace a ChatGPT en {language}"
+        "message": "Enviar enlace a ChatGPT y recibe una respuesta en {language}"
     },
     "contextMenuTextGemini": {
-        "message": "Enviar texto seleccionado a Gemini en {language}"
+        "message": "Enviar texto seleccionado a Gemini y recibe una respuesta en {language}"
     },
     "contextMenuLinkGemini": {
-        "message": "Enviar enlace a Gemini en {language}"
+        "message": "Enviar enlace a Gemini y recibe una respuesta en {language}"
     },
     "contextMenuTextClaude": {
-        "message": "Enviar texto seleccionado a Claude en {language}"
+        "message": "Enviar texto seleccionado a Claude y recibe una respuesta en {language}"
     },
     "contextMenuLinkClaude": {
-        "message": "Enviar enlace a Claude en {language}"
+        "message": "Enviar enlace a Claude y recibe una respuesta en {language}"
     },
     "contextMenuTextPOE": {
-        "message": "Enviar texto seleccionado a POE en {language}"
+        "message": "Enviar texto seleccionado a POE y recibe una respuesta en {language}"
     },
     "contextMenuLinkPOE": {
-        "message": "Enviar enlace a POE en {language}"
+        "message": "Enviar enlace a POE y recibe una respuesta en {language}"
     },
     "contextMenuRewriteWithChatGPT": {
         "message": "Reescribe el texto en {language} usando ChatGPT"
