@@ -53,6 +53,18 @@
     "contextMenuLinkPOE": {
         "message": "Send link to POE in {language}"
     },
+    "contextMenuRewriteWithChatGPT": {
+        "message": "Rewrite the text in {language} using ChatGPT"
+    },
+    "contextMenuRewriteWithGemini": {
+        "message": "Rewrite the text in {language} using Gemini"
+    },
+    "contextMenuRewriteWithClaude": {
+        "message": "Rewrite the text in {language} using Claude"
+    },
+    "contextMenuRewriteWithPOE": {
+        "message": "Rewrite the text in {language} using POE"
+    },
     "contextMenuTextTranslationChatGPT": {
         "message": "Translate selected text to {language} with ChatGPT"
     },
