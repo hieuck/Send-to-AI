@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Lấy giá trị theme đã lưu và áp dụng
-    const savedTheme = localStorage.getItem("theme") || "light";
+    const savedTheme = localStorage.getItem("theme") || "auto";
     document.getElementById("themeDropdown").value = savedTheme;
 
     if (savedTheme !== "auto") {
