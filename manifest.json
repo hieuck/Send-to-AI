@@ -29,7 +29,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://chatgpt.com/*", "https://gemini.google.com/*", "https://claude.ai/*", "https://poe.com/*"],
+      "matches": ["https://chatgpt.com/*", "https://gemini.google.com/*", "https://claude.ai/*", "https://poe.com/*", "https://chat.deepseek.com/*"],
       "js": ["js/content.js"]
     }
   ],

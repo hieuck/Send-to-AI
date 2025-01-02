@@ -1,4 +1,5 @@
 {
+    // General
     "extensionName": {
         "message": "Gửi tới AI"
     },
@@ -14,20 +15,12 @@
     "customPromptLabel": {
         "message": "Hoặc nhập nội dung tùy chỉnh"
     },
-    "customChatGPTLinkLabel": {
-        "message": "Nhập Liên kết ChatGPT trả lời (URL):"
-    },
-    "customGeminiLinkLabel": {
-        "message": "Nhập Liên kết Google Gemini trả lời (URL):"
-    },
-    "customClaudeLinkLabel": {
-        "message": "Nhập Liên kết Claude trả lời (URL):"
-    },
-    "customPOELinkLabel": {
-        "message": "Nhập Liên kết POE trả lời (URL):"
-    },
     "saveButton": {
         "message": "Lưu"
+    },
+    // ChatGPT
+    "customChatGPTLinkLabel": {
+        "message": "Nhập Liên kết ChatGPT trả lời (URL):"
     },
     "contextMenuTextChatGPT": {
         "message": "Gửi văn bản đã chọn tới ChatGPT và trả lời bằng ngôn ngữ {language}"
@@ -35,11 +28,31 @@
     "contextMenuLinkChatGPT": {
         "message": "Gửi liên kết tới ChatGPT và trả lời bằng ngôn ngữ {language}"
     },
+    "contextMenuRewriteWithChatGPT": {
+        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng ChatGPT"
+    },
+    "contextMenuTextTranslationChatGPT": {
+        "message": "Dịch văn bản đã chọn sang {language} bằng ChatGPT"
+    },
+    // Gemini
+    "customGeminiLinkLabel": {
+        "message": "Nhập Liên kết Google Gemini trả lời (URL):"
+    },
     "contextMenuTextGemini": {
         "message": "Gửi văn bản đã chọn tới Gemini và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkGemini": {
         "message": "Gửi liên kết tới Gemini và trả lời bằng ngôn ngữ {language}"
+    },
+    "contextMenuRewriteWithGemini": {
+        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Gemini"
+    },
+    "contextMenuTextTranslationGemini": {
+        "message": "Dịch văn bản đã chọn sang {language} bằng Gemini"
+    },
+    // Claude
+    "customClaudeLinkLabel": {
+        "message": "Nhập Liên kết Claude trả lời (URL):"
     },
     "contextMenuTextClaude": {
         "message": "Gửi văn bản đã chọn tới Claude và trả lời bằng ngôn ngữ {language}"
@@ -47,29 +60,37 @@
     "contextMenuLinkClaude": {
         "message": "Gửi liên kết tới Claude và trả lời bằng ngôn ngữ {language}"
     },
+    "contextMenuRewriteWithClaude": {
+        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Claude"
+    },
+    // POE
+    "customPOELinkLabel": {
+        "message": "Nhập Liên kết POE trả lời (URL):"
+    },
     "contextMenuTextPOE": {
         "message": "Gửi văn bản đã chọn tới POE và trả lời bằng ngôn ngữ {language}"
     },
     "contextMenuLinkPOE": {
         "message": "Gửi liên kết tới POE và trả lời bằng ngôn ngữ {language}"
     },
-    "contextMenuRewriteWithChatGPT": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng ChatGPT"
-    },
-    "contextMenuRewriteWithGemini": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Gemini"
-    },
-    "contextMenuRewriteWithClaude": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Claude"
-    },
     "contextMenuRewriteWithPOE": {
         "message": "Viết lại văn bản sang ngôn ngữ {language} bằng POE"
     },
-    "contextMenuTextTranslationChatGPT": {
-        "message": "Dịch văn bản đã chọn sang {language} bằng ChatGPT"
+    // DeepSeek
+    "customDeepSeekLinkLabel": {
+        "message": "Nhập Liên kết DeepSeek trả lời (URL):"
     },
-    "contextMenuTextTranslationGemini": {
-        "message": "Dịch văn bản đã chọn sang {language} bằng Gemini"
+    "contextMenuTextDeepseek": {
+        "message": "Gửi văn bản đã chọn tới DeepSeek và trả lời bằng ngôn ngữ {language}"
+    },
+    "contextMenuLinkDeepseek": {
+        "message": "Gửi liên kết tới DeepSeek và trả lời bằng ngôn ngữ {language}"
+    },
+    "contextMenuRewriteWithDeepseek": {
+        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng DeepSeek"
+    },
+    "contextMenuTextTranslationDeepseek": {
+        "message": "Dịch văn bản đã chọn sang {language} bằng DeepSeek"
     }
     // Thêm nhiều bản dịch nếu cần...
 }

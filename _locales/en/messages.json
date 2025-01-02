@@ -1,4 +1,5 @@
 {
+    // General
     "extensionName": {
         "message": "Send to AI"
     },
@@ -14,20 +15,12 @@
     "customPromptLabel": {
         "message": "Or enter custom content"
     },
-    "customChatGPTLinkLabel": {
-        "message": "Enter ChatGPT response link (URL):"
-    },
-    "customGeminiLinkLabel": {
-        "message": "Enter Google Gemini response link (URL):"
-    },
-    "customClaudeLinkLabel": {
-        "message": "Enter Claude response link (URL):"
-    },
-    "customPOELinkLabel": {
-        "message": "Enter POE response link (URL):"
-    },
     "saveButton": {
         "message": "Save"
+    },
+    // ChatGPT
+    "customChatGPTLinkLabel": {
+        "message": "Enter ChatGPT response link (URL):"
     },
     "contextMenuTextChatGPT": {
         "message": "Send selected text to ChatGPT and get a response in {language}"
@@ -35,11 +28,31 @@
     "contextMenuLinkChatGPT": {
         "message": "Send link to ChatGPT and get a response in {language}"
     },
+    "contextMenuRewriteWithChatGPT": {
+        "message": "Rewrite the text in {language} using ChatGPT"
+    },
+    "contextMenuTextTranslationChatGPT": {
+        "message": "Translate selected text to {language} with ChatGPT"
+    },
+    // Gemini
+    "customGeminiLinkLabel": {
+        "message": "Enter Google Gemini response link (URL):"
+    },
     "contextMenuTextGemini": {
         "message": "Send selected text to Gemini and get a response in {language}"
     },
     "contextMenuLinkGemini": {
         "message": "Send link to Gemini and get a response in {language}"
+    },
+    "contextMenuRewriteWithGemini": {
+        "message": "Rewrite the text in {language} using Gemini"
+    },
+    "contextMenuLinkTranslationChatGemini": {
+        "message": "Translate selected text to {language} with Gemini"
+    },
+    // Claude
+    "customClaudeLinkLabel": {
+        "message": "Enter Claude response link (URL):"
     },
     "contextMenuTextClaude": {
         "message": "Send selected text to Claude and get a response in {language}"
@@ -47,29 +60,37 @@
     "contextMenuLinkClaude": {
         "message": "Send link to Claude and get a response in {language}"
     },
+    "contextMenuRewriteWithClaude": {
+        "message": "Rewrite the text in {language} using Claude"
+    },
+    // POE
+    "customPOELinkLabel": {
+        "message": "Enter POE response link (URL):"
+    },
     "contextMenuTextPOE": {
         "message": "Send selected text to POE and get a response in {language}"
     },
     "contextMenuLinkPOE": {
         "message": "Send link to POE and get a response in {language}"
     },
-    "contextMenuRewriteWithChatGPT": {
-        "message": "Rewrite the text in {language} using ChatGPT"
-    },
-    "contextMenuRewriteWithGemini": {
-        "message": "Rewrite the text in {language} using Gemini"
-    },
-    "contextMenuRewriteWithClaude": {
-        "message": "Rewrite the text in {language} using Claude"
-    },
     "contextMenuRewriteWithPOE": {
         "message": "Rewrite the text in {language} using POE"
     },
-    "contextMenuTextTranslationChatGPT": {
-        "message": "Translate selected text to {language} with ChatGPT"
+    // DeepSeek
+    "customDeepSeekLinkLabel": {
+        "message": "Enter DeepSeek response link (URL):"
     },
-    "contextMenuLinkTranslationChatGemini": {
-        "message": "Translate selected text to {language} with Gemini"
+    "contextMenuTextDeepseek": {
+        "message": "Send selected text to DeepSeek and get a response in {language}"
+    },
+    "contextMenuLinkDeepseek": {
+        "message": "Send link to DeepSeek and get a response in {language}"
+    },
+    "contextMenuRewriteWithDeepseek": {
+        "message": "Rewrite the text in {language} using DeepSeek"
+    },
+    "contextMenuTextTranslationDeepseek": {
+        "message": "Translate selected text to {language} with DeepSeek"
     }
     // Add more translations as needed...
 }

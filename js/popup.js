@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { for: "customGeminiLink", message: "customGeminiLinkLabel" },
         { for: "customClaudeLink", message: "customClaudeLinkLabel" },
         { for: "customPOELink", message: "customPOELinkLabel" },
+        { for: "customDeepSeekLink", message: "customDeepSeekLinkLabel" },
     ];
 
     // Cập nhật nội dung cho thẻ h1
@@ -37,10 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const customGeminiLinkInput = document.getElementById("customGeminiLink");
     const customClaudeLinkInput = document.getElementById("customClaudeLink");
     const customPOELinkInput = document.getElementById("customPOELink");
+    const customDeepSeekLinkInput = document.getElementById("customDeepSeekLink");
     const statusMessage = document.getElementById("statusMessage");
 
     // Tải ngôn ngữ, nội dung tùy chỉnh và custom link đã lưu
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink", "customDeepSeekLink"], (data) => {
         if (data.selectedLanguage) {
             languageDropdown.value = data.selectedLanguage;
             updateStatusMessage(`<br>Ngôn ngữ đã chọn: ${data.selectedLanguage}<br>`);
@@ -69,6 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
             customPOELinkInput.value = data.customPOELink;
             updateStatusMessage(`<br>Liên kết POE trả lời (URL): ${data.customPOELink}<br>`);
         }
+        if (data.customDeepSeekLink) {
+            customDeepSeekLinkInput.value = data.customDeepSeekLink;
+            updateStatusMessage(`<br>Liên kết DeepSeek trả lời (URL): ${data.customDeepSeekLink}<br>`);
+        }
     });
 
     // Cập nhật thông báo trạng thái (gộp các thông báo thành một thông báo duy nhất)
@@ -92,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const customGeminiLink = customGeminiLinkInput.value;
         const customClaudeLink = customClaudeLinkInput.value;
         const customPOELink = customPOELinkInput.value;
+        const customDeepSeekLink = customDeepSeekLinkInput.value;
 
         // Lưu ngôn ngữ, nội dung tùy chỉnh và custom link vào chrome.storage
         chrome.storage.local.set({
@@ -115,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <br>Liên kết Gemini đã lưu: ${customGeminiLink}<br>
                 <br>Liên kết Claude đã lưu: ${customClaudeLink}<br>
                 <br>Liên kết POE đã lưu: ${customPOELink}<br>
+                <br>Liên kết DeepSeek đã lưu: ${customDeepSeekLink}<br>
             `;
 
             // Hiển thị thông báo gộp

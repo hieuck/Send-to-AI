@@ -1,4 +1,5 @@
 {
+    // General
     "extensionName": {
         "message": "Enviar a IA"
     },
@@ -14,20 +15,12 @@
     "customPromptLabel": {
         "message": "O introduce contenido personalizado"
     },
-    "customChatGPTLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de ChatGPT (URL):"
-    },
-    "customGeminiLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de Google Gemini (URL):"
-    },
-    "customClaudeLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de Claude (URL):"
-    },
-    "customPOELinkLabel": {
-        "message": "Ingresa el enlace de respuesta de POE (URL):"
-    },
     "saveButton": {
         "message": "Guardar"
+    },
+    // ChatGPT
+    "customChatGPTLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de ChatGPT (URL):"
     },
     "contextMenuTextChatGPT": {
         "message": "Enviar texto seleccionado a ChatGPT y recibe una respuesta en {language}"
@@ -35,11 +28,31 @@
     "contextMenuLinkChatGPT": {
         "message": "Enviar enlace a ChatGPT y recibe una respuesta en {language}"
     },
+    "contextMenuRewriteWithChatGPT": {
+        "message": "Reescribe el texto en {language} usando ChatGPT"
+    },
+    "contextMenuTextTranslationChatGPT": {
+        "message": "Traducir el texto seleccionado a {language} con ChatGPT"
+    },
+    // Gemini
+    "customGeminiLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de Google Gemini (URL):"
+    },
     "contextMenuTextGemini": {
         "message": "Enviar texto seleccionado a Gemini y recibe una respuesta en {language}"
     },
     "contextMenuLinkGemini": {
         "message": "Enviar enlace a Gemini y recibe una respuesta en {language}"
+    },
+    "contextMenuRewriteWithGemini": {
+        "message": "Reescribe el texto en {language} usando Gemini"
+    },
+    "contextMenuLinkTranslationChatGemini": {
+        "message": "Traducir el texto seleccionado a {language} con Gemini"
+    },
+    // Claude
+    "customClaudeLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de Claude (URL):"
     },
     "contextMenuTextClaude": {
         "message": "Enviar texto seleccionado a Claude y recibe una respuesta en {language}"
@@ -47,30 +60,37 @@
     "contextMenuLinkClaude": {
         "message": "Enviar enlace a Claude y recibe una respuesta en {language}"
     },
+    "contextMenuRewriteWithClaude": {
+        "message": "Reescribe el texto en {language} usando Claude"
+    },
+    // POE
+    "customPOELinkLabel": {
+        "message": "Ingresa el enlace de respuesta de POE (URL):"
+    },
     "contextMenuTextPOE": {
         "message": "Enviar texto seleccionado a POE y recibe una respuesta en {language}"
     },
     "contextMenuLinkPOE": {
         "message": "Enviar enlace a POE y recibe una respuesta en {language}"
     },
-    "contextMenuRewriteWithChatGPT": {
-        "message": "Reescribe el texto en {language} usando ChatGPT"
-    },
-    "contextMenuRewriteWithGemini": {
-        "message": "Reescribe el texto en {language} usando Gemini"
-    },
-    "contextMenuRewriteWithClaude": {
-        "message": "Reescribe el texto en {language} usando Claude"
-    },
     "contextMenuRewriteWithPOE": {
         "message": "Reescribe el texto en {language} usando POE"
     },
-    "contextMenuTextTranslationChatGPT": {
-        "message": "Traducir el texto seleccionado a {language} con ChatGPT"
+    // DeepSeek
+    "customDeepSeekLinkLabel": {
+        "message": "Ingresa el enlace de respuesta de DeepSeek (URL):"
     },
-    "contextMenuLinkTranslationChatGemini": {
-        "message": "Traducir el texto seleccionado a {language} con Gemini"
-}
-
+    "contextMenuTextDeepseek": {
+        "message": "Enviar texto seleccionado a DeepSeek y recibe una respuesta en {language}"
+    },
+    "contextMenuLinkDeepseek": {
+        "message": "Enviar enlace a DeepSeek y recibe una respuesta en {language}"
+    },
+    "contextMenuRewriteWithDeepseek": {
+        "message": "Reescribe el texto en {language} usando DeepSeek"
+    },
+    "contextMenuTextTranslationDeepseek": {
+        "message": "Traducir el texto seleccionado a {language} con DeepSeek"
+    }
     // Agrega más traducciones según sea necesario...
 }

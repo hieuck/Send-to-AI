@@ -46,25 +46,33 @@ function createContextMenus() {
         const languageName = languageNames[language] || "Ngôn ngữ không xác định, đang sử dụng VI-VN";
   
         // Cập nhật tiêu đề menu theo ngôn ngữ đã chọn
+        // ChatGPT
         const textMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuTextChatGPT").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleChatGPT = chrome.i18n.getMessage("contextMenuLinkChatGPT").replace("{language}", languageName + " \"" + language + "\"");
+        const rewriteWithChatGPTTitle = chrome.i18n.getMessage("contextMenuRewriteWithChatGPT").replace("{language}", languageName + " \"" + language + "\"");
+        const translateWithChatGPTTitle = chrome.i18n.getMessage("contextMenuTextTranslationChatGPT").replace("{language}", languageName + " \"" + language + "\"");
 
+        // Gemini
         const textMenuTitleGemini = chrome.i18n.getMessage("contextMenuTextGemini").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleGemini = chrome.i18n.getMessage("contextMenuLinkGemini").replace("{language}", languageName + " \"" + language + "\"");
+        const rewriteWithGeminiTitle = chrome.i18n.getMessage("contextMenuRewriteWithGemini").replace("{language}", languageName + " \"" + language + "\"");
+        const translateWithGeminiTitle = chrome.i18n.getMessage("contextMenuTextTranslationGemini").replace("{language}", languageName + " \"" + language + "\"");
 
+        // Claude
         const textMenuTitleClaude = chrome.i18n.getMessage("contextMenuTextClaude").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitleClaude = chrome.i18n.getMessage("contextMenuLinkClaude").replace("{language}", languageName + " \"" + language + "\"");
+        const rewriteWithClaudeTitle = chrome.i18n.getMessage("contextMenuRewriteWithClaude").replace("{language}", languageName + " \"" + language + "\"");
 
+        // POE
         const textMenuTitlePOE = chrome.i18n.getMessage("contextMenuTextPOE").replace("{language}", languageName + " \"" + language + "\"");
         const linkMenuTitlePOE = chrome.i18n.getMessage("contextMenuLinkPOE").replace("{language}", languageName + " \"" + language + "\"");
-
-        const rewriteWithChatGPTTitle = chrome.i18n.getMessage("contextMenuRewriteWithChatGPT").replace("{language}", languageName + " \"" + language + "\"");
-        const rewriteWithGeminiTitle = chrome.i18n.getMessage("contextMenuRewriteWithGemini").replace("{language}", languageName + " \"" + language + "\"");
-        const rewriteWithClaudeTitle = chrome.i18n.getMessage("contextMenuRewriteWithClaude").replace("{language}", languageName + " \"" + language + "\"");
         const rewriteWithPOETitle = chrome.i18n.getMessage("contextMenuRewriteWithPOE").replace("{language}", languageName + " \"" + language + "\"");
 
-        const translateWithChatGPTTitle = chrome.i18n.getMessage("contextMenuTextTranslationChatGPT").replace("{language}", languageName + " \"" + language + "\"");
-        const translateWithGeminiTitle = chrome.i18n.getMessage("contextMenuTextTranslationGemini").replace("{language}", languageName + " \"" + language + "\"");
+        // DeepSeek
+        const textMenuTitleDeepseek = chrome.i18n.getMessage("contextMenuTextDeepseek").replace("{language}", languageName + " \"" + language + "\"");
+        const linkMenuTitleDeepseek = chrome.i18n.getMessage("contextMenuLinkDeepseek").replace("{language}", languageName + " \"" + language + "\"");
+        const rewriteWithDeepseekTitle = chrome.i18n.getMessage("contextMenuRewriteWithDeepseek").replace("{language}", languageName + " \"" + language + "\"");
+        const translateWithDeepseekTitle = chrome.i18n.getMessage("contextMenuTextTranslationDeepseek").replace("{language}", languageName + " \"" + language + "\"");
 
         // Xóa các menu cũ trước khi tạo mới
         chrome.contextMenus.removeAll(() => {
@@ -117,6 +125,18 @@ function createContextMenus() {
             });
 
             chrome.contextMenus.create({
+                id: "sendToDeepseekText",
+                title: textMenuTitleDeepseek,
+                contexts: ["selection"]
+            });
+
+            chrome.contextMenus.create({
+                id: "sendToDeepseekLink",
+                title: linkMenuTitleDeepseek,
+                contexts: ["page", "link"]
+            });
+
+            chrome.contextMenus.create({
                 id: "separator1",
                 type: "separator",
                 contexts: ["selection", "page", "link"]
@@ -147,6 +167,12 @@ function createContextMenus() {
             });
 
             chrome.contextMenus.create({
+                id: "rewriteWithDeepseek",
+                title: rewriteWithDeepseekTitle,
+                contexts: ["selection"]
+            });
+
+            chrome.contextMenus.create({
                 id: "separator2",
                 type: "separator",
                 contexts: ["selection", "page", "link"]
@@ -163,6 +189,12 @@ function createContextMenus() {
                 title: translateWithGeminiTitle,
                 contexts: ["selection"]
             });
+
+            chrome.contextMenus.create({
+                id: "translateWithDeepseek",
+                title: translateWithDeepseekTitle,
+                contexts: ["selection"]
+            });
         });
     });
 }
@@ -170,7 +202,7 @@ function createContextMenus() {
 // Theo dõi sự thay đổi trong chrome.storage
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local") {
-        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink || changes.customClaudeLink || changes.customPOELink) {
+        if (changes.selectedLanguage || changes.customLanguage || changes.customChatGPTLink || changes.customGeminiLink || changes.customClaudeLink || changes.customPOELink || changes.customDeepseekLink) {
             createContextMenus();
         }
     }
@@ -178,51 +210,63 @@ chrome.storage.onChanged.addListener((changes, area) => {
 
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink, customPOELink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink, customPOELink, customDeepseekLink"], (data) => {
         const language = data.customLanguage || data.selectedLanguage || "VI";
         const customChatGPTLink = data.customChatGPTLink || "https://chatgpt.com/?model=auto";
         const customGeminiLink = data.customGeminiLink || "https://gemini.google.com/app";
         const customClaudeLink = data.customClaudeLink || "https://claude.ai/new";
         const customPOELink = data.customPOELink || "https://poe.com/";
+        const customDeepseekLink = data.customDeepseekLink || "https://chat.deepseek.com/";
 
         if (info.menuItemId === "sendToChatGPTText" && info.selectionText) {
             sendTextToChatGPT(info.selectionText, language, customChatGPTLink);
         } else if (info.menuItemId === "sendToChatGPTLink") {
             const pageUrl = info.linkUrl || tab.url;
             sendTextToChatGPT(pageUrl, language, customChatGPTLink);
+        } else if (info.menuItemId === "rewriteWithChatGPT") {
+            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
+            sendTextToChatGPT(`${rewritePrompt} ${info.selectionText}`, language, customChatGPTLink, true);
+        } else if (info.menuItemId === "translateWithChatGPT") {
+            const translationPrompt = `Translate the following text to ${language}:`;
+            sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, language, customChatGPTLink, true);
         } else if (info.menuItemId === "sendToGeminiText" && info.selectionText) {
             sendTextToGemini(info.selectionText, language, customGeminiLink);
         } else if (info.menuItemId === "sendToGeminiLink") {
             const pageUrl = info.linkUrl || tab.url;
             sendTextToGemini(pageUrl, language, customGeminiLink);
+        } else if (info.menuItemId === "rewriteWithGemini") {
+            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
+            sendTextToGemini(`${rewritePrompt} ${info.selectionText}`, language, customGeminiLink, true);
+        } else if (info.menuItemId === "translateWithGemini") {
+            const translationPrompt = `Translate the following text to ${language}:`;
+            sendTextToGemini(`${translationPrompt} ${info.selectionText}`, language, customGeminiLink, true);
         } else if (info.menuItemId === "sendToClaudeText" && info.selectionText) {
             sendTextToClaude(info.selectionText, language, customClaudeLink);
         } else if (info.menuItemId === "sendToClaudeLink") {
             const pageUrl = info.linkUrl || tab.url;
             sendTextToClaude(pageUrl, language, customClaudeLink);
+        } else if (info.menuItemId === "rewriteWithClaude") {
+            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
+            sendTextToClaude(`${rewritePrompt} ${info.selectionText}`, language, customClaudeLink, true);
         } else if (info.menuItemId === "sendToPOEText" && info.selectionText) {
             sendTextToPOE(info.selectionText, language, customPOELink);
         } else if (info.menuItemId === "sendToPOELink") {
             const pageUrl = info.linkUrl || tab.url;
             sendTextToPOE(pageUrl, language, customPOELink);
-        } else if (info.menuItemId === "rewriteWithChatGPT") {
-            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
-            sendTextToChatGPT(`${rewritePrompt} ${info.selectionText}`, language, customChatGPTLink, true);
-        } else if (info.menuItemId === "rewriteWithGemini") {
-            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
-            sendTextToGemini(`${rewritePrompt} ${info.selectionText}`, language, customGeminiLink, true);
-        } else if (info.menuItemId === "rewriteWithClaude") {
-            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
-            sendTextToClaude(`${rewritePrompt} ${info.selectionText}`, language, customClaudeLink, true);
         } else if (info.menuItemId === "rewriteWithPOE") {
             const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
             sendTextToPOE(`${rewritePrompt} ${info.selectionText}`, language, customPOELink, true);
-        } else if (info.menuItemId === "translateWithChatGPT") {
+        } else if (info.menuItemId === "sendToDeepseekText" && info.selectionText) {
+            sendTextToDeepseek(info.selectionText, language, customDeepseekLink);
+        } else if (info.menuItemId === "sendToDeepseekLink") {
+            const pageUrl = info.linkUrl || tab.url;
+            sendTextToDeepseek(pageUrl, language, customDeepseekLink);
+        } else if (info.menuItemId === "rewriteWithDeepseek") {
+            const rewritePrompt = `Rewrite the following text for improved clarity and style in ${language}:`;
+            sendTextToDeepseek(`${rewritePrompt} ${info.selectionText}`, language, customDeepseekLink, true);
+        } else if (info.menuItemId === "translateWithDeepseek") {
             const translationPrompt = `Translate the following text to ${language}:`;
-            sendTextToChatGPT(`${translationPrompt} ${info.selectionText}`, language, customChatGPTLink, true);
-        } else if (info.menuItemId === "translateWithGemini") {
-            const translationPrompt = `Translate the following text to ${language}:`;
-            sendTextToGemini(`${translationPrompt} ${info.selectionText}`, language, customGeminiLink, true);
+            sendTextToDeepseek(`${translationPrompt} ${info.selectionText}`, language, customDeepseekLink, true);
         }
     });
 });
@@ -392,3 +436,48 @@ function sendTextToPOE(text, language, customPOELink, isTranslation = false) {
     });
 }
 
+// Hàm gửi văn bản hoặc liên kết tới DeepSeek
+function sendTextToDeepseek(text, language, customDeepseekLink, isTranslation = false) {
+    chrome.storage.local.get(["customPrompt"], (data) => {
+        const customPrompt = data.customPrompt || "Answer relevant content in";
+        const fullText = isTranslation ? text : `${customPrompt} ${language}. \n\n${text}`;
+
+        chrome.tabs.create({ url: customDeepseekLink }, (newTab) => {
+            chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
+                if (tabId === newTab.id && info.status === 'complete') {
+                    chrome.scripting.executeScript({
+                        target: { tabId: newTab.id },
+                        func: (text) => {
+                            const inputField = document.getElementById('chat-input');
+                            if (inputField) {
+                                inputField.value = text;
+                                inputField.dispatchEvent(new Event('input', { bubbles: true }));
+
+                                // Hàm kiểm tra nút gửi
+                                function checkSendButton() {
+                                    const sendButton = document.querySelector('div[role="button"][aria-disabled="false"]'); // Thay bằng selector phù hợp
+                                    if (sendButton) {
+                                        console.log("Nút gửi đã tìm thấy!");
+                                        sendButton.click();
+                                        console.log("Đã nhấn nút gửi!");
+                                    } else {
+                                        console.error("Nút gửi không tìm thấy!");
+                                        setTimeout(checkSendButton, 500); // Kiểm tra lại sau 500ms
+                                    }
+                                }
+                                
+                                // Gọi hàm kiểm tra nút gửi
+                                checkSendButton();
+                                
+                            } else {
+                                console.error("Không tìm thấy textarea!");
+                            }
+                        },
+                        args: [fullText]
+                    });
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }
+            });
+        });
+    });
+}
