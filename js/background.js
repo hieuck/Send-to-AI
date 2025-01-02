@@ -211,7 +211,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
 // Xử lý khi người dùng nhấp vào menu chuột phải
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     chrome.storage.local.get(["selectedLanguage", "customLanguage", "customChatGPTLink", "customGeminiLink", "customClaudeLink, customPOELink, customDeepseekLink"], (data) => {
-        const language = data.customLanguage || data.selectedLanguage || "VI";
+        const language = data.customLanguage || data.selectedLanguage || "VI-VN";
         const customChatGPTLink = data.customChatGPTLink || "https://chatgpt.com/?model=auto";
         const customGeminiLink = data.customGeminiLink || "https://gemini.google.com/app";
         const customClaudeLink = data.customClaudeLink || "https://claude.ai/new";
