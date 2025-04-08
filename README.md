@@ -3,7 +3,7 @@
 Send-to-AI là một tiện ích mở rộng cho trình duyệt Chrome, cho phép bạn gửi văn bản hoặc liên kết đến các nền tảng AI phổ biến như ChatGPT, Gemini, Claude, POE, và DeepSeek. Tiện ích này hỗ trợ các tính năng như viết lại văn bản, dịch ngôn ngữ, và nhiều hơn nữa.
 
 ## Tính năng chính
-
+![image](https://github.com/user-attachments/assets/b642416d-5c49-4ad8-bdb9-d85d3e08512c)
 - **Gửi văn bản hoặc liên kết**: Dễ dàng gửi văn bản được chọn hoặc liên kết đến các nền tảng AI.
 - **Viết lại văn bản**: Cải thiện độ rõ ràng và phong cách của văn bản.
 - **Dịch văn bản**: Dịch văn bản sang ngôn ngữ bạn chọn.
