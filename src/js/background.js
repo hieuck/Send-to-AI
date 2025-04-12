@@ -16,7 +16,7 @@ const AI_PLATFORMS = {
     defaultUrl: 'https://claude.ai/new',
     selector: {
       input: 'p.is-empty.is-editor-empty',
-      button: 'button[aria-label="Send Message"]'
+      button: 'button[aria-label="Send message"].bg-accent-main-000, button[aria-label="Send Message"]'
     }
   },
   deepseek: {
@@ -40,7 +40,7 @@ const AI_PLATFORMS = {
     defaultUrl: 'https://www.perplexity.ai/',
     selector: {
       input: '.TextArea_textArea__GrWvD, textarea[placeholder="Ask anything..."], .ProseMirror[contenteditable="true"]',
-      button: 'button[type="submit"], button.Button_button__GWnx9'
+      button: 'button[aria-label="Submit"][type="button"], button[type="submit"], button.Button_button__GWnx9, .bg-super button[aria-label="Submit"]'
     }
   },
   poe: {
@@ -48,7 +48,7 @@ const AI_PLATFORMS = {
     defaultUrl: 'https://poe.com/',
     selector: {
       input: 'textarea.GrowingTextArea_textArea__ZWQbP',
-      button: 'button.ChatMessageSendButton_sendButton__4ZyI4'
+      button: 'button[aria-label="Send message"], button.ChatMessageSendButton_sendButton__4ZyI4'
     }
   }
 };
