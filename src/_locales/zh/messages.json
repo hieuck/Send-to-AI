@@ -4,7 +4,7 @@
         "message": "发送到 AI"
     },
     "extensionDescription": {
-        "message": "通过右键菜单将选中的文本发送到 AI。"
+        "message": "通过右键菜单将选定文本发送到 AI。"
     },
     "languageLabel": {
         "message": "选择回复语言："
@@ -33,18 +33,38 @@
         "message": "输入 DeepSeek 回复链接 (URL)："
     },
 
-    // Context menu structure
+    // Actions & Menu
     "menuRoot": {
-        "message": "发送到 AI"
+        "message": "🤖 发送文本到 AI"
+    },
+    "menuRootPage": {
+        "message": "🌐 发送页面到 AI"
     },
     "action_answer": {
-        "message": "回答"
+        "message": "❓ 回答"
     },
     "action_rewrite": {
-        "message": "重写"
+        "message": "✏️ 重写"
     },
     "action_translate": {
-        "message": "翻译"
+        "message": "🌐 翻译"
+    },
+
+    // Prompt system
+    "prompt_section_title": {
+        "message": "⭐ 自定义提示"
+    },
+    "custom_prompt_menu_answer": {
+        "message": "⭐ 使用自定义提示回答"
+    },
+    "custom_prompt_menu_rewrite": {
+        "message": "⭐ 使用自定义提示重写"
+    },
+    "customPromptPlaceholder": {
+        "message": "💡 按我的方式回答:\n请用{language}简洁明了地回答以下问题:\n"
+    },
+    "customPromptRewritePlaceholder": {
+        "message": "✨ 按我的方式重写:\n请用{language}重写以下文本，保持原意但使其更连贯生动:\n"
     },
 
     // Prompts

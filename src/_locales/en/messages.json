@@ -1,19 +1,27 @@
 {
-    // General settings
+    // Extension info
     "extensionName": {
         "message": "Send to AI"
     },
     "extensionDescription": {
         "message": "Send selected text to AI via right-click menu."
     },
-    "languageLabel": {
-        "message": "Select response language:"
+
+    // Actions & Menu - keep same emoji as vi
+    "menuRoot": {
+        "message": "🤖 Send text to AI"
     },
-    "customLanguageLabel": {
-        "message": "Or enter custom language in language-country format:"
+    "menuRootPage": {
+        "message": "🌐 Send page to AI"
     },
-    "saveButton": {
-        "message": "Save"
+    "action_answer": {
+        "message": "❓ Answer"
+    },
+    "action_rewrite": {
+        "message": "✏️ Rewrite"
+    },
+    "action_translate": {
+        "message": "🌐 Translate"
     },
 
     // Custom URLs
@@ -33,18 +41,21 @@
         "message": "Enter DeepSeek response link (URL):"
     },
 
-    // Context menu structure
-    "menuRoot": {
-        "message": "Send to AI"
+    // Prompt system
+    "prompt_section_title": {
+        "message": "⭐ Custom Prompts"
     },
-    "action_answer": {
-        "message": "Answer with"
+    "custom_prompt_menu_answer": {
+        "message": "⭐ Answer with Custom Prompt"
     },
-    "action_rewrite": {
-        "message": "Rewrite with"
+    "custom_prompt_menu_rewrite": {
+        "message": "⭐ Rewrite with Custom Prompt"
     },
-    "action_translate": {
-        "message": "Translate with"
+    "customPromptPlaceholder": {
+        "message": "💡 Answer my way:\nPlease answer the following question concisely and clearly in {language}:\n"
+    },
+    "customPromptRewritePlaceholder": {
+        "message": "✨ Rewrite my way:\nPlease rewrite the following text in {language}, keeping the meaning but making it more coherent and engaging:\n"
     },
 
     // Prompts

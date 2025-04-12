@@ -1,10 +1,27 @@
 {
-    // General
+    // Extension info
     "extensionName": {
         "message": "Envoyer à l'IA"
     },
     "extensionDescription": {
-        "message": "Envoyez le texte sélectionné à l'IA via le menu contextuel."
+        "message": "Envoyer le texte sélectionné à l'IA via le menu contextuel."
+    },
+
+    // Actions & Menu - keep same emoji as vi 
+    "menuRoot": {
+        "message": "🤖 Envoyer le texte à l'IA"
+    },
+    "menuRootPage": {
+        "message": "🌐 Envoyer la page à l'IA"
+    },
+    "action_answer": {
+        "message": "❓ Répondre"
+    },
+    "action_rewrite": {
+        "message": "✏️ Réécrire"
+    },
+    "action_translate": {
+        "message": "🌐 Traduire"
     },
     "languageLabel": {
         "message": "Sélectionnez la langue de réponse :"
@@ -93,18 +110,6 @@
         "message": "Traduire le texte sélectionné en {language} avec DeepSeek"
     },
     // Additional Prompts
-    "menuRoot": {
-        "message": "Envoyer à l'IA"
-    },
-    "action_answer": {
-        "message": "Répondre"
-    },
-    "action_rewrite": {
-        "message": "Réécrire"
-    },
-    "action_translate": {
-        "message": "Traduire"
-    },
     "prompt_answer_default": {
         "message": "Répondre à ce qui suit en {language}"
     },

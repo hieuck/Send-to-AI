@@ -1,11 +1,13 @@
 {
-    // General settings
+    // Extension info
     "extensionName": {
         "message": "AI に送信"
     },
     "extensionDescription": {
         "message": "右クリックメニューで選択したテキストを AI に送信します。"
     },
+
+    // General settings
     "languageLabel": {
         "message": "応答言語を選択："
     },
@@ -31,6 +33,23 @@
     },
     "customDeepSeekLinkLabel": {
         "message": "DeepSeek の応答リンク（URL）を入力："
+    },
+
+    // Actions & Menu
+    "menuRoot": {
+        "message": "🤖 テキストを AI に送信"
+    },
+    "menuRootPage": {
+        "message": "🌐 ページを AI に送信"
+    },
+    "action_answer": {
+        "message": "❓ 回答"
+    },
+    "action_rewrite": {
+        "message": "✏️ 書き直し"
+    },
+    "action_translate": {
+        "message": "🌐 翻訳"
     },
 
     // Context menu structure
@@ -83,5 +102,22 @@
     },
     "prompt_translate_p3": {
         "message": "詳しく説明しながら{language}に翻訳"
+    },
+
+    // Prompt system
+    "prompt_section_title": {
+        "message": "⭐ カスタムプロンプト"
+    },
+    "custom_prompt_menu_answer": {
+        "message": "⭐ カスタムプロンプトで回答"
+    },
+    "custom_prompt_menu_rewrite": {
+        "message": "⭐ カスタムプロンプトで書き直し"
+    },
+    "customPromptPlaceholder": {
+        "message": "💡 私の方法で回答:\n以下の質問に{language}で簡潔に分かりやすく回答してください:\n"
+    },
+    "customPromptRewritePlaceholder": {
+        "message": "✨ 私の方法で書き直し:\n以下の文章を{language}で意味を保ちながら、より分かりやすく魅力的に書き直してください:\n"
     }
 }

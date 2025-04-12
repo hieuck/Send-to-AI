@@ -1,11 +1,29 @@
 {
-    // General settings
+    // Extension info
     "extensionName": {
         "message": "An KI senden"
     },
     "extensionDescription": {
         "message": "Ausgewählten Text über das Kontextmenü an KI senden."
     },
+
+    // Actions & Menu - keep same emoji as vi
+    "menuRoot": {
+        "message": "🤖 Text an KI senden"
+    },
+    "menuRootPage": {
+        "message": "🌐 Seite an KI senden"
+    },
+    "action_answer": {
+        "message": "❓ Antworten"
+    },
+    "action_rewrite": {
+        "message": "✏️ Umschreiben"  
+    },
+    "action_translate": {
+        "message": "🌐 Übersetzen"
+    },
+
     "languageLabel": {
         "message": "Antwortsprache auswählen:"
     },
@@ -31,20 +49,6 @@
     },
     "customDeepSeekLinkLabel": {
         "message": "DeepSeek-Antwortlink (URL) eingeben:"
-    },
-
-    // Context menu structure
-    "menuRoot": {
-        "message": "An KI senden"
-    },
-    "action_answer": {
-        "message": "Antworten"
-    },
-    "action_rewrite": {
-        "message": "Umschreiben"
-    },
-    "action_translate": {
-        "message": "Übersetzen"
     },
 
     // Prompts
