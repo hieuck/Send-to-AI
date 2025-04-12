@@ -34,9 +34,6 @@
     "custom_prompt_menu_rewrite": {
         "message": "⭐ Viết lại với Prompt tùy chỉnh"
     },
-    "custom_prompt_menu": {
-        "message": "⭐ Prompt tùy chỉnh"
-    },
     "customPromptPlaceholder": {
         "message": "💡 Trả lời theo cách của tôi:\nHãy trả lời câu hỏi sau đây một cách ngắn gọn, súc tích và dễ hiểu bằng {language}:\n"
     },

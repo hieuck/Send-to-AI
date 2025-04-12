@@ -103,30 +103,16 @@ function createContextMenus() {
                     contexts: [context]
                   });
 
-                  // Only create custom prompts menu if we have titles
+                  // Thay đổi phần tạo custom prompts menu
                   if ((action === 'answer' || action === 'rewrite')) {
                     const customTitle = chrome.i18n.getMessage(`custom_prompt_menu_${action}`);
                     if (customTitle) {
-                      const customPromptId = `${actionId}_custom`;
                       chrome.contextMenus.create({
-                        id: customPromptId,
+                        id: `${actionId}_custom`,
                         parentId: actionId,
                         title: customTitle,
                         contexts: [context]
                       });
-
-                      const promptTitle = action === 'answer' 
-                        ? chrome.i18n.getMessage('customPromptPlaceholder')
-                        : chrome.i18n.getMessage('customPromptRewritePlaceholder');
-
-                      if (promptTitle) {
-                        chrome.contextMenus.create({
-                          id: `${customPromptId}_default`,
-                          parentId: customPromptId,
-                          title: promptTitle,
-                          contexts: [context]
-                        });
-                      }
                     }
                   }
 
