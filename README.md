@@ -37,17 +37,30 @@ v0.1.1
 
 ## Tính năng mới
 
-- **Menu phân cấp thông minh**:
-  - Cấp 1: Gửi tới AI
-  - Cấp 2: Chọn nền tảng AI (ChatGPT, Gemini, Claude,...)
-  - Cấp 3: Chọn hành động (Trả lời, Viết lại, Dịch)
-  - Cấp 4: Chọn mẫu prompt (Mặc định, Mẫu 1, Mẫu 2, Mẫu 3)
+- **Menu phân cấp thông minh với biểu tượng**:
+  - Cấp 1: 🤖 Gửi tới AI
+  - Cấp 2: Chọn nền tảng AI
+    - 🤖 ChatGPT
+    - 🌟 Gemini 
+    - 🎭 Claude
+    - 📚 POE
+    - 🔍 DeepSeek
+    - 💡 Perplexity
+  - Cấp 3: Chọn hành động
+    - ❓ Trả lời
+    - ✏️ Viết lại
+    - 🌐 Dịch
+  - Cấp 4: Chọn kiểu prompt
+    - ⚡ Phiên bản nhanh 
+    - 📝 Phiên bản ngắn gọn
+    - 📋 Phiên bản chi tiết
+    - 📚 Phiên bản nâng cao
+    - ⭐ Phiên bản tùy chỉnh
 
-- **Prompts tùy chỉnh**: Mỗi hành động có 4 mẫu prompt khác nhau:
-  - Mặc định: Prompt cơ bản
-  - Mẫu 1: Phiên bản ngắn gọn
-  - Mẫu 2: Phiên bản chi tiết
-  - Mẫu 3: Phiên bản nâng cao
+- **Prompts tùy chỉnh**: Tích hợp trực tiếp vào menu hành động:
+  - Trả lời với Prompt tùy chỉnh
+  - Viết lại với Prompt tùy chỉnh
+  - Mỗi loại prompt có biểu tượng riêng để dễ phân biệt
 
 ## Cách cài đặt
 
@@ -98,7 +111,6 @@ Bạn có thể tùy chỉnh tiện ích bằng cách:
 │   └── service-worker.js       # Service worker để xử lý các tác vụ nền
 │
 └── README.md                   # Tài liệu hướng dẫn sử dụng
-```
 
 ## Known Issues
 - Một số trang AI có thể thay đổi selector khiến việc inject không hoạt động:
