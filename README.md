@@ -111,6 +111,7 @@ Bạn có thể tùy chỉnh tiện ích bằng cách:
 │   └── service-worker.js       # Service worker để xử lý các tác vụ nền
 │
 └── README.md                   # Tài liệu hướng dẫn sử dụng
+```
 
 ## Known Issues
 - Một số trang AI có thể thay đổi selector khiến việc inject không hoạt động:
