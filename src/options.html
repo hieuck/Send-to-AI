@@ -41,9 +41,22 @@
     <label for="customLanguage">__MSG_customLanguageLabel__</label>
     <input type="text" id="customLanguage" placeholder="__MSG_customLanguagePlaceholder__" />
 
-    <!-- Ô nhập cho nội dung tùy chỉnh (bây giờ là textarea để hỗ trợ nhiều dòng) -->
-    <label for="customPrompt">__MSG_customPromptLabel__</label>
-    <textarea id="customPrompt" placeholder="__MSG_customPromptPlaceholder__" rows="4" cols="50"></textarea>
+    <!-- Prompt Management Section -->
+    <div class="prompt-section">
+        <h2>__MSG_prompt_section_title__</h2>
+        
+        <!-- Answer prompts -->
+        <div class="prompt-group">
+            <h3>__MSG_prompt_answer_title__</h3>
+            <textarea id="answerPrompt" rows="5"></textarea>
+        </div>
+
+        <!-- Rewrite prompts -->
+        <div class="prompt-group">
+            <h3>__MSG_prompt_rewrite_title__</h3> 
+            <textarea id="rewritePrompt" rows="5"></textarea>
+        </div>
+    </div>
 
     <!-- Ô nhập cho custom link cho ChatGPT -->
     <div class="url-input-group">
@@ -65,27 +78,27 @@
 
     <!-- Ô nhập cho custom link cho Claude -->
     <div class="url-input-group">
-        <label for="customClaudeLink">__MSG_customClaudeLinkLabel__ (Claude)</label>
+        <label for="customClaudeLink">__MSG_customClaudeLinkLabel__</label>
         <div class="url-input-wrapper">
-            <input type="text" id="customClaudeLink" placeholder="https://claude.ai/new" />
+            <input type="text" id="customClaudeLink" placeholder="__MSG_claudePlaceholder__" />
             <button class="open-link-btn" data-url-input="customClaudeLink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
     <!-- Ô nhập cho custom link cho POE -->
     <div class="url-input-group">
-        <label for="customPOELink">__MSG_customPOELinkLabel__ (POE)</label>
+        <label for="customPOELink">__MSG_customPOELinkLabel__</label>
         <div class="url-input-wrapper">
-            <input type="text" id="customPOELink" placeholder="https://poe.com" />
+            <input type="text" id="customPOELink" placeholder="__MSG_poePlaceholder__" />
             <button class="open-link-btn" data-url-input="customPOELink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
     <!-- Ô nhập cho custom link cho DeepSeek -->
     <div class="url-input-group">
-        <label for="customDeepSeekLink">__MSG_customDeepSeekLinkLabel__ (DeepSeek)</label>
+        <label for="customDeepSeekLink">__MSG_customDeepSeekLinkLabel__</label>
         <div class="url-input-wrapper">
-            <input type="text" id="customDeepSeekLink" placeholder="https://chat.deepseek.com" />
+            <input type="text" id="customDeepSeekLink" placeholder="__MSG_deepSeekPlaceholder__" />
             <button class="open-link-btn" data-url-input="customDeepSeekLink">__MSG_openLinkButton__</button>
         </div>
     </div>
@@ -110,9 +123,8 @@
     <!-- Nút lưu -->
     <button id="saveButton">__MSG_saveButton__</button>
     
-    <!-- Thêm div cho các thông báo trạng thái -->
     <div id="statusMessage"></div>
     
-    <script src="js/popup.js"></script>
+    <script src="js/options.js"></script>
 </body>
 </html>

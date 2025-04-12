@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     initI18n();
+    initPromptSection(); // Thêm hàm khởi tạo prompt
     setupPlaceholders();
     loadSettings();
     bindUIEvents();
@@ -79,6 +80,16 @@ function initI18n() {
     document.querySelector('h1').innerText = getMessage('extensionName');
     // ...existing code for labels updates...
     const labels = [
+        // Headers
+        { selector: "h1", message: "extensionName" },
+        { selector: ".prompt-section > h2", message: "prompt_section_title" },
+        { selector: ".prompt-group > h3:first-child", message: "prompt_answer_title" },
+        { selector: ".prompt-group > h3:last-child", message: "prompt_rewrite_title" },
+
+        // Prompts placeholders
+        { selector: "#answerPrompt", message: "customPromptPlaceholder", type: "placeholder" },
+        { selector: "#rewritePrompt", message: "customPromptRewritePlaceholder", type: "placeholder" },
+
         // Language options
         { for: "languageDropdown", message: "languageLabel" },
         { selector: "option[value='VI-VN']", message: "languageVietnamese" },
@@ -105,24 +116,21 @@ function initI18n() {
         { selector: "option[value='NO-NO']", message: "languageNorwegian" },
         { selector: "option[value='FI-FI']", message: "languageFinnish" },
 
-        // Custom inputs
+        // Custom inputs and URLs
         { for: "customLanguage", message: "customLanguageLabel" },
-        { for: "customPrompt", message: "customPromptLabel" },
-        
-        // AI Service Links
         { for: "customChatGPTLink", message: "customChatGPTLinkLabel" },
         { for: "customGeminiLink", message: "customGeminiLinkLabel" },
         { for: "customClaudeLink", message: "customClaudeLinkLabel" },
         { for: "customPOELink", message: "customPOELinkLabel" },
         { for: "customDeepSeekLink", message: "customDeepSeekLinkLabel" },
         { for: "customPerplexityLink", message: "customPerplexityLinkLabel" },
-        
-        // Theme
+
+        // Theme options
         { for: "themeDropdown", message: "themeDropdownLabel" },
         { selector: "option[value='light']", message: "themeLight" },
         { selector: "option[value='dark']", message: "themeDark" },
         { selector: "option[value='auto']", message: "themeAuto" },
-        
+
         // Buttons
         { selector: ".open-link-btn", message: "openLinkButton" },
         { selector: "#saveButton", message: "saveButton" }
@@ -143,7 +151,13 @@ function initI18n() {
             // Update elements using custom selector
             const elements = document.querySelectorAll(label.selector);
             elements.forEach(element => {
-                element.textContent = chrome.i18n.getMessage(label.message);
+                if (label.type === "value") {
+                    element.value = getMessage(label.message);
+                } else if (label.type === "placeholder") {
+                    element.placeholder = getMessage(label.message);
+                } else {
+                    element.textContent = chrome.i18n.getMessage(label.message);
+                }
             });
         }
     });
@@ -177,7 +191,7 @@ function setupPlaceholders() {
 
 // Hàm tải settings lưu và cập nhật giá trị cho input
 function loadSettings() {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompt", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink", "customDeepSeekLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompts", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink", "customDeepSeekLink", "customPerplexityLink"], (data) => {
         const languageDropdown = document.getElementById("languageDropdown");
         const customLanguageInput = document.getElementById("customLanguage");
         const customPromptInput = document.getElementById("customPrompt");
@@ -227,6 +241,27 @@ function loadSettings() {
                 statusMessage.appendChild(msg);
             }
         });
+
+        // Load link values
+        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity'].forEach(platform => {
+            const input = document.getElementById(`custom${platform}Link`);
+            if (input && data[`custom${platform}Link`]) {
+                input.value = data[`custom${platform}Link`];
+            }
+        });
+
+        // Load prompt values
+        if (data.customPrompts) {
+            const answerPrompt = document.getElementById('answerPrompt');
+            const rewritePrompt = document.getElementById('rewritePrompt');
+            
+            if (answerPrompt && data.customPrompts.answer?.default?.prompt) {
+                answerPrompt.value = data.customPrompts.answer.default.prompt;
+            }
+            if (rewritePrompt && data.customPrompts.rewrite?.default?.prompt) {
+                rewritePrompt.value = data.customPrompts.rewrite.default.prompt;
+            }
+        }
     });
 }
 
@@ -240,60 +275,50 @@ function bindUIEvents() {
         if (isSaving) return;
         isSaving = true;
 
-        const selectedLanguage = document.getElementById("languageDropdown").value;
-        const customLanguage = document.getElementById("customLanguage").value;
-        const customPrompt = document.getElementById("customPrompt").value;
-        const customChatGPTLink = document.getElementById("customChatGPTLink").value;
-        const customGeminiLink = document.getElementById("customGeminiLink").value;
-        const customClaudeLink = document.getElementById("customClaudeLink").value;
-        const customPOELink = document.getElementById("customPOELink").value;
-        const customDeepSeekLink = document.getElementById("customDeepSeekLink").value;
+        // Gather all settings
+        const settings = {
+            selectedLanguage: document.getElementById("languageDropdown").value,
+            customLanguage: document.getElementById("customLanguage").value,
+            customPrompts: {
+                answer: {
+                    default: {
+                        name: getMessage('my_answer'),
+                        prompt: document.getElementById('answerPrompt')?.value
+                    }
+                },
+                rewrite: {
+                    default: {
+                        name: getMessage('my_style'),
+                        prompt: document.getElementById('rewritePrompt')?.value
+                    }
+                }
+            }
+        };
 
-        // Lưu ngôn ngữ, nội dung tùy chỉnh và custom link vào chrome.storage
-        chrome.storage.local.set({
-            selectedLanguage,
-            customLanguage,
-            customPrompt,
-            customChatGPTLink,
-            customGeminiLink,
-            customClaudeLink,
-            customPOELink,
-            customDeepSeekLink
-        }, () => {
-            // Xóa các thông báo cũ trước khi thêm mới
+        // Add AI platform links
+        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity'].forEach(platform => {
+            const value = document.getElementById(`custom${platform}Link`)?.value;
+            if (value) {
+                settings[`custom${platform}Link`] = value;
+            }
+        });
+
+        // Save all settings at once
+        chrome.storage.local.set(settings, () => {
             statusMessage.innerHTML = '';
 
-            // Add new messages with proper spacing
-            if (selectedLanguage) {
-                const msg = document.createElement('div');
-                msg.textContent = `${getMessage('selectedLanguageMsg')}: ${selectedLanguage}`;
-                statusMessage.appendChild(msg);
-            }
-            if (customLanguage) {
-                const msg = document.createElement('div');
-                msg.textContent = `${getMessage('customLanguageSaved')}: ${customLanguage}`;
-                statusMessage.appendChild(msg);
-            }
-            if (customPrompt) {
-                const msg = document.createElement('div');
-                msg.textContent = `${getMessage('customPromptSaved')}: ${customPrompt}`;
-                statusMessage.appendChild(msg);
-            }
-
-            // Handle AI platform links
-            const platforms = {
-                'ChatGPT': customChatGPTLink,
-                'Gemini': customGeminiLink,
-                'Claude': customClaudeLink,
-                'POE': customPOELink,
-                'DeepSeek': customDeepSeekLink
-            };
-
-            Object.entries(platforms).forEach(([platform, link]) => {
-                if (link) {
-                    const msg = document.createElement('div');
-                    msg.textContent = `${getMessage('linkSaved')} - ${platform}: ${link}`;
-                    statusMessage.appendChild(msg);
+            // Show success messages
+            Object.entries(settings).forEach(([key, value]) => {
+                if (key === 'customPrompts') {
+                    // Handle custom prompts separately
+                    if (value.answer?.default?.prompt) {
+                        updateStatusMessage('customPromptSaved', 'answer');
+                    }
+                    if (value.rewrite?.default?.prompt) {
+                        updateStatusMessage('customPromptSaved', 'rewrite');
+                    }
+                } else if (value) {
+                    updateStatusMessage(`${key}Saved`, value);
                 }
             });
 
@@ -403,4 +428,33 @@ function updateStatusMessage(messageKey, value) {
     // Replace placeholder with value if exists
     newMessage.textContent = message.replace("$1", value || "");
     statusMessage.appendChild(newMessage);
+}
+
+// Thêm hàm khởi tạo prompt section từ options
+function initPromptSection() {
+    const sectionTitle = document.querySelector('.prompt-section h2');
+    if (sectionTitle) {
+        sectionTitle.textContent = getMessage('prompt_section_title');
+    }
+
+    // Khởi tạo giá trị mặc định cho các textarea prompt
+    const answerPrompt = document.getElementById('answerPrompt');
+    const rewritePrompt = document.getElementById('rewritePrompt');
+
+    if (answerPrompt && rewritePrompt) {
+        // Load mẫu prompt từ storage hoặc dùng mặc định từ messages
+        chrome.storage.local.get(['customPrompts'], (data) => {
+            if (data.customPrompts?.answer?.default?.prompt) {
+                answerPrompt.value = data.customPrompts.answer.default.prompt;
+            } else {
+                answerPrompt.value = getMessage('customPromptPlaceholder');
+            }
+
+            if (data.customPrompts?.rewrite?.default?.prompt) {
+                rewritePrompt.value = data.customPrompts.rewrite.default.prompt;
+            } else {
+                rewritePrompt.value = getMessage('customPromptRewritePlaceholder');
+            }
+        });
+    }
 }

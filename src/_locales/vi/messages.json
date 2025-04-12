@@ -1,22 +1,93 @@
 {
-    // General settings
+    // Extension info
     "extensionName": {
         "message": "Gửi tới AI"
     },
     "extensionDescription": {
         "message": "Gửi đoạn văn bản được chọn tới AI qua menu chuột phải."
     },
+
+    // Actions & Menu
+    "menuRoot": {
+        "message": "🤖 Gửi văn bản tới AI"
+    },
+    "menuRootPage": {
+        "message": "🌐 Gửi liên kết trang tới AI"
+    },
+    "action_answer": {
+        "message": "❓ Trả lời"
+    },
+    "action_rewrite": {
+        "message": "✏️ Viết lại"
+    },
+    "action_translate": {
+        "message": "🌐 Dịch"
+    },
+
+    // Prompt system
+    "prompt_section_title": {
+        "message": "⭐ Prompt tùy chỉnh"
+    },
+    "custom_prompt_menu_answer": {
+        "message": "⭐ Trả lời với Prompt tùy chỉnh" 
+    },
+    "custom_prompt_menu_rewrite": {
+        "message": "⭐ Viết lại với Prompt tùy chỉnh"
+    },
+    "custom_prompt_menu": {
+        "message": "⭐ Prompt tùy chỉnh"
+    },
+    "customPromptPlaceholder": {
+        "message": "💡 Trả lời theo cách của tôi:\nHãy trả lời câu hỏi sau đây một cách ngắn gọn, súc tích và dễ hiểu bằng {language}:\n"
+    },
+    "customPromptRewritePlaceholder": {
+        "message": "✨ Viết lại theo phong cách của tôi:\nHãy viết lại đoạn văn sau bằng {language}, giữ nguyên ý nghĩa nhưng làm cho nó mạch lạc và sinh động hơn:\n"
+    },
+
+    // Default prompts
+    "prompt_answer_default": {
+        "message": "⚡ Trả lời nhanh bằng {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "📝 Trả lời ngắn gọn bằng {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "📋 Trả lời chi tiết bằng {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "📚 Trả lời kèm ví dụ bằng {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "⚡ Viết lại nhanh bằng {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "📝 Viết ngắn gọn bằng {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "📋 Viết mạch lạc bằng {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "📚 Viết sinh động bằng {language}"
+    },
+
+    // Language settings
     "languageLabel": {
         "message": "Chọn ngôn ngữ trả lời:"
     },
     "customLanguageLabel": {
         "message": "Hoặc nhập ngôn ngữ tùy chỉnh theo định dạng ngôn ngữ-quốc gia:"
     },
-    "saveButton": {
-        "message": "Lưu"
+    "customLanguagePlaceholder": {
+        "message": "Ví dụ: DE-DE cho Tiếng Đức"
     },
-
-    // Custom URLs
+    "selectedLanguageMsg": {
+        "message": "Đã chọn ngôn ngữ: $1"
+    },
+    "customLanguageSaved": {
+        "message": "Ngôn ngữ tùy chỉnh đã lưu: $1"
+    },
+    
+    // AI platform URLs
     "customChatGPTLinkLabel": {
         "message": "Nhập Liên kết ChatGPT trả lời (URL):"
     },
@@ -36,7 +107,7 @@
         "message": "Nhập Liên kết Perplexity trả lời (URL):"
     },
 
-    // Placeholders for AI service URLs
+    // URL placeholders
     "chatGPTPlaceholder": {
         "message": "https://chat.openai.com/"
     },
@@ -56,56 +127,75 @@
         "message": "https://www.perplexity.ai/"
     },
 
-    // Context menu structure
-    "menuRoot": {
-        "message": "Gửi tới AI"
+    // Platform icons in menu
+    "chatgpt_title": {
+        "message": "🤖 ChatGPT"
     },
-    "action_answer": {
-        "message": "Trả lời"
+    "gemini_title": {
+        "message": "🌟 Gemini"
     },
-    "action_rewrite": {
-        "message": "Viết lại" 
+    "claude_title": {
+        "message": "🎭 Claude"
     },
-    "action_translate": {
-        "message": "Dịch"
+    "poe_title": {
+        "message": "📚 POE"
+    },
+    "deepseek_title": {
+        "message": "🔍 DeepSeek"
+    },
+    "perplexity_title": {
+        "message": "💡 Perplexity"
     },
 
-    // Prompts
-    "prompt_answer_default": {
-        "message": "Trả lời nội dung sau bằng {language}"
+    // Theme settings
+    "themeDropdownLabel": {
+        "message": "Chọn giao diện"
     },
-    "prompt_answer_p1": {
-        "message": "Trả lời ngắn gọn, súc tích bằng {language}"
+    "themeLight": {
+        "message": "Sáng"
     },
-    "prompt_answer_p2": {
-        "message": "Trả lời chi tiết, đầy đủ bằng {language}"
+    "themeDark": {
+        "message": "Tối"
     },
-    "prompt_answer_p3": {
-        "message": "Trả lời kèm ví dụ minh họa bằng {language}"
+    "themeAuto": {
+        "message": "Tự động"
     },
-    "prompt_rewrite_default": {
-        "message": "Viết lại nội dung sau bằng {language}"
+
+    // Interface elements
+    "saveButton": {
+        "message": "Lưu"
     },
-    "prompt_rewrite_p1": {
-        "message": "Viết lại ngắn gọn, súc tích bằng {language}"
+    "openLinkButton": {
+        "message": "Mở liên kết"
     },
-    "prompt_rewrite_p2": {
-        "message": "Viết lại mạch lạc, dễ hiểu bằng {language}"
+    "customPromptLabel": {
+        "message": "Nội dung tùy chỉnh"
     },
-    "prompt_rewrite_p3": {
-        "message": "Viết lại sinh động, hấp dẫn bằng {language}"
+
+    // Status messages
+    "urlInvalid": {
+        "message": "URL không hợp lệ"
     },
-    "prompt_translate_default": {
-        "message": "Dịch nội dung sau sang {language}"
+    "settingsSaved": {
+        "message": "Đã lưu cài đặt thành công"
     },
-    "prompt_translate_p1": {
-        "message": "Dịch từng từ sang {language}"
+    "selectedLanguage": {
+        "message": "Ngôn ngữ đã chọn: $1"
     },
-    "prompt_translate_p2": {
-        "message": "Dịch tự nhiên sang {language}"
+    "customLanguageSaved": {
+        "message": "Ngôn ngữ tùy chỉnh đã lưu: $1"
     },
-    "prompt_translate_p3": {
-        "message": "Dịch và giải thích chi tiết sang {language}"
+    "selectedLanguageSaved": {
+        "message": "Ngôn ngữ mặc định đã lưu: $1" 
+    },
+    "customChatGPTLinkSaved": {
+        "message": "URL ChatGPT tùy chỉnh đã lưu: $1"
+    },
+    "customPromptSaved": {
+        "message": "Nội dung tùy chỉnh đã lưu: $1"
+    },
+    "linkSaved": {
+        "message": "Liên kết $1 đã được lưu"
     },
 
     // Additional languages
@@ -177,54 +267,5 @@
     },
     "languageFinnish": {
         "message": "Tiếng Phần Lan"
-    },
-
-    // Theme settings
-    "themeDropdownLabel": {
-        "message": "Chọn giao diện"
-    },
-    "themeLight": {
-        "message": "Sáng"
-    },
-    "themeDark": {
-        "message": "Tối"
-    },
-    "themeAuto": {
-        "message": "Tự động"
-    },
-
-    // New settings
-    "customLanguagePlaceholder": {
-        "message": "Ví dụ: DE-DE cho Tiếng Đức"
-    },
-    "customPromptLabel": {
-        "message": "Nội dung tùy chỉnh"
-    },
-    "customPromptPlaceholder": {
-        "message": "Nhập nội dung tùy chỉnh của bạn ở đây..."
-    },
-    "openLinkButton": {
-        "message": "Mở liên kết"
-    },
-    "urlInvalid": {
-        "message": "URL không hợp lệ"
-    },
-    "settingsSaved": {
-        "message": "Đã lưu cài đặt thành công"
-    },
-    "selectedLanguage": {
-        "message": "Ngôn ngữ đã chọn: $1"
-    },
-    "customLanguageSaved": {
-        "message": "Ngôn ngữ tùy chỉnh đã lưu: $1"
-    },
-    "customPromptSaved": {
-        "message": "Nội dung tùy chỉnh đã lưu: $1"
-    },
-    "linkSaved": {
-        "message": "Liên kết $1 đã được lưu"
-    },
-    "selectedLanguageMsg": {
-        "message": "Ngôn ngữ đã chọn: $1"
     }
 }

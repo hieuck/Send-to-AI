@@ -226,3 +226,34 @@ button:hover {
   cursor: pointer;
   transition: var(--transition-base);
 }
+
+/* Prompt Management */
+.prompt-management {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.prompt-section {
+    margin: 15px 0;
+}
+
+.prompt-list {
+    display: grid;
+    gap: 10px;
+}
+
+.prompt-item {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+.prompt-item textarea {
+    width: 100%;
+    min-height: 80px;
+    margin: 10px 0;
+    padding: 8px;
+}

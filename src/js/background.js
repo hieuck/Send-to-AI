@@ -2,9 +2,10 @@
  * Send to AI v0.2.0
  * Background script for handling context menu and AI interactions
  */
+
 const AI_PLATFORMS = {
   chatgpt: {
-    name: 'ChatGPT',
+    name: '🤖 ChatGPT',
     defaultUrl: 'https://chatgpt.com/?model=auto',
     selector: {
       input: '#prompt-textarea',
@@ -12,7 +13,7 @@ const AI_PLATFORMS = {
     }
   },
   claude: {
-    name: 'Claude',
+    name: '🎭 Claude',
     defaultUrl: 'https://claude.ai/new',
     selector: {
       input: 'p.is-empty.is-editor-empty',
@@ -20,7 +21,7 @@ const AI_PLATFORMS = {
     }
   },
   deepseek: {
-    name: 'DeepSeek',
+    name: '🔍 DeepSeek',
     defaultUrl: 'https://chat.deepseek.com/',
     selector: {
       input: '#chat-input',
@@ -28,7 +29,7 @@ const AI_PLATFORMS = {
     }
   },
   gemini: {
-    name: 'Gemini',
+    name: '🌟 Gemini',
     defaultUrl: 'https://gemini.google.com/app',
     selector: {
       input: '.ql-editor',
@@ -36,7 +37,7 @@ const AI_PLATFORMS = {
     }
   },
   perplexity: {
-    name: 'Perplexity',
+    name: '💡 Perplexity',
     defaultUrl: 'https://www.perplexity.ai/',
     selector: {
       input: '.TextArea_textArea__GrWvD, textarea[placeholder="Ask anything..."], .ProseMirror[contenteditable="true"]',
@@ -44,7 +45,7 @@ const AI_PLATFORMS = {
     }
   },
   poe: {
-    name: 'POE',
+    name: '📚 POE',
     defaultUrl: 'https://poe.com/',
     selector: {
       input: 'textarea.GrowingTextArea_textArea__ZWQbP',
@@ -69,48 +70,86 @@ function createContextMenus() {
   chrome.storage.local.get(["selectedLanguage", "customLanguage"], (data) => {
     const language = data.customLanguage || data.selectedLanguage || "VI-VN";
 
-    // Xóa menu cũ
     chrome.contextMenus.removeAll(() => {
-      // Tạo menu root
-      chrome.contextMenus.create({
-        id: 'root',
-        title: chrome.i18n.getMessage('menuRoot'),
-        contexts: ['selection', 'link']
-      });
-
-      // Tạo menu cho từng nền tảng AI
-      Object.entries(AI_PLATFORMS).forEach(([platformId, platform]) => {
-        chrome.contextMenus.create({
-          id: platformId,
-          parentId: 'root',
-          title: platform.name,
-          contexts: ['selection', 'link']
-        });
-
-        // Menu hành động (trả lời, viết lại, dịch)
-        const actions = ['answer', 'rewrite', 'translate'];
-        actions.forEach(action => {
-          const actionId = `${platformId}_${action}`;
+      ['selection', 'page'].forEach(context => {
+        const contextId = `root_${context}`;
+        const rootTitle = chrome.i18n.getMessage(context === 'selection' ? 'menuRoot' : 'menuRootPage');
+        
+        if (rootTitle) {  // Check if title exists
           chrome.contextMenus.create({
-            id: actionId,
-            parentId: platformId,
-            title: chrome.i18n.getMessage(`action_${action}`),
-            contexts: ['selection', 'link']
+            id: contextId,
+            title: rootTitle,
+            contexts: [context]
           });
 
-          // Menu prompt cho mỗi hành động
-          const promptTypes = ['default', 'p1', 'p2', 'p3'];
-          promptTypes.forEach(promptType => {
-            const promptId = `${actionId}_${promptType}`;
-            const promptTemplate = chrome.i18n.getMessage(`prompt_${action}_${promptType}`);
-            chrome.contextMenus.create({
-              id: promptId,
-              parentId: actionId,
-              title: promptTemplate.replace('{language}', language),
-              contexts: ['selection', 'link']
-            });
+          Object.entries(AI_PLATFORMS).forEach(([platformId, platform]) => {
+            if (platform.name) {  // Check if platform name exists
+              chrome.contextMenus.create({
+                id: `${platformId}_${context}`,
+                parentId: contextId,
+                title: platform.name,
+                contexts: [context]
+              });
+
+              const actions = ['answer', 'rewrite', 'translate'];
+              actions.forEach(action => {
+                const actionTitle = chrome.i18n.getMessage(`action_${action}`);
+                if (actionTitle) {  // Check if action title exists
+                  const actionId = `${platformId}_${action}_${context}`;
+                  chrome.contextMenus.create({
+                    id: actionId,
+                    parentId: `${platformId}_${context}`,
+                    title: actionTitle,
+                    contexts: [context]
+                  });
+
+                  // Only create custom prompts menu if we have titles
+                  if ((action === 'answer' || action === 'rewrite')) {
+                    const customTitle = chrome.i18n.getMessage(`custom_prompt_menu_${action}`);
+                    if (customTitle) {
+                      const customPromptId = `${actionId}_custom`;
+                      chrome.contextMenus.create({
+                        id: customPromptId,
+                        parentId: actionId,
+                        title: customTitle,
+                        contexts: [context]
+                      });
+
+                      const promptTitle = action === 'answer' 
+                        ? chrome.i18n.getMessage('customPromptPlaceholder')
+                        : chrome.i18n.getMessage('customPromptRewritePlaceholder');
+
+                      if (promptTitle) {
+                        chrome.contextMenus.create({
+                          id: `${customPromptId}_default`,
+                          parentId: customPromptId,
+                          title: promptTitle,
+                          contexts: [context]
+                        });
+                      }
+                    }
+                  }
+
+                  // Only create default prompts if template exists
+                  const promptTypes = ['default', 'p1', 'p2', 'p3'];
+                  promptTypes.forEach(promptType => {
+                    const messageKey = `prompt_${action}_${promptType}`;
+                    const promptTemplate = chrome.i18n.getMessage(messageKey);
+                    if (promptTemplate) {
+                      const promptId = `${actionId}_${promptType}`;
+                      chrome.contextMenus.create({
+                        id: promptId,
+                        parentId: actionId,
+                        title: promptTemplate.replace('{language}', language),
+                        contexts: [context]
+                      });
+                    }
+                  });
+                }
+              });
+            }
           });
-        });
+        }
       });
     });
   });
@@ -118,30 +157,37 @@ function createContextMenus() {
 
 // Xử lý khi click vào menu
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  chrome.storage.local.get(["selectedLanguage", "customLanguage"], async (data) => {
+  chrome.storage.local.get(null, async (data) => {
     const language = data.customLanguage || data.selectedLanguage || "VI-VN";
     
-    // Parse menu item ID: platform_action_promptType
-    const [platform, action, promptType] = info.menuItemId.split('_');
+    // Parse menu item ID with context
+    const [platform, action, context, promptType, customKey] = info.menuItemId.split('_');
     
-    if (!platform || !action || !promptType) return;
+    if (!platform || !action) return;
 
     const config = AI_PLATFORMS[platform];
     if (!config) return;
 
     // Get custom URL if available
     const customUrlKey = `custom${platform.charAt(0).toUpperCase() + platform.slice(1)}Link`;
-    const customUrl = await chrome.storage.local.get(customUrlKey);
-    const url = customUrl[customUrlKey] || config.defaultUrl;
+    const url = data[customUrlKey] || config.defaultUrl;
 
-    // Get selected text or link URL
-    const text = info.selectionText || info.linkUrl || tab.url;
+    // Get text based on context
+    const text = context === 'selection' 
+      ? (info.selectionText || info.linkUrl)
+      : tab.url;
 
-    // Get prompt template and create final prompt
-    const promptTemplate = chrome.i18n.getMessage(`prompt_${action}_${promptType}`);
+    // Get prompt template
+    let promptTemplate;
+    if (promptType === 'custom') {
+        promptTemplate = action === 'rewrite' 
+            ? chrome.i18n.getMessage('customPromptRewritePlaceholder')
+            : chrome.i18n.getMessage('customPromptPlaceholder');
+    } else {
+        promptTemplate = chrome.i18n.getMessage(`prompt_${action}_${promptType}`);
+    }
+
     const finalPrompt = `${promptTemplate.replace('{language}', language)}\n\n${text}`;
-
-    // Create new tab and inject prompt
     createTab(url, finalPrompt, config.selector);
   });
 });
