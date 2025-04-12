@@ -1,5 +1,5 @@
 {
-    // General
+    // General settings
     "extensionName": {
         "message": "Gửi tới AI"
     },
@@ -12,85 +12,76 @@
     "customLanguageLabel": {
         "message": "Hoặc nhập ngôn ngữ tùy chỉnh theo định dạng ngôn ngữ-quốc gia:"
     },
-    "customPromptLabel": {
-        "message": "Hoặc nhập nội dung tùy chỉnh"
-    },
     "saveButton": {
         "message": "Lưu"
     },
-    // ChatGPT
+
+    // Custom URLs
     "customChatGPTLinkLabel": {
         "message": "Nhập Liên kết ChatGPT trả lời (URL):"
     },
-    "contextMenuTextChatGPT": {
-        "message": "Gửi văn bản đã chọn tới ChatGPT và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuLinkChatGPT": {
-        "message": "Gửi liên kết tới ChatGPT và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuRewriteWithChatGPT": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng ChatGPT"
-    },
-    "contextMenuTextTranslationChatGPT": {
-        "message": "Dịch văn bản đã chọn sang {language} bằng ChatGPT"
-    },
-    // Gemini
     "customGeminiLinkLabel": {
         "message": "Nhập Liên kết Google Gemini trả lời (URL):"
     },
-    "contextMenuTextGemini": {
-        "message": "Gửi văn bản đã chọn tới Gemini và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuLinkGemini": {
-        "message": "Gửi liên kết tới Gemini và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuRewriteWithGemini": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Gemini"
-    },
-    "contextMenuTextTranslationGemini": {
-        "message": "Dịch văn bản đã chọn sang {language} bằng Gemini"
-    },
-    // Claude
     "customClaudeLinkLabel": {
         "message": "Nhập Liên kết Claude trả lời (URL):"
     },
-    "contextMenuTextClaude": {
-        "message": "Gửi văn bản đã chọn tới Claude và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuLinkClaude": {
-        "message": "Gửi liên kết tới Claude và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuRewriteWithClaude": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng Claude"
-    },
-    // POE
     "customPOELinkLabel": {
         "message": "Nhập Liên kết POE trả lời (URL):"
     },
-    "contextMenuTextPOE": {
-        "message": "Gửi văn bản đã chọn tới POE và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuLinkPOE": {
-        "message": "Gửi liên kết tới POE và trả lời bằng ngôn ngữ {language}"
-    },
-    "contextMenuRewriteWithPOE": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng POE"
-    },
-    // DeepSeek
     "customDeepSeekLinkLabel": {
         "message": "Nhập Liên kết DeepSeek trả lời (URL):"
     },
-    "contextMenuTextDeepseek": {
-        "message": "Gửi văn bản đã chọn tới DeepSeek và trả lời bằng ngôn ngữ {language}"
+
+    // Context menu structure
+    "menuRoot": {
+        "message": "Gửi tới AI"
     },
-    "contextMenuLinkDeepseek": {
-        "message": "Gửi liên kết tới DeepSeek và trả lời bằng ngôn ngữ {language}"
+    "action_answer": {
+        "message": "Trả lời"
     },
-    "contextMenuRewriteWithDeepseek": {
-        "message": "Viết lại văn bản sang ngôn ngữ {language} bằng DeepSeek"
+    "action_rewrite": {
+        "message": "Viết lại" 
     },
-    "contextMenuTextTranslationDeepseek": {
-        "message": "Dịch văn bản đã chọn sang {language} bằng DeepSeek"
+    "action_translate": {
+        "message": "Dịch"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "Trả lời nội dung sau bằng {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Trả lời ngắn gọn, súc tích bằng {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Trả lời chi tiết, đầy đủ bằng {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Trả lời kèm ví dụ minh họa bằng {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Viết lại nội dung sau bằng {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Viết lại ngắn gọn, súc tích bằng {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Viết lại mạch lạc, dễ hiểu bằng {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Viết lại sinh động, hấp dẫn bằng {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Dịch nội dung sau sang {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Dịch từng từ sang {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Dịch tự nhiên sang {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Dịch và giải thích chi tiết sang {language}"
     }
-    // Thêm nhiều bản dịch nếu cần...
 }

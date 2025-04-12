@@ -140,3 +140,39 @@ button:hover {
         transform: translateX(-50%) translateY(10px);
     }
 }
+
+/* URL input groups */
+.url-input-group {
+    margin-bottom: 15px;
+}
+
+.url-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.url-input-wrapper input[type="text"] {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.open-link-btn {
+    padding: 8px 12px;
+    background-color: var(--button-background);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.open-link-btn:hover {
+    background-color: var(--button-hover);
+}
+
+.open-link-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

@@ -1,0 +1,87 @@
+{
+    // General settings
+    "extensionName": {
+        "message": "An KI senden"
+    },
+    "extensionDescription": {
+        "message": "Ausgewählten Text über das Kontextmenü an KI senden."
+    },
+    "languageLabel": {
+        "message": "Antwortsprache auswählen:"
+    },
+    "customLanguageLabel": {
+        "message": "Oder geben Sie eine benutzerdefinierte Sprache im Sprache-Land-Format ein:"
+    },
+    "saveButton": {
+        "message": "Speichern"
+    },
+
+    // Custom URLs
+    "customChatGPTLinkLabel": {
+        "message": "ChatGPT-Antwortlink (URL) eingeben:"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Google Gemini-Antwortlink (URL) eingeben:"
+    },
+    "customClaudeLinkLabel": {
+        "message": "Claude-Antwortlink (URL) eingeben:"
+    },
+    "customPOELinkLabel": {
+        "message": "POE-Antwortlink (URL) eingeben:"
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "DeepSeek-Antwortlink (URL) eingeben:"
+    },
+
+    // Context menu structure
+    "menuRoot": {
+        "message": "An KI senden"
+    },
+    "action_answer": {
+        "message": "Antworten"
+    },
+    "action_rewrite": {
+        "message": "Umschreiben"
+    },
+    "action_translate": {
+        "message": "Übersetzen"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "Antworte auf Folgendes in {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Antworte kurz und prägnant in {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Antworte ausführlich in {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Antworte mit Beispielen in {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Schreibe Folgendes in {language} um"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Schreibe knapp und präzise in {language} um"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Schreibe klar und verständlich in {language} um"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Schreibe lebendig und ansprechend in {language} um"
+    },
+    "prompt_translate_default": {
+        "message": "Übersetze Folgendes in {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Übersetze wörtlich in {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Übersetze natürlich in {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Übersetze und erkläre ausführlich in {language}"
+    }
+}

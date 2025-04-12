@@ -4,23 +4,23 @@
         "message": "Envoyer à l'IA"
     },
     "extensionDescription": {
-        "message": "Envoyer le texte sélectionné à l'IA via le menu contextuel."
+        "message": "Envoyez le texte sélectionné à l'IA via le menu contextuel."
     },
     "languageLabel": {
-        "message": "Choisissez la langue de réponse :"
+        "message": "Sélectionnez la langue de réponse :"
     },
     "customLanguageLabel": {
-        "message": "Ou saisissez une langue personnalisée au format langue-pays :"
+        "message": "Ou entrez une langue personnalisée au format langue-pays :"
     },
     "customPromptLabel": {
         "message": "Ou saisissez un contenu personnalisé"
     },
     "saveButton": {
-        "message": "Sauvegarder"
+        "message": "Enregistrer"
     },
     // ChatGPT
     "customChatGPTLinkLabel": {
-        "message": "Entrez le lien de réponse de ChatGPT (URL) :"
+        "message": "Entrez le lien de réponse ChatGPT (URL) :"
     },
     "contextMenuTextChatGPT": {
         "message": "Envoyer le texte sélectionné à ChatGPT et obtenir une réponse en {language}"
@@ -36,7 +36,7 @@
     },
     // Gemini
     "customGeminiLinkLabel": {
-        "message": "Entrez le lien de réponse de Google Gemini (URL) :"
+        "message": "Entrez le lien de réponse Google Gemini (URL) :"
     },
     "contextMenuTextGemini": {
         "message": "Envoyer le texte sélectionné à Gemini et obtenir une réponse en {language}"
@@ -52,7 +52,7 @@
     },
     // Claude
     "customClaudeLinkLabel": {
-        "message": "Entrez le lien de réponse de Claude (URL) :"
+        "message": "Entrez le lien de réponse Claude (URL) :"
     },
     "contextMenuTextClaude": {
         "message": "Envoyer le texte sélectionné à Claude et obtenir une réponse en {language}"
@@ -65,7 +65,7 @@
     },
     // POE
     "customPOELinkLabel": {
-        "message": "Entrez le lien de réponse de POE (URL) :"
+        "message": "Entrez le lien de réponse POE (URL) :"
     },
     "contextMenuTextPOE": {
         "message": "Envoyer le texte sélectionné à POE et obtenir une réponse en {language}"
@@ -78,7 +78,7 @@
     },
     // DeepSeek
     "customDeepSeekLinkLabel": {
-        "message": "Entrez le lien de réponse de DeepSeek (URL) :"
+        "message": "Entrez le lien de réponse DeepSeek (URL) :"
     },
     "contextMenuTextDeepseek": {
         "message": "Envoyer le texte sélectionné à DeepSeek et obtenir une réponse en {language}"
@@ -91,6 +91,54 @@
     },
     "contextMenuTextTranslationDeepseek": {
         "message": "Traduire le texte sélectionné en {language} avec DeepSeek"
+    },
+    // Additional Prompts
+    "menuRoot": {
+        "message": "Envoyer à l'IA"
+    },
+    "action_answer": {
+        "message": "Répondre"
+    },
+    "action_rewrite": {
+        "message": "Réécrire"
+    },
+    "action_translate": {
+        "message": "Traduire"
+    },
+    "prompt_answer_default": {
+        "message": "Répondre à ce qui suit en {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Répondre brièvement et concisément en {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Répondre en détail en {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Répondre avec des exemples en {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Réécrire ce qui suit en {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Réécrire de manière concise en {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Réécrire clairement en {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Réécrire de manière vivante en {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Traduire ce qui suit en {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Traduire mot à mot en {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Traduire naturellement en {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Traduire et expliquer en détail en {language}"
     }
-    // Ajoutez plus de traductions si nécessaire...
 }

@@ -195,4 +195,41 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         checkAndSetTheme();
     }
+
+    // Xử lý các nút mở liên kết
+    document.querySelectorAll('.open-link-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const inputId = button.getAttribute('data-url-input');
+            const input = document.getElementById(inputId);
+            const url = input.value.trim();
+
+            if (url) {
+                // Kiểm tra URL hợp lệ
+                try {
+                    new URL(url);
+                    // Mở URL trong tab mới
+                    chrome.tabs.create({ url });
+                } catch (e) {
+                    showToast('URL không hợp lệ!');
+                }
+            } else {
+                // Nếu không có URL, sử dụng URL mặc định từ placeholder
+                const defaultUrl = input.placeholder;
+                chrome.tabs.create({ url: defaultUrl });
+            }
+        });
+
+        // Cập nhật trạng thái nút khi input thay đổi
+        const inputId = button.getAttribute('data-url-input');
+        const input = document.getElementById(inputId);
+        input.addEventListener('input', () => {
+            const url = input.value.trim();
+            try {
+                new URL(url || input.placeholder);
+                button.disabled = false;
+            } catch (e) {
+                button.disabled = true;
+            }
+        });
+    });
 });

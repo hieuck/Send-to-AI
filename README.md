@@ -1,6 +1,16 @@
-# Send-to-AI Service
+# Send-to-AI Service v0.2.0
 
 Send-to-AI là một tiện ích mở rộng cho trình duyệt Chrome, cho phép bạn gửi văn bản hoặc liên kết đến các nền tảng AI phổ biến như ChatGPT, Gemini, Claude, POE, và DeepSeek. Tiện ích này hỗ trợ các tính năng như viết lại văn bản, dịch ngôn ngữ, và nhiều hơn nữa.
+
+## Changelog
+v0.2.0
+- Cải thiện menu chuột phải thành 4 cấp
+- Thêm nhiều mẫu prompt cho mỗi hành động
+- Sửa lỗi không hiển thị ngôn ngữ trong prompt
+- Sửa lỗi không inject được văn bản vào một số trang AI
+
+v0.1.1 
+- Phiên bản đầu tiên với chức năng cơ bản
 
 ## Tính năng chính
 ![image](https://github.com/user-attachments/assets/b642416d-5c49-4ad8-bdb9-d85d3e08512c)
@@ -13,6 +23,20 @@ Send-to-AI là một tiện ích mở rộng cho trình duyệt Chrome, cho phé
   - Claude
   - POE
   - DeepSeek
+
+## Tính năng mới
+
+- **Menu phân cấp thông minh**:
+  - Cấp 1: Gửi tới AI
+  - Cấp 2: Chọn nền tảng AI (ChatGPT, Gemini, Claude,...)
+  - Cấp 3: Chọn hành động (Trả lời, Viết lại, Dịch)
+  - Cấp 4: Chọn mẫu prompt (Mặc định, Mẫu 1, Mẫu 2, Mẫu 3)
+
+- **Prompts tùy chỉnh**: Mỗi hành động có 4 mẫu prompt khác nhau:
+  - Mặc định: Prompt cơ bản
+  - Mẫu 1: Phiên bản ngắn gọn
+  - Mẫu 2: Phiên bản chi tiết
+  - Mẫu 3: Phiên bản nâng cao
 
 ## Cách cài đặt
 
@@ -57,6 +81,17 @@ Bạn có thể tùy chỉnh tiện ích bằng cách:
 │   └── popup.html
 │
 └── README.md
+
+## Known Issues
+- Một số trang AI có thể thay đổi selector khiến việc inject không hoạt động
+- Cần refresh lại trang sau khi thay đổi ngôn ngữ
+- Menu chuột phải có thể bị trễ khi hiển thị lần đầu
+
+## Roadmap
+- [ ] Thêm tính năng OCR để trích xuất text từ ảnh
+- [ ] Hỗ trợ thêm các nền tảng AI mới
+- [ ] Cải thiện UX của options page
+- [ ] Thêm tính năng import/export cài đặt
 
 ## Đóng góp
 

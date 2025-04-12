@@ -1,0 +1,80 @@
+{
+    "extensionName": {
+        "message": "Invia all'IA"
+    },
+    "extensionDescription": {
+        "message": "Invia il testo selezionato all'IA tramite il menu contestuale."
+    },
+    "languageLabel": {
+        "message": "Seleziona la lingua di risposta:"
+    },
+    "customLanguageLabel": {
+        "message": "O inserisci una lingua personalizzata nel formato lingua-paese:"
+    },
+    "saveButton": {
+        "message": "Salva"
+    },
+    "customChatGPTLinkLabel": {
+        "message": "Inserisci il link di risposta ChatGPT (URL):"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Inserisci il link di risposta Google Gemini (URL):"
+    },
+    "customClaudeLinkLabel": {
+        "message": "Inserisci il link di risposta Claude (URL):"
+    },
+    "customPOELinkLabel": {
+        "message": "Inserisci il link di risposta POE (URL):"
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "Inserisci il link di risposta DeepSeek (URL):"
+    },
+    "menuRoot": {
+        "message": "Invia all'IA"
+    },
+    "action_answer": {
+        "message": "Rispondi"
+    },
+    "action_rewrite": {
+        "message": "Riscrivere"
+    },
+    "action_translate": {
+        "message": "Traduci"
+    },
+    "prompt_answer_default": {
+        "message": "Rispondi a quanto segue in {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Rispondi brevemente e concisamente in {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Rispondi in dettaglio in {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Rispondi con esempi in {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Riscrivi quanto segue in {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Riscrivi in modo conciso in {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Riscrivi in modo chiaro in {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Riscrivi in modo vivace in {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Traduci quanto segue in {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Traduci parola per parola in {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Traduci naturalmente in {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Traduci e spiega in dettaglio in {language}"
+    }
+}

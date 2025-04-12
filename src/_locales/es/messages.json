@@ -4,13 +4,13 @@
         "message": "Enviar a IA"
     },
     "extensionDescription": {
-        "message": "Envía el texto seleccionado a la IA a través del menú contextual."
+        "message": "Enviar texto seleccionado a IA a través del menú contextual."
     },
     "languageLabel": {
-        "message": "Selecciona el idioma de respuesta:"
+        "message": "Seleccionar idioma de respuesta:"
     },
     "customLanguageLabel": {
-        "message": "O introduce un idioma personalizado en el formato idioma-país:"
+        "message": "O ingrese un idioma personalizado:"
     },
     "customPromptLabel": {
         "message": "O introduce contenido personalizado"
@@ -20,7 +20,7 @@
     },
     // ChatGPT
     "customChatGPTLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de ChatGPT (URL):"
+        "message": "Ingrese el enlace de respuesta de ChatGPT (URL):"
     },
     "contextMenuTextChatGPT": {
         "message": "Enviar texto seleccionado a ChatGPT y recibe una respuesta en {language}"
@@ -36,7 +36,7 @@
     },
     // Gemini
     "customGeminiLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de Google Gemini (URL):"
+        "message": "Ingrese el enlace de respuesta de Google Gemini (URL):"
     },
     "contextMenuTextGemini": {
         "message": "Enviar texto seleccionado a Gemini y recibe una respuesta en {language}"
@@ -52,7 +52,7 @@
     },
     // Claude
     "customClaudeLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de Claude (URL):"
+        "message": "Ingrese el enlace de respuesta de Claude (URL):"
     },
     "contextMenuTextClaude": {
         "message": "Enviar texto seleccionado a Claude y recibe una respuesta en {language}"
@@ -65,7 +65,7 @@
     },
     // POE
     "customPOELinkLabel": {
-        "message": "Ingresa el enlace de respuesta de POE (URL):"
+        "message": "Ingrese el enlace de respuesta de POE (URL):"
     },
     "contextMenuTextPOE": {
         "message": "Enviar texto seleccionado a POE y recibe una respuesta en {language}"
@@ -78,7 +78,7 @@
     },
     // DeepSeek
     "customDeepSeekLinkLabel": {
-        "message": "Ingresa el enlace de respuesta de DeepSeek (URL):"
+        "message": "Ingrese el enlace de respuesta de DeepSeek (URL):"
     },
     "contextMenuTextDeepseek": {
         "message": "Enviar texto seleccionado a DeepSeek y recibe una respuesta en {language}"
@@ -91,6 +91,54 @@
     },
     "contextMenuTextTranslationDeepseek": {
         "message": "Traducir el texto seleccionado a {language} con DeepSeek"
+    },
+    // Additional translations
+    "menuRoot": {
+        "message": "Enviar a IA"
+    },
+    "action_answer": {
+        "message": "Responder"
+    },
+    "action_rewrite": {
+        "message": "Reescribir"
+    },
+    "action_translate": {
+        "message": "Traducir"
+    },
+    "prompt_answer_default": {
+        "message": "Responder lo siguiente en {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Dar una respuesta concisa en {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Dar una respuesta detallada en {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Responder con ejemplos en {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Reescribir lo siguiente en {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Reescribir de manera concisa en {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Reescribir clara y coherentemente en {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Reescribir de manera vívida y atractiva en {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Traducir lo siguiente a {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Traducir palabra por palabra a {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Traducir naturalmente a {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Traducir y explicar en detalle en {language}"
     }
-    // Agrega más traducciones según sea necesario...
 }

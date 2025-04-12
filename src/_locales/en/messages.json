@@ -1,96 +1,87 @@
 {
-    // General
+    // General settings
     "extensionName": {
         "message": "Send to AI"
     },
     "extensionDescription": {
-        "message": "Send selected text to AI via the right-click menu."
+        "message": "Send selected text to AI via right-click menu."
     },
     "languageLabel": {
         "message": "Select response language:"
     },
     "customLanguageLabel": {
-        "message": "Or enter a custom language in the language-country format:"
-    },
-    "customPromptLabel": {
-        "message": "Or enter custom content"
+        "message": "Or enter custom language in language-country format:"
     },
     "saveButton": {
         "message": "Save"
     },
-    // ChatGPT
+
+    // Custom URLs
     "customChatGPTLinkLabel": {
         "message": "Enter ChatGPT response link (URL):"
     },
-    "contextMenuTextChatGPT": {
-        "message": "Send selected text to ChatGPT and get a response in {language}"
-    },
-    "contextMenuLinkChatGPT": {
-        "message": "Send link to ChatGPT and get a response in {language}"
-    },
-    "contextMenuRewriteWithChatGPT": {
-        "message": "Rewrite the text in {language} using ChatGPT"
-    },
-    "contextMenuTextTranslationChatGPT": {
-        "message": "Translate selected text to {language} with ChatGPT"
-    },
-    // Gemini
     "customGeminiLinkLabel": {
         "message": "Enter Google Gemini response link (URL):"
     },
-    "contextMenuTextGemini": {
-        "message": "Send selected text to Gemini and get a response in {language}"
-    },
-    "contextMenuLinkGemini": {
-        "message": "Send link to Gemini and get a response in {language}"
-    },
-    "contextMenuRewriteWithGemini": {
-        "message": "Rewrite the text in {language} using Gemini"
-    },
-    "contextMenuLinkTranslationChatGemini": {
-        "message": "Translate selected text to {language} with Gemini"
-    },
-    // Claude
     "customClaudeLinkLabel": {
         "message": "Enter Claude response link (URL):"
     },
-    "contextMenuTextClaude": {
-        "message": "Send selected text to Claude and get a response in {language}"
-    },
-    "contextMenuLinkClaude": {
-        "message": "Send link to Claude and get a response in {language}"
-    },
-    "contextMenuRewriteWithClaude": {
-        "message": "Rewrite the text in {language} using Claude"
-    },
-    // POE
     "customPOELinkLabel": {
         "message": "Enter POE response link (URL):"
     },
-    "contextMenuTextPOE": {
-        "message": "Send selected text to POE and get a response in {language}"
-    },
-    "contextMenuLinkPOE": {
-        "message": "Send link to POE and get a response in {language}"
-    },
-    "contextMenuRewriteWithPOE": {
-        "message": "Rewrite the text in {language} using POE"
-    },
-    // DeepSeek
     "customDeepSeekLinkLabel": {
         "message": "Enter DeepSeek response link (URL):"
     },
-    "contextMenuTextDeepseek": {
-        "message": "Send selected text to DeepSeek and get a response in {language}"
+
+    // Context menu structure
+    "menuRoot": {
+        "message": "Send to AI"
     },
-    "contextMenuLinkDeepseek": {
-        "message": "Send link to DeepSeek and get a response in {language}"
+    "action_answer": {
+        "message": "Answer"
     },
-    "contextMenuRewriteWithDeepseek": {
-        "message": "Rewrite the text in {language} using DeepSeek"
+    "action_rewrite": {
+        "message": "Rewrite"
     },
-    "contextMenuTextTranslationDeepseek": {
-        "message": "Translate selected text to {language} with DeepSeek"
+    "action_translate": {
+        "message": "Translate"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "Answer the following in {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Give a concise answer in {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Give a detailed answer in {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Answer with examples in {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Rewrite the following in {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Rewrite concisely in {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Rewrite clearly and coherently in {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Rewrite vividly and engagingly in {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Translate the following to {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Translate word by word to {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Translate naturally to {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Translate and explain in detail to {language}"
     }
-    // Add more translations as needed...
 }

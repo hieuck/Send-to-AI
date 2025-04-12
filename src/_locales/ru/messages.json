@@ -1,0 +1,80 @@
+{
+    "extensionName": {
+        "message": "Отправить в ИИ"
+    },
+    "extensionDescription": {
+        "message": "Отправляйте выделенный текст в ИИ через контекстное меню."
+    },
+    "languageLabel": {
+        "message": "Выберите язык ответа:"
+    },
+    "customLanguageLabel": {
+        "message": "Или введите язык в формате язык-страна:"
+    },
+    "saveButton": {
+        "message": "Сохранить"
+    },
+    "customChatGPTLinkLabel": {
+        "message": "Введите ссылку ответа ChatGPT (URL):"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Введите ссылку ответа Google Gemini (URL):"
+    },
+    "customClaudeLinkLabel": {
+        "message": "Введите ссылку ответа Claude (URL):"
+    },
+    "customPOELinkLabel": {
+        "message": "Введите ссылку ответа POE (URL):"
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "Введите ссылку ответа DeepSeek (URL):"
+    },
+    "menuRoot": {
+        "message": "Отправить в ИИ"
+    },
+    "action_answer": {
+        "message": "Ответить"
+    },
+    "action_rewrite": {
+        "message": "Переписать"
+    },
+    "action_translate": {
+        "message": "Перевести"
+    },
+    "prompt_answer_default": {
+        "message": "Ответьте на следующее на {language}"
+    },
+    "prompt_answer_p1": {
+        "message": "Ответьте кратко и четко на {language}"
+    },
+    "prompt_answer_p2": {
+        "message": "Ответьте подробно на {language}"
+    },
+    "prompt_answer_p3": {
+        "message": "Ответьте с примерами на {language}"
+    },
+    "prompt_rewrite_default": {
+        "message": "Перепишите следующее на {language}"
+    },
+    "prompt_rewrite_p1": {
+        "message": "Перепишите кратко на {language}"
+    },
+    "prompt_rewrite_p2": {
+        "message": "Перепишите ясно на {language}"
+    },
+    "prompt_rewrite_p3": {
+        "message": "Перепишите живо на {language}"
+    },
+    "prompt_translate_default": {
+        "message": "Переведите следующее на {language}"
+    },
+    "prompt_translate_p1": {
+        "message": "Переведите дословно на {language}"
+    },
+    "prompt_translate_p2": {
+        "message": "Переведите естественно на {language}"
+    },
+    "prompt_translate_p3": {
+        "message": "Переведите и объясните подробно на {language}"
+    }
+}

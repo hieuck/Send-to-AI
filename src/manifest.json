@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extensionName__",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/hieuck/send-to-ai",
   "permissions": [
@@ -14,6 +14,32 @@
     "service_worker": "js/background.js"
   },
   "default_locale": "vi",
+  "_locales": {
+    "en": {
+      "name": "English"
+    },
+    "vi": {
+      "name": "Tiếng Việt"
+    },
+    "zh": {
+      "name": "中文"
+    },
+    "fr": {
+      "name": "Français"
+    },
+    "es": {
+      "name": "Español"
+    },
+    "ja": {
+      "name": "日本語"
+    },
+    "ko": {
+      "name": "한국어"
+    },
+    "de": {
+      "name": "Deutsch"
+    }
+  },
   "action": {
     "default_popup": "options.html",
     "default_icon": {

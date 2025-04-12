@@ -1,0 +1,87 @@
+{
+    // General settings
+    "extensionName": {
+        "message": "AI に送信"
+    },
+    "extensionDescription": {
+        "message": "右クリックメニューで選択したテキストを AI に送信します。"
+    },
+    "languageLabel": {
+        "message": "応答言語を選択："
+    },
+    "customLanguageLabel": {
+        "message": "または言語-国の形式でカスタム言語を入力："
+    },
+    "saveButton": {
+        "message": "保存"
+    },
+
+    // Custom URLs
+    "customChatGPTLinkLabel": {
+        "message": "ChatGPT の応答リンク（URL）を入力："
+    },
+    "customGeminiLinkLabel": {
+        "message": "Google Gemini の応答リンク（URL）を入力："
+    },
+    "customClaudeLinkLabel": {
+        "message": "Claude の応答リンク（URL）を入力："
+    },
+    "customPOELinkLabel": {
+        "message": "POE の応答リンク（URL）を入力："
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "DeepSeek の応答リンク（URL）を入力："
+    },
+
+    // Context menu structure
+    "menuRoot": {
+        "message": "AI に送信"
+    },
+    "action_answer": {
+        "message": "回答"
+    },
+    "action_rewrite": {
+        "message": "書き直し"
+    },
+    "action_translate": {
+        "message": "翻訳"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "以下を{language}で回答"
+    },
+    "prompt_answer_p1": {
+        "message": "{language}で簡潔に回答"
+    },
+    "prompt_answer_p2": {
+        "message": "{language}で詳しく回答"
+    },
+    "prompt_answer_p3": {
+        "message": "{language}で例を挙げて回答"
+    },
+    "prompt_rewrite_default": {
+        "message": "以下を{language}で書き直し"
+    },
+    "prompt_rewrite_p1": {
+        "message": "{language}で簡潔に書き直し"
+    },
+    "prompt_rewrite_p2": {
+        "message": "{language}で分かりやすく書き直し"
+    },
+    "prompt_rewrite_p3": {
+        "message": "{language}で生き生きと書き直し"
+    },
+    "prompt_translate_default": {
+        "message": "以下を{language}に翻訳"
+    },
+    "prompt_translate_p1": {
+        "message": "逐語的に{language}に翻訳"
+    },
+    "prompt_translate_p2": {
+        "message": "自然な{language}に翻訳"
+    },
+    "prompt_translate_p3": {
+        "message": "詳しく説明しながら{language}に翻訳"
+    }
+}

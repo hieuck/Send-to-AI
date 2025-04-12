@@ -1,0 +1,87 @@
+{
+    // General settings
+    "extensionName": {
+        "message": "AI로 보내기"
+    },
+    "extensionDescription": {
+        "message": "우클릭 메뉴를 통해 선택한 텍스트를 AI로 보냅니다."
+    },
+    "languageLabel": {
+        "message": "응답 언어 선택:"
+    },
+    "customLanguageLabel": {
+        "message": "또는 언어-국가 형식으로 사용자 정의 언어 입력:"
+    },
+    "saveButton": {
+        "message": "저장"
+    },
+
+    // Custom URLs
+    "customChatGPTLinkLabel": {
+        "message": "ChatGPT 응답 링크(URL) 입력:"
+    },
+    "customGeminiLinkLabel": {
+        "message": "Google Gemini 응답 링크(URL) 입력:"
+    },
+    "customClaudeLinkLabel": {
+        "message": "Claude 응답 링크(URL) 입력:"
+    },
+    "customPOELinkLabel": {
+        "message": "POE 응답 링크(URL) 입력:"
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "DeepSeek 응답 링크(URL) 입력:"
+    },
+
+    // Context menu structure 
+    "menuRoot": {
+        "message": "AI로 보내기"
+    },
+    "action_answer": {
+        "message": "답변"
+    },
+    "action_rewrite": {
+        "message": "다시 쓰기"
+    },
+    "action_translate": {
+        "message": "번역"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "다음을 {language}로 답변"
+    },
+    "prompt_answer_p1": {
+        "message": "{language}로 간단히 답변"
+    },
+    "prompt_answer_p2": {
+        "message": "{language}로 자세히 답변"
+    },
+    "prompt_answer_p3": {
+        "message": "{language}로 예시와 함께 답변"
+    },
+    "prompt_rewrite_default": {
+        "message": "다음을 {language}로 다시 작성"
+    },
+    "prompt_rewrite_p1": {
+        "message": "{language}로 간단히 다시 작성"
+    },
+    "prompt_rewrite_p2": {
+        "message": "{language}로 명확하게 다시 작성"
+    },
+    "prompt_rewrite_p3": {
+        "message": "{language}로 생동감 있게 다시 작성"
+    },
+    "prompt_translate_default": {
+        "message": "다음을 {language}로 번역"
+    },
+    "prompt_translate_p1": {
+        "message": "단어별로 {language}로 번역"
+    },
+    "prompt_translate_p2": {
+        "message": "자연스럽게 {language}로 번역"
+    },
+    "prompt_translate_p3": {
+        "message": "자세한 설명과 함께 {language}로 번역"
+    }
+}

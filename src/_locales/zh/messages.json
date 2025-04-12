@@ -1,0 +1,87 @@
+{
+    // General settings
+    "extensionName": {
+        "message": "发送到 AI"
+    },
+    "extensionDescription": {
+        "message": "通过右键菜单将选中的文本发送到 AI。"
+    },
+    "languageLabel": {
+        "message": "选择回复语言："
+    },
+    "customLanguageLabel": {
+        "message": "或输入自定义语言："
+    },
+    "saveButton": {
+        "message": "保存"
+    },
+
+    // Custom URLs
+    "customChatGPTLinkLabel": {
+        "message": "输入 ChatGPT 回复链接 (URL)："
+    },
+    "customGeminiLinkLabel": {
+        "message": "输入 Google Gemini 回复链接 (URL)："
+    },
+    "customClaudeLinkLabel": {
+        "message": "输入 Claude 回复链接 (URL)："
+    },
+    "customPOELinkLabel": {
+        "message": "输入 POE 回复链接 (URL)："
+    },
+    "customDeepSeekLinkLabel": {
+        "message": "输入 DeepSeek 回复链接 (URL)："
+    },
+
+    // Context menu structure
+    "menuRoot": {
+        "message": "发送到 AI"
+    },
+    "action_answer": {
+        "message": "回答"
+    },
+    "action_rewrite": {
+        "message": "重写"
+    },
+    "action_translate": {
+        "message": "翻译"
+    },
+
+    // Prompts
+    "prompt_answer_default": {
+        "message": "用{language}回答以下内容"
+    },
+    "prompt_answer_p1": {
+        "message": "用{language}简洁回答"
+    },
+    "prompt_answer_p2": {
+        "message": "用{language}详细回答"
+    },
+    "prompt_answer_p3": {
+        "message": "用{language}举例说明回答"
+    },
+    "prompt_rewrite_default": {
+        "message": "用{language}重写以下内容"
+    },
+    "prompt_rewrite_p1": {
+        "message": "用{language}简洁重写"
+    },
+    "prompt_rewrite_p2": {
+        "message": "用{language}清晰连贯地重写"
+    },
+    "prompt_rewrite_p3": {
+        "message": "用{language}生动有趣地重写"
+    },
+    "prompt_translate_default": {
+        "message": "将以下内容翻译成{language}"
+    },
+    "prompt_translate_p1": {
+        "message": "逐字翻译成{language}"
+    },
+    "prompt_translate_p2": {
+        "message": "自然地翻译成{language}"
+    },
+    "prompt_translate_p3": {
+        "message": "详细解释并翻译成{language}"
+    }
+}
