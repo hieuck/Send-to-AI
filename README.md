@@ -1,6 +1,16 @@
 # Send-to-AI Service v0.2.0
 
-Send-to-AI là một tiện ích mở rộng cho trình duyệt Chrome, cho phép bạn gửi văn bản hoặc liên kết đến các nền tảng AI phổ biến như ChatGPT, Gemini, Claude, POE, và DeepSeek. Tiện ích này hỗ trợ các tính năng như viết lại văn bản, dịch ngôn ngữ, và nhiều hơn nữa.
+Send-to-AI là một tiện ích mở rộng cho trình duyệt Chrome, giúp bạn dễ dàng tương tác với các nền tảng AI phổ biến như ChatGPT, Gemini, Claude, POE, DeepSeek, và Perplexity. Tiện ích này cung cấp các tính năng nổi bật như:
+
+- **Gửi văn bản hoặc liên kết**: Nhanh chóng gửi nội dung được chọn đến các nền tảng AI.
+- **Viết lại văn bản**: Cải thiện chất lượng và phong cách của văn bản.
+- **Dịch ngôn ngữ**: Dịch văn bản sang ngôn ngữ bạn mong muốn.
+- **Menu phân cấp thông minh**: Lựa chọn nền tảng, hành động, và mẫu prompt chỉ với vài thao tác.
+- **Prompts tùy chỉnh**: Hỗ trợ nhiều mẫu prompt từ cơ bản đến nâng cao cho từng hành động.
+- **Hỗ trợ nhiều nền tảng AI**: Tích hợp với các công cụ AI hàng đầu, bao gồm Perplexity, giúp bạn làm việc hiệu quả hơn.
+- **Tùy chỉnh linh hoạt**: Cho phép thay đổi ngôn ngữ mặc định, liên kết nền tảng, và các tùy chọn khác.
+
+Send-to-AI là giải pháp lý tưởng để tối ưu hóa quy trình làm việc của bạn với các công cụ AI hiện đại.
 
 ## Changelog
 v0.2.0
@@ -62,37 +72,69 @@ Bạn có thể tùy chỉnh tiện ích bằng cách:
 - **Chọn ngôn ngữ mặc định**: Đặt ngôn ngữ bạn muốn sử dụng cho dịch thuật.
 - **Liên kết tùy chỉnh**: Cung cấp URL tùy chỉnh cho các nền tảng AI.
 
-## Cấu trúc thư mục
-
+```
 \Send-to-AI\
 │
 ├── src\
 │   ├── js\
-│   │   ├── background.js
-│   │   └── content.js
+│   │   ├── background.js       # Xử lý logic nền của tiện ích
+│   │   ├── content.js          # Inject script vào các trang web
+│   │   ├── menu.js             # Xử lý logic menu chuột phải
+│   │   └── utils.js            # Các hàm tiện ích dùng chung
 │   ├── css\
-│   │   └── style.css
+│   │   ├── style.css           # Định dạng giao diện của tiện ích
+│   │   └── theme.css           # Định dạng theme tùy chỉnh
 │   ├── img\
-│   │   └── icon.png
+│   │   ├── icon.png            # Biểu tượng của tiện ích
+│   │   └── banner.png          # Hình ảnh banner cho trang cài đặt
 │   ├── _locales\
+│   │   ├── en\
+│   │   │   └── messages.json   # Tệp ngôn ngữ tiếng Anh
 │   │   └── vi\
-│   │       └── messages.json
-│   ├── manifest.json
-│   ├── options.html
-│   └── popup.html
+│   │       └── messages.json   # Tệp ngôn ngữ tiếng Việt
+│   ├── manifest.json           # Tệp cấu hình chính của tiện ích
+│   ├── options.html            # Trang cài đặt tùy chọn
+│   ├── popup.html              # Giao diện popup của tiện ích
+│   └── service-worker.js       # Service worker để xử lý các tác vụ nền
 │
-└── README.md
+└── README.md                   # Tài liệu hướng dẫn sử dụng
+```
 
 ## Known Issues
-- Một số trang AI có thể thay đổi selector khiến việc inject không hoạt động
-- Cần refresh lại trang sau khi thay đổi ngôn ngữ
+- Một số trang AI có thể thay đổi selector khiến việc inject không hoạt động:
+  - ChatGPT: Thay đổi định kỳ cấu trúc UI
+  - Claude: Cập nhật lớn có thể thay đổi cấu trúc button
+  - Perplexity: Thường xuyên cập nhật giao diện chat
+- Cần refresh lại trang sau khi thay đổi ngôn ngữ hoặc URL tùy chỉnh
 - Menu chuột phải có thể bị trễ khi hiển thị lần đầu
+- Một số trang web chặn việc inject script tự động
 
 ## Roadmap
-- [ ] Thêm tính năng OCR để trích xuất text từ ảnh
-- [ ] Hỗ trợ thêm các nền tảng AI mới
-- [ ] Cải thiện UX của options page
-- [ ] Thêm tính năng import/export cài đặt
+- [ ] Tính năng OCR và xử lý ảnh:
+  - Trích xuất text từ ảnh
+  - Hỗ trợ screenshot và crop
+  - Nhận diện bảng và biểu đồ
+- [ ] Hỗ trợ thêm các nền tảng AI:
+  - Anthropic Claude 3
+  - Microsoft Copilot
+  - Inflection Pi
+  - Character.AI
+  - Phind
+- [ ] Cải thiện UX/UI:
+  - Giao diện options page mới
+  - Dark mode
+  - Tùy chỉnh theme
+  - Phím tắt tùy chỉnh
+  - Quản lý prompt theo folder
+- [ ] Tính năng nâng cao:
+  - Import/export cài đặt và prompt
+  - Đồng bộ hóa cross-device
+  - Lịch sử truy vấn
+  - Bookmark prompt hay dùng
+  - API tích hợp cho các nền tảng AI
+  - Hỗ trợ voice input/output
+  - Chế độ offline với mô hình local
+  - Tự động cập nhật selector
 
 ## Đóng góp
 

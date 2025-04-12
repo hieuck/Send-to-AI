@@ -38,18 +38,18 @@
         "message": "Send to AI"
     },
     "action_answer": {
-        "message": "Answer"
+        "message": "Answer with"
     },
     "action_rewrite": {
-        "message": "Rewrite"
+        "message": "Rewrite with"
     },
     "action_translate": {
-        "message": "Translate"
+        "message": "Translate with"
     },
 
     // Prompts
     "prompt_answer_default": {
-        "message": "Answer the following in {language}"
+        "message": "Please answer this question"
     },
     "prompt_answer_p1": {
         "message": "Give a concise answer in {language}"
