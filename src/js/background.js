@@ -11,28 +11,12 @@ const AI_PLATFORMS = {
       button: 'button[data-testid="send-button"]'
     }
   },
-  gemini: {
-    name: 'Gemini',
-    defaultUrl: 'https://gemini.google.com/app',
-    selector: {
-      input: '.ql-editor',
-      button: '.send-button'
-    }
-  },
   claude: {
     name: 'Claude',
     defaultUrl: 'https://claude.ai/new',
     selector: {
       input: 'p.is-empty.is-editor-empty',
       button: 'button[aria-label="Send Message"]'
-    }
-  },
-  poe: {
-    name: 'POE',
-    defaultUrl: 'https://poe.com/',
-    selector: {
-      input: 'textarea.GrowingTextArea_textArea__ZWQbP',
-      button: 'button.ChatMessageSendButton_sendButton__4ZyI4'
     }
   },
   deepseek: {
@@ -43,12 +27,28 @@ const AI_PLATFORMS = {
       button: 'div[role="button"][aria-disabled="false"]'
     }
   },
+  gemini: {
+    name: 'Gemini',
+    defaultUrl: 'https://gemini.google.com/app',
+    selector: {
+      input: '.ql-editor',
+      button: '.send-button'
+    }
+  },
   perplexity: {
     name: 'Perplexity',
     defaultUrl: 'https://www.perplexity.ai/',
     selector: {
-      input: 'textarea[placeholder="Ask anything..."]',
-      button: 'button[type="submit"]'
+      input: '.TextArea_textArea__GrWvD, textarea[placeholder="Ask anything..."], .ProseMirror[contenteditable="true"]',
+      button: 'button[type="submit"], button.Button_button__GWnx9'
+    }
+  },
+  poe: {
+    name: 'POE',
+    defaultUrl: 'https://poe.com/',
+    selector: {
+      input: 'textarea.GrowingTextArea_textArea__ZWQbP',
+      button: 'button.ChatMessageSendButton_sendButton__4ZyI4'
     }
   }
 };
@@ -166,15 +166,18 @@ function injectPrompt(tabId, prompt, selector) {
         if (input) {
           clearInterval(checkElement);
           
-          // Set input value
           if (input.tagName.toLowerCase() === 'textarea') {
             input.value = prompt;
           } else {
             input.textContent = prompt;
+            if (input.getAttribute('contenteditable') === 'true') {
+              input.innerHTML = prompt.replace(/\n/g, '<br>');
+            }
           }
+          
           input.dispatchEvent(new Event('input', { bubbles: true }));
+          input.dispatchEvent(new Event('change', { bubbles: true }));
 
-          // Click send button after short delay
           setTimeout(() => {
             const button = document.querySelector(selector.button);
             if (button && !button.disabled) {
