@@ -83,5 +83,122 @@
     },
     "prompt_translate_p3": {
         "message": "Dịch và giải thích chi tiết sang {language}"
+    },
+
+    // Additional languages
+    "languageVietnamese": {
+        "message": "Tiếng Việt"
+    },
+    "languageEnglishUS": {
+        "message": "Tiếng Anh (Mỹ)"
+    },
+    "languageEnglishGB": {
+        "message": "Tiếng Anh (Vương quốc Anh)"
+    },
+    "languageFrenchFR": {
+        "message": "Tiếng Pháp (Pháp)"
+    },
+    "languageFrenchCA": {
+        "message": "Tiếng Pháp (Canada)"
+    },
+    "languageSpanishES": {
+        "message": "Tiếng Tây Ban Nha (Tây Ban Nha)"
+    },
+    "languageSpanishMX": {
+        "message": "Tiếng Tây Ban Nha (Mexico)"
+    },
+    "languageGerman": {
+        "message": "Tiếng Đức"
+    },
+    "languageItalian": {
+        "message": "Tiếng Ý"
+    },
+    "languagePortuguesePT": {
+        "message": "Tiếng Bồ Đào Nha (Bồ Đào Nha)"
+    },
+    "languagePortugueseBR": {
+        "message": "Tiếng Bồ Đào Nha (Brazil)"
+    },
+    "languageJapanese": {
+        "message": "Tiếng Nhật"
+    },
+    "languageChineseSimp": {
+        "message": "Tiếng Trung (Giản thể)"
+    },
+    "languageChineseTrad": {
+        "message": "Tiếng Trung (Phồn thể)"
+    },
+    "languageRussian": {
+        "message": "Tiếng Nga"
+    },
+    "languageArabic": {
+        "message": "Tiếng Ả Rập"
+    },
+    "languageKorean": {
+        "message": "Tiếng Hàn"
+    },
+    "languageTurkish": {
+        "message": "Tiếng Thổ Nhĩ Kỳ"
+    },
+    "languageDutch": {
+        "message": "Tiếng Hà Lan"
+    },
+    "languageSwedish": {
+        "message": "Tiếng Thụy Điển"
+    },
+    "languageDanish": {
+        "message": "Tiếng Đan Mạch"
+    },
+    "languageNorwegian": {
+        "message": "Tiếng Na Uy"
+    },
+    "languageFinnish": {
+        "message": "Tiếng Phần Lan"
+    },
+
+    // Theme settings
+    "themeDropdownLabel": {
+        "message": "Chọn giao diện"
+    },
+    "themeLight": {
+        "message": "Sáng"
+    },
+    "themeDark": {
+        "message": "Tối"
+    },
+    "themeAuto": {
+        "message": "Tự động"
+    },
+
+    // New settings
+    "customLanguagePlaceholder": {
+        "message": "Ví dụ: DE-DE cho Tiếng Đức"
+    },
+    "customPromptLabel": {
+        "message": "Nội dung tùy chỉnh"
+    },
+    "customPromptPlaceholder": {
+        "message": "Nhập nội dung tùy chỉnh của bạn ở đây..."
+    },
+    "openLinkButton": {
+        "message": "Mở liên kết"
+    },
+    "urlInvalid": {
+        "message": "URL không hợp lệ!"
+    },
+    "settingsSaved": {
+        "message": "Đã lưu cài đặt"
+    },
+    "selectedLanguage": {
+        "message": "Ngôn ngữ đã chọn: $1"
+    },
+    "customLanguageSaved": {
+        "message": "Ngôn ngữ tùy chỉnh: $1"
+    },
+    "customPromptSaved": {
+        "message": "Nội dung tùy chỉnh: $1"
+    },
+    "linkSaved": {
+        "message": "Liên kết $1 đã lưu"
     }
 }

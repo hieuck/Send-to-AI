@@ -12,45 +12,45 @@
     <!-- Dropdown cho việc chọn ngôn ngữ -->
     <label for="languageDropdown">__MSG_languageLabel__</label>
     <select id="languageDropdown">
-        <option value="VI-VN">Tiếng Việt</option>
-        <option value="EN-US">Tiếng Anh (Mỹ)</option>
-        <option value="EN-GB">Tiếng Anh (Vương quốc Anh)</option>
-        <option value="FR-FR">Tiếng Pháp (Pháp)</option>
-        <option value="FR-CA">Tiếng Pháp (Canada)</option>
-        <option value="ES-ES">Tiếng Tây Ban Nha (Tây Ban Nha)</option>
-        <option value="ES-MX">Tiếng Tây Ban Nha (Mexico)</option>
-        <option value="DE-DE">Tiếng Đức</option>
-        <option value="IT-IT">Tiếng Ý</option>
-        <option value="PT-PT">Tiếng Bồ Đào Nha (Bồ Đào Nha)</option>
-        <option value="PT-BR">Tiếng Bồ Đào Nha (Brazil)</option>
-        <option value="JA-JP">Tiếng Nhật</option>
-        <option value="ZH-CN">Tiếng Trung (Giản thể)</option>
-        <option value="ZH-TW">Tiếng Trung (Phồn thể)</option>
-        <option value="RU-RU">Tiếng Nga</option>
-        <option value="AR-SA">Tiếng Ả Rập (Saudi Arabia)</option>
-        <option value="KO-KR">Tiếng Hàn</option>
-        <option value="TR-TR">Tiếng Thổ Nhĩ Kỳ</option>
-        <option value="NL-NL">Tiếng Hà Lan</option>
-        <option value="SV-SE">Tiếng Thụy Điển</option>
-        <option value="DA-DK">Tiếng Đan Mạch</option>
-        <option value="NO-NO">Tiếng Na Uy</option>
-        <option value="FI-FI">Tiếng Phần Lan</option>
+        <option value="VI-VN">__MSG_languageVietnamese__</option>
+        <option value="EN-US">__MSG_languageEnglishUS__</option>
+        <option value="EN-GB">__MSG_languageEnglishGB__</option>
+        <option value="FR-FR">__MSG_languageFrenchFR__</option>
+        <option value="FR-CA">__MSG_languageFrenchCA__</option>
+        <option value="ES-ES">__MSG_languageSpanishES__</option>
+        <option value="ES-MX">__MSG_languageSpanishMX__</option>
+        <option value="DE-DE">__MSG_languageGerman__</option>
+        <option value="IT-IT">__MSG_languageItalian__</option>
+        <option value="PT-PT">__MSG_languagePortuguesePT__</option>
+        <option value="PT-BR">__MSG_languagePortugueseBR__</option>
+        <option value="JA-JP">__MSG_languageJapanese__</option>
+        <option value="ZH-CN">__MSG_languageChineseSimp__</option>
+        <option value="ZH-TW">__MSG_languageChineseTrad__</option>
+        <option value="RU-RU">__MSG_languageRussian__</option>
+        <option value="AR-SA">__MSG_languageArabic__</option>
+        <option value="KO-KR">__MSG_languageKorean__</option>
+        <option value="TR-TR">__MSG_languageTurkish__</option>
+        <option value="NL-NL">__MSG_languageDutch__</option>
+        <option value="SV-SE">__MSG_languageSwedish__</option>
+        <option value="DA-DK">__MSG_languageDanish__</option>
+        <option value="NO-NO">__MSG_languageNorwegian__</option>
+        <option value="FI-FI">__MSG_languageFinnish__</option>
     </select>
 
     <!-- Ô nhập cho ngôn ngữ tùy chỉnh -->
     <label for="customLanguage">__MSG_customLanguageLabel__</label>
-    <input type="text" id="customLanguage" placeholder="Ví dụ: DE-DE cho Tiếng Đức" />
+    <input type="text" id="customLanguage" placeholder="__MSG_customLanguagePlaceholder__" />
 
     <!-- Ô nhập cho nội dung tùy chỉnh (bây giờ là textarea để hỗ trợ nhiều dòng) -->
     <label for="customPrompt">__MSG_customPromptLabel__</label>
-    <textarea id="customPrompt" placeholder="Nhập nội dung tùy chỉnh" rows="4" cols="50"></textarea>
+    <textarea id="customPrompt" placeholder="__MSG_customPromptPlaceholder__" rows="4" cols="50"></textarea>
 
     <!-- Ô nhập cho custom link cho ChatGPT -->
     <div class="url-input-group">
         <label for="customChatGPTLink">__MSG_customChatGPTLinkLabel__ (ChatGPT)</label>
         <div class="url-input-wrapper">
             <input type="text" id="customChatGPTLink" placeholder="https://chatgpt.com/?model=auto" />
-            <button class="open-link-btn" data-url-input="customChatGPTLink">Mở liên kết</button>
+            <button class="open-link-btn" data-url-input="customChatGPTLink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
         <label for="customGeminiLink">__MSG_customGeminiLinkLabel__ (Gemini)</label>
         <div class="url-input-wrapper">
             <input type="text" id="customGeminiLink" placeholder="https://gemini.google.com/app" />
-            <button class="open-link-btn" data-url-input="customGeminiLink">Mở liên kết</button>
+            <button class="open-link-btn" data-url-input="customGeminiLink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
@@ -68,7 +68,7 @@
         <label for="customClaudeLink">__MSG_customClaudeLinkLabel__ (Claude)</label>
         <div class="url-input-wrapper">
             <input type="text" id="customClaudeLink" placeholder="https://claude.ai/new" />
-            <button class="open-link-btn" data-url-input="customClaudeLink">Mở liên kết</button>
+            <button class="open-link-btn" data-url-input="customClaudeLink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
@@ -77,7 +77,7 @@
         <label for="customPOELink">__MSG_customPOELinkLabel__ (POE)</label>
         <div class="url-input-wrapper">
             <input type="text" id="customPOELink" placeholder="https://poe.com" />
-            <button class="open-link-btn" data-url-input="customPOELink">Mở liên kết</button>
+            <button class="open-link-btn" data-url-input="customPOELink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
@@ -86,16 +86,16 @@
         <label for="customDeepSeekLink">__MSG_customDeepSeekLinkLabel__ (DeepSeek)</label>
         <div class="url-input-wrapper">
             <input type="text" id="customDeepSeekLink" placeholder="https://chat.deepseek.com" />
-            <button class="open-link-btn" data-url-input="customDeepSeekLink">Mở liên kết</button>
+            <button class="open-link-btn" data-url-input="customDeepSeekLink">__MSG_openLinkButton__</button>
         </div>
     </div>
 
     <!-- Dropdown chọn chế độ giao diện -->
-    <label for="themeDropdown">Chọn giao diện</label>
+    <label for="themeDropdown">__MSG_themeDropdownLabel__</label>
     <select id="themeDropdown">
-        <option value="light">Sáng</option>
-        <option value="dark">Tối</option>
-        <option value="auto">Tự động</option>
+        <option value="light">__MSG_themeLightLabel__</option>
+        <option value="dark">__MSG_themeDarkLabel__</option>
+        <option value="auto">__MSG_themeAutoLabel__</option>
     </select>
 
     <!-- Nút lưu -->
