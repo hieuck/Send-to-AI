@@ -32,6 +32,29 @@
     "customDeepSeekLinkLabel": {
         "message": "Nhập Liên kết DeepSeek trả lời (URL):"
     },
+    "customPerplexityLinkLabel": {
+        "message": "Nhập Liên kết Perplexity trả lời (URL):"
+    },
+
+    // Placeholders for AI service URLs
+    "chatGPTPlaceholder": {
+        "message": "https://chat.openai.com/"
+    },
+    "geminiPlaceholder": {
+        "message": "https://gemini.google.com/app"
+    },
+    "claudePlaceholder": {
+        "message": "https://claude.ai/"
+    },
+    "poePlaceholder": {
+        "message": "https://poe.com/"
+    },
+    "deepSeekPlaceholder": {
+        "message": "https://chat.deepseek.com/"
+    },
+    "perplexityPlaceholder": {
+        "message": "https://www.perplexity.ai/"
+    },
 
     // Context menu structure
     "menuRoot": {
@@ -184,21 +207,24 @@
         "message": "Mở liên kết"
     },
     "urlInvalid": {
-        "message": "URL không hợp lệ!"
+        "message": "URL không hợp lệ"
     },
     "settingsSaved": {
-        "message": "Đã lưu cài đặt"
+        "message": "Đã lưu cài đặt thành công"
     },
     "selectedLanguage": {
         "message": "Ngôn ngữ đã chọn: $1"
     },
     "customLanguageSaved": {
-        "message": "Ngôn ngữ tùy chỉnh: $1"
+        "message": "Ngôn ngữ tùy chỉnh đã lưu: $1"
     },
     "customPromptSaved": {
-        "message": "Nội dung tùy chỉnh: $1"
+        "message": "Nội dung tùy chỉnh đã lưu: $1"
     },
     "linkSaved": {
-        "message": "Liên kết $1 đã lưu"
+        "message": "Liên kết $1 đã được lưu"
+    },
+    "selectedLanguageMsg": {
+        "message": "Ngôn ngữ đã chọn: $1"
     }
 }

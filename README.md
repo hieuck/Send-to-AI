@@ -23,6 +23,7 @@ v0.1.1
   - Claude
   - POE
   - DeepSeek
+  - Perplexity
 
 ## Tính năng mới
 

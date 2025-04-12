@@ -42,6 +42,14 @@ const AI_PLATFORMS = {
       input: '#chat-input',
       button: 'div[role="button"][aria-disabled="false"]'
     }
+  },
+  perplexity: {
+    name: 'Perplexity',
+    defaultUrl: 'https://www.perplexity.ai/',
+    selector: {
+      input: 'textarea[placeholder="Ask anything..."]',
+      button: 'button[type="submit"]'
+    }
   }
 };
 

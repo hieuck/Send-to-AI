@@ -45,6 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
         poePlaceholder: 'poePlaceholder',
         customDeepSeekLinkLabel: 'customDeepSeekLinkLabel',
         deepSeekPlaceholder: 'deepSeekPlaceholder',
+        customPerplexityLinkLabel: 'customPerplexityLinkLabel',
+        perplexityPlaceholder: 'perplexityPlaceholder',
+        linkSavedPerplexity: 'linkSavedPerplexity',
         
         // Theme
         themeDropdownLabel: 'themeDropdownLabel',
@@ -59,8 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
         urlInvalid: 'urlInvalid'
     };
 
-    // Hàm helper để lấy message từ i18n
-    const getMessage = (key, params = []) => chrome.i18n.getMessage(i18nMessages[key], params);
+    // Helper function to get message from i18n
+    function getMessage(messageKey) {
+        return chrome.i18n.getMessage(messageKey) || messageKey;
+    }
 
     const labels = [
         // Language options
@@ -99,6 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { for: "customClaudeLink", message: "customClaudeLinkLabel" },
         { for: "customPOELink", message: "customPOELinkLabel" },
         { for: "customDeepSeekLink", message: "customDeepSeekLinkLabel" },
+        { for: "customPerplexityLink", message: "customPerplexityLinkLabel" },
         
         // Theme
         { for: "themeDropdown", message: "themeDropdownLabel" },
@@ -113,6 +119,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cập nhật nội dung cho thẻ h1
     document.querySelector('h1').innerText = getMessage('extensionName');
+
+    // Update status message function
+    function updateStatusMessage(messageKey, value) {
+        const message = getMessage(messageKey);
+        if (!message) return;
+
+        const newMessage = document.createElement("div");
+        // Replace placeholder with value if exists
+        newMessage.textContent = message.replace("$1", value || "");
+        statusMessage.appendChild(newMessage);
+    }
 
     // Cập nhật các nhãn khác bằng forEach
     labels.forEach(label => {
@@ -150,8 +167,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusMessage = document.getElementById("statusMessage");
 
     // Cập nhật các placeholder
-    customLanguageInput.placeholder = getMessage('customLanguagePlaceholder');
-    customPromptInput.placeholder = getMessage('customPromptPlaceholder');
+    const placeholders = {
+        customLanguage: 'customLanguagePlaceholder',
+        customPrompt: 'customPromptPlaceholder',
+        customChatGPTLink: 'chatGPTPlaceholder',
+        customGeminiLink: 'geminiPlaceholder',
+        customClaudeLink: 'claudePlaceholder',
+        customPOELink: 'poePlaceholder',
+        customDeepSeekLink: 'deepSeekPlaceholder',
+        customPerplexityLink: 'perplexityPlaceholder'
+    };
+
+    Object.entries(placeholders).forEach(([id, messageKey]) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.placeholder = getMessage(messageKey);
+        }
+    });
 
     // Cập nhật nút mở liên kết
     document.querySelectorAll('.open-link-btn').forEach(button => {
@@ -193,13 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
             updateStatusMessage('linkSaved', 'DeepSeek: ' + data.customDeepSeekLink);
         }
     });
-
-    // Cập nhật thông báo trạng thái (gộp các thông báo thành một thông báo duy nhất)
-    function updateStatusMessage(type, value) {
-        const newMessage = document.createElement("div");
-        newMessage.innerHTML = getMessage(type, [value]);
-        statusMessage.appendChild(newMessage); // Thêm thông báo vào container
-    }
 
     let isSaving = false; // Biến để kiểm tra nếu đã nhấn lưu trước đó
 
@@ -254,22 +279,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Hàm để hiển thị thông báo toast
-    function showToast(messageKey, params = []) {
-        const message = getMessage(messageKey, params);
-        // Kiểm tra xem có thông báo nào hiện tại hay không
+    // Toast message function
+    function showToast(messageKey) {
+        const message = getMessage(messageKey);
+        if (!message) return;
+
         const existingToast = document.querySelector(".toast");
         if (existingToast) {
-            existingToast.remove(); // Nếu có, loại bỏ thông báo cũ
+            existingToast.remove();
         }
 
-        // Tạo thông báo mới
         const toast = document.createElement("div");
         toast.classList.add("toast");
-        toast.innerText = message;
+        toast.textContent = message;
         document.body.appendChild(toast);
 
-        // Loại bỏ toast sau 3 giây
         setTimeout(() => toast.remove(), 3000);
     }
 
