@@ -67,6 +67,34 @@
         "message": "📚 Viết sinh động bằng {language}"
     },
 
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ Dịch chuẩn"
+    },
+    "translate_literary_title": {
+        "message": "📚 Dịch văn học"
+    },
+    "translate_technical_title": {
+        "message": "🔧 Dịch kỹ thuật"
+    },
+    "translate_localize_title": {
+        "message": "🌍 Dịch + Địa phương hóa"
+    },
+
+    // Translation prompts
+    "translate_default_prompt": {
+        "message": "Dịch văn bản sau sang {language}, giữ nguyên format và bố cục:"
+    },
+    "translate_literary_prompt": {
+        "message": "Dịch văn bản sau sang {language} với phong cách văn học, tự nhiên và truyền cảm:"
+    },
+    "translate_technical_prompt": {
+        "message": "Dịch văn bản sau sang {language}, tập trung vào độ chính xác của thuật ngữ chuyên ngành:"
+    },
+    "translate_localize_prompt": {
+        "message": "Dịch và địa phương hóa văn bản sau sang {language}, điều chỉnh cho phù hợp với văn hóa đích:"
+    },
+
     // Language settings
     "languageLabel": {
         "message": "Chọn ngôn ngữ trả lời:"

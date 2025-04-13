@@ -83,5 +83,33 @@
     },
     "prompt_translate_p3": {
         "message": "자세한 설명과 함께 {language}로 번역"
+    },
+
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ 표준 번역"
+    },
+    "translate_literary_title": {
+        "message": "📚 문학적 번역"
+    },
+    "translate_technical_title": {
+        "message": "🔧 기술 번역"
+    },
+    "translate_localize_title": {
+        "message": "🌍 번역 + 현지화"
+    },
+
+    // Translation prompts
+    "translate_default_prompt": {
+        "message": "다음 텍스트를 형식과 레이아웃을 유지하며 {language}로 번역하세요:"
+    },
+    "translate_literary_prompt": {
+        "message": "다음 텍스트를 문학적 스타일, 자연스러운 흐름, 감정적 공명을 살려 {language}로 번역하세요:"
+    },
+    "translate_technical_prompt": {
+        "message": "다음 텍스트를 기술 용어의 정확성에 중점을 두어 {language}로 번역하세요:"
+    },
+    "translate_localize_prompt": {
+        "message": "다음 텍스트를 대상 문화에 맞게 조정하여 {language}로 번역 및 현지화하세요:"
     }
 }

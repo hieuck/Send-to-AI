@@ -104,6 +104,34 @@
         "message": "詳しく説明しながら{language}に翻訳"
     },
 
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ 標準翻訳"
+    },
+    "translate_literary_title": {
+        "message": "📚 文学的翻訳"
+    },
+    "translate_technical_title": {
+        "message": "🔧 技術翻訳"
+    },
+    "translate_localize_title": {
+        "message": "🌍 翻訳＋ローカライズ"
+    },
+
+    // Translation prompts
+    "translate_default_prompt": {
+        "message": "以下のテキストを{language}に翻訳し、フォーマットとレイアウトを維持してください："
+    },
+    "translate_literary_prompt": {
+        "message": "以下のテキストを文学的な表現で{language}に翻訳し、自然な流れと感情を保持してください："
+    },
+    "translate_technical_prompt": {
+        "message": "以下のテキストを{language}に翻訳し、専門用語の正確さに重点を置いてください："
+    },
+    "translate_localize_prompt": {
+        "message": "以下のテキストを{language}に翻訳し、対象文化に適応させてローカライズしてください："
+    },
+
     // Prompt system
     "prompt_section_title": {
         "message": "⭐ カスタムプロンプト"

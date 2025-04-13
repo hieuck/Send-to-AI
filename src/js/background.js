@@ -131,6 +131,28 @@ function createContextMenus() {
                       });
                     }
                   });
+
+                  // Add new translation submenu items
+                  if (action === 'translate') {
+                    const translationTypes = [
+                      {id: 'default', messageKey: 'translate_default_title'},
+                      {id: 'literary', messageKey: 'translate_literary_title'},
+                      {id: 'technical', messageKey: 'translate_technical_title'},
+                      {id: 'localize', messageKey: 'translate_localize_title'}
+                    ];
+
+                    translationTypes.forEach(type => {
+                      const title = chrome.i18n.getMessage(type.messageKey);
+                      if (title) {
+                        chrome.contextMenus.create({
+                          id: `${actionId}_${type.id}`,
+                          parentId: actionId,
+                          title: title,
+                          contexts: [context]
+                        });
+                      }
+                    });
+                  }
                 }
               });
             }
@@ -165,7 +187,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
     // Get prompt template
     let promptTemplate;
-    if (promptType === 'custom') {
+    if (action === 'translate') {
+      const promptMessageKey = `translate_${promptType}_prompt`;
+      promptTemplate = chrome.i18n.getMessage(promptMessageKey) || 
+                      chrome.i18n.getMessage('translate_default_prompt');
+    } else if (promptType === 'custom') {
         promptTemplate = action === 'rewrite' 
             ? chrome.i18n.getMessage('customPromptRewritePlaceholder')
             : chrome.i18n.getMessage('customPromptPlaceholder');

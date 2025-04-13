@@ -145,5 +145,33 @@
     },
     "prompt_translate_p3": {
         "message": "Traducir y explicar en detalle en {language}"
+    },
+
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ Traducción Estándar"
+    },
+    "translate_literary_title": {
+        "message": "📚 Traducción Literaria"
+    },
+    "translate_technical_title": {
+        "message": "🔧 Traducción Técnica"
+    },
+    "translate_localize_title": {
+        "message": "🌍 Traducción + Localización"
+    },
+
+    // Translation prompts
+    "translate_default_prompt": {
+        "message": "Traduce el siguiente texto al {language} manteniendo el formato y diseño:"
+    },
+    "translate_literary_prompt": {
+        "message": "Traduce el siguiente texto al {language} con estilo literario, fluidez natural y resonancia emocional:"
+    },
+    "translate_technical_prompt": {
+        "message": "Traduce el siguiente texto al {language} enfocándote en la precisión de términos técnicos:"
+    },
+    "translate_localize_prompt": {
+        "message": "Traduce y localiza el siguiente texto al {language} adaptándolo a la cultura destino:"
     }
 }

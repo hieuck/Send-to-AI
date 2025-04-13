@@ -87,5 +87,33 @@
     },
     "prompt_translate_p3": {
         "message": "Übersetze und erkläre ausführlich in {language}"
+    },
+
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ Standardübersetzung"
+    },
+    "translate_literary_title": {
+        "message": "📚 Literarische Übersetzung"
+    },
+    "translate_technical_title": {
+        "message": "🔧 Technische Übersetzung"
+    },
+    "translate_localize_title": {
+        "message": "🌍 Übersetzung + Lokalisierung"
+    },
+
+    // Translation prompts 
+    "translate_default_prompt": {
+        "message": "Übersetzen Sie den folgenden Text ins {language} unter Beibehaltung von Format und Layout:"
+    },
+    "translate_literary_prompt": {
+        "message": "Übersetzen Sie den folgenden Text ins {language} mit literarischem Stil, natürlichem Fluss und emotionalem Ausdruck:"
+    },
+    "translate_technical_prompt": {
+        "message": "Übersetzen Sie den folgenden Text ins {language} mit Fokus auf die Genauigkeit technischer Begriffe:"
+    },
+    "translate_localize_prompt": {
+        "message": "Übersetzen und lokalisieren Sie den folgenden Text ins {language} und passen Sie ihn an die Zielkultur an:"
     }
 }

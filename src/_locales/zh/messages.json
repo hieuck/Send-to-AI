@@ -103,5 +103,33 @@
     },
     "prompt_translate_p3": {
         "message": "详细解释并翻译成{language}"
+    },
+
+    // Translation types
+    "translate_default_title": {
+        "message": "⚡ 标准翻译"
+    },
+    "translate_literary_title": {
+        "message": "📚 文学翻译"
+    },
+    "translate_technical_title": {
+        "message": "🔧 技术翻译"
+    },
+    "translate_localize_title": {
+        "message": "🌍 翻译+本地化"
+    },
+
+    // Translation prompts
+    "translate_default_prompt": {
+        "message": "将以下文本翻译成{language}，保持格式和布局："
+    },
+    "translate_literary_prompt": {
+        "message": "将以下文本以文学风格翻译成{language}，保持自然流畅和情感表达："
+    },
+    "translate_technical_prompt": {
+        "message": "将以下文本翻译成{language}，注重专业术语的准确性："
+    },
+    "translate_localize_prompt": {
+        "message": "将以下文本翻译成{language}并本地化，使其适应目标文化："
     }
 }
