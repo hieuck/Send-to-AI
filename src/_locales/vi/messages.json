@@ -137,7 +137,7 @@
 
     // URL placeholders
     "chatGPTPlaceholder": {
-        "message": "https://chat.openai.com/"
+        "message": "https://chatgpt.com/"
     },
     "geminiPlaceholder": {
         "message": "https://gemini.google.com/app"

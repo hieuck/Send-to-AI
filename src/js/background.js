@@ -6,7 +6,7 @@
 const AI_PLATFORMS = {
   chatgpt: {
     name: '🤖 ChatGPT',
-    defaultUrl: 'https://chatgpt.com/?model=auto',
+    defaultUrl: 'https://chatgpt.com/',
     selector: {
       input: '#prompt-textarea',
       button: 'button[data-testid="send-button"]'
@@ -184,9 +184,44 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const config = AI_PLATFORMS[platform];
     if (!config) return;
 
-    // Get custom URL if available
-    const customUrlKey = `custom${platform.charAt(0).toUpperCase() + platform.slice(1)}Link`;
-    const url = data[customUrlKey] || config.defaultUrl;
+    // Fixed platform name mapping for correct storage keys
+    const platformKeyMap = {
+      'chatgpt': 'ChatGPT',
+      'deepseek': 'DeepSeek',
+      'gemini': 'Gemini',
+      'claude': 'Claude',
+      'poe': 'POE',
+      'perplexity': 'Perplexity',
+      'grok': 'Grok'
+    };
+
+    const customUrlKey = `custom${platformKeyMap[platform]}Link`;
+    let url = data[customUrlKey];
+
+    // Add debug logging
+    console.log(`Platform: ${platform}`);
+    console.log(`Looking for custom URL with key: ${customUrlKey}`);
+    console.log(`Found custom URL in storage:`, data[customUrlKey]);
+
+    // Enhanced URL validation and fallback
+    if (!url || !url.trim()) {
+      console.log('No custom URL found, using default');
+      url = config.defaultUrl;
+    } else {
+      try {
+        const parsedUrl = new URL(url);
+        console.log('Using custom URL:', parsedUrl.href);
+      } catch (e) {
+        console.error('Invalid custom URL:', url);
+        console.log('Falling back to default URL');
+        url = config.defaultUrl;
+      }
+    }
+
+    // Extra validation for ChatGPT
+    if (platform === 'chatgpt') {
+      console.log('ChatGPT URL before creation:', url);
+    }
 
     // Get text based on context
     const text = context === 'selection' 
@@ -208,6 +243,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }
 
     const finalPrompt = `${promptTemplate.replace('{language}', language)}\n\n${text}`;
+    
+    // Log final URL and prompt
+    console.log('Final URL:', url);
+    console.log('Final prompt:', finalPrompt);
+    
     createTab(url, finalPrompt, config.selector);
   });
 });

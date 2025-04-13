@@ -61,7 +61,8 @@ function initI18n() {
         deepSeekPlaceholder: 'deepSeekPlaceholder',
         customPerplexityLinkLabel: 'customPerplexityLinkLabel',
         perplexityPlaceholder: 'perplexityPlaceholder',
-        linkSavedPerplexity: 'linkSavedPerplexity',
+        customGrokLinkLabel: 'customGrokLinkLabel',
+        grokPlaceholder: 'grokPlaceholder',
         
         // Theme
         themeDropdownLabel: 'themeDropdownLabel',
@@ -124,6 +125,7 @@ function initI18n() {
         { for: "customPOELink", message: "customPOELinkLabel" },
         { for: "customDeepSeekLink", message: "customDeepSeekLinkLabel" },
         { for: "customPerplexityLink", message: "customPerplexityLinkLabel" },
+        { for: "customGrokLink", message: "customGrokLinkLabel" },
 
         // Theme options
         { for: "themeDropdown", message: "themeDropdownLabel" },
@@ -173,7 +175,8 @@ function setupPlaceholders() {
         customClaudeLink: 'claudePlaceholder',
         customPOELink: 'poePlaceholder',
         customDeepSeekLink: 'deepSeekPlaceholder',
-        customPerplexityLink: 'perplexityPlaceholder'
+        customPerplexityLink: 'perplexityPlaceholder',
+        customGrokLink: 'grokPlaceholder'
     };
 
     Object.entries(placeholders).forEach(([id, messageKey]) => {
@@ -191,7 +194,7 @@ function setupPlaceholders() {
 
 // Hàm tải settings lưu và cập nhật giá trị cho input
 function loadSettings() {
-    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompts", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink", "customDeepSeekLink", "customPerplexityLink"], (data) => {
+    chrome.storage.local.get(["selectedLanguage", "customLanguage", "customPrompts", "customChatGPTLink", "customGeminiLink", "customClaudeLink", "customPOELink", "customDeepSeekLink", "customPerplexityLink", "customGrokLink"], (data) => {
         const languageDropdown = document.getElementById("languageDropdown");
         const customLanguageInput = document.getElementById("customLanguage");
         const customPromptInput = document.getElementById("customPrompt");
@@ -243,7 +246,7 @@ function loadSettings() {
         });
 
         // Load link values
-        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity'].forEach(platform => {
+        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity', 'Grok'].forEach(platform => {
             const input = document.getElementById(`custom${platform}Link`);
             if (input && data[`custom${platform}Link`]) {
                 input.value = data[`custom${platform}Link`];
@@ -295,11 +298,19 @@ function bindUIEvents() {
             }
         };
 
-        // Add AI platform links
-        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity'].forEach(platform => {
-            const value = document.getElementById(`custom${platform}Link`)?.value;
-            if (value) {
-                settings[`custom${platform}Link`] = value;
+        // Add AI platform links with validation
+        ['ChatGPT', 'Gemini', 'Claude', 'POE', 'DeepSeek', 'Perplexity', 'Grok'].forEach(platform => {
+            const input = document.getElementById(`custom${platform}Link`);
+            if (input) {
+                const value = input.value.trim();
+                if (value) {
+                    try {
+                        new URL(value); // Validate URL
+                        settings[`custom${platform}Link`] = value;
+                    } catch (e) {
+                        showToast('urlInvalid');
+                    }
+                }
             }
         });
 
