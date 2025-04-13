@@ -29,6 +29,15 @@
     "customDeepSeekLinkLabel": {
         "message": "Введите ссылку ответа DeepSeek (URL):"
     },
+    "customGrokLinkLabel": {
+        "message": "Введите ссылку ответа Grok (URL):"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
+    },
     "menuRoot": {
         "message": "Отправить в ИИ"
     },

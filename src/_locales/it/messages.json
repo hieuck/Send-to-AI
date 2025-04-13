@@ -29,6 +29,9 @@
     "customDeepSeekLinkLabel": {
         "message": "Inserisci il link di risposta DeepSeek (URL):"
     },
+    "customGrokLinkLabel": {
+        "message": "Inserisci il link di risposta Grok (URL):"
+    },
     "menuRoot": {
         "message": "Invia all'IA"
     },
@@ -103,5 +106,11 @@
     },
     "translate_localize_prompt": {
         "message": "Traduci e localizza il seguente testo in {language} adattandolo alla cultura di destinazione:"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
     }
 }

@@ -173,5 +173,16 @@
     },
     "translate_localize_prompt": {
         "message": "Traduce y localiza el siguiente texto al {language} adaptándolo a la cultura destino:"
+    },
+
+    // Grok
+    "customGrokLinkLabel": {
+        "message": "Ingrese el enlace de respuesta de Grok (URL):"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
     }
 }

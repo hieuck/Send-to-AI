@@ -32,6 +32,15 @@
     "customDeepSeekLinkLabel": {
         "message": "输入 DeepSeek 回复链接 (URL)："
     },
+    "customGrokLinkLabel": {
+        "message": "输入 Grok 回复链接 (URL)："
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
+    },
 
     // Actions & Menu
     "menuRoot": {

@@ -51,6 +51,14 @@ const AI_PLATFORMS = {
       input: 'textarea.GrowingTextArea_textArea__ZWQbP',
       button: 'button[aria-label="Send message"], button.ChatMessageSendButton_sendButton__4ZyI4'
     }
+  },
+  grok: {
+    name: '🧠 Grok',
+    defaultUrl: 'https://grok.com/',
+    selector: {
+      input: 'textarea[aria-label="Hỏi Grok bất cứ điều gì"]',
+      button: 'button[aria-label="Gửi"]'
+    }
   }
 };
 

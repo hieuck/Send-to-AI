@@ -50,6 +50,15 @@
     "customDeepSeekLinkLabel": {
         "message": "DeepSeek-Antwortlink (URL) eingeben:"
     },
+    "customGrokLinkLabel": {
+        "message": "Grok-Antwortlink (URL) eingeben:"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
+    },
 
     // Prompts
     "prompt_answer_default": {

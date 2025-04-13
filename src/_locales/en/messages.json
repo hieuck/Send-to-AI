@@ -40,6 +40,12 @@
     "customDeepSeekLinkLabel": {
         "message": "Enter DeepSeek response link (URL):"
     },
+    "customGrokLinkLabel": {
+        "message": "Enter Grok response link (URL):"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
 
     // Prompt system
     "prompt_section_title": {
@@ -122,5 +128,8 @@
     },
     "translate_localize_prompt": {
         "message": "Translate and localize the following text to {language}, adapting it to the target culture:"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
     }
 }

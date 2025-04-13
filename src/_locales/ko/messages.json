@@ -32,6 +32,15 @@
     "customDeepSeekLinkLabel": {
         "message": "DeepSeek 응답 링크(URL) 입력:"
     },
+    "customGrokLinkLabel": {
+        "message": "Grok 응답 링크 (URL) 입력:"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
+    },
 
     // Context menu structure 
     "menuRoot": {

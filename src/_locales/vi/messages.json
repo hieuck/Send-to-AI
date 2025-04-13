@@ -131,6 +131,9 @@
     "customPerplexityLinkLabel": {
         "message": "Nhập Liên kết Perplexity trả lời (URL):"
     },
+    "customGrokLinkLabel": {
+        "message": "Nhập Liên kết Grok trả lời (URL):"
+    },
 
     // URL placeholders
     "chatGPTPlaceholder": {
@@ -151,6 +154,9 @@
     "perplexityPlaceholder": {
         "message": "https://www.perplexity.ai/"
     },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
 
     // Platform icons in menu
     "chatgpt_title": {
@@ -170,6 +176,9 @@
     },
     "perplexity_title": {
         "message": "💡 Perplexity"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
     },
 
     // Theme settings

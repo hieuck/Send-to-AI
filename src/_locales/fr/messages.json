@@ -109,6 +109,16 @@
     "contextMenuTextTranslationDeepseek": {
         "message": "Traduire le texte sélectionné en {language} avec DeepSeek"
     },
+    // Grok
+    "customGrokLinkLabel": {
+        "message": "Entrez le lien de réponse Grok (URL) :"
+    },
+    "grokPlaceholder": {
+        "message": "https://grok.com/"
+    },
+    "grok_title": {
+        "message": "🧠 Grok"
+    },
     // Additional Prompts
     "prompt_answer_default": {
         "message": "Répondre à ce qui suit en {language}"
