@@ -225,6 +225,12 @@
     "customChatGPTLinkSaved": {
         "message": "URL ChatGPT tùy chỉnh đã lưu: $1"
     },
+    "customGeminiLinkSaved": {
+        "message": "URL Gemini tùy chỉnh đã lưu: $1"
+    },
+    "customGrokLinkSaved": {
+        "message": "URL Grok tùy chỉnh đã lưu: $1"
+    },
     "customPromptSaved": {
         "message": "Nội dung tùy chỉnh đã lưu: $1"
     },
